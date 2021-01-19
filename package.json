@@ -1,0 +1,83 @@
+{
+  "name": "incwadi_find",
+  "version": "2.2.0",
+  "description": "incwadi is a book database to manage your books.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abaldeweg/incwadi_find.git"
+  },
+  "author": "André Baldeweg <kontakt@andrebaldeweg.de>",
+  "license": "MIT",
+  "scripts": {
+    "watch": "NODE_ENV=development webpack-dev-server --open --hot --progress --config config/webpack.dev.js",
+    "build": "NODE_ENV=production webpack --hide-modules --progress --config config/webpack.prod.js",
+    "test": "jest --coverage --config config/jest.config.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.10",
+    "@babel/plugin-proposal-class-properties": "^7.10",
+    "@babel/plugin-proposal-json-strings": "^7.10",
+    "@babel/plugin-syntax-dynamic-import": "^7.8",
+    "@babel/plugin-syntax-import-meta": "^7.10",
+    "@babel/preset-env": "^7.10",
+    "@baldeweg/components": "^5.0.1",
+    "@vue/eslint-config-prettier": "^6.0",
+    "@vue/test-utils": "^1.0",
+    "axios": "^0.21",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.1",
+    "babel-jest": "^26.1",
+    "babel-loader": "^8.1",
+    "clean-webpack-plugin": "^3.0",
+    "copy-webpack-plugin": "^6.0",
+    "css-loader": "^4.3.0",
+    "dotenv-webpack": "^2.0",
+    "eslint": "^7.5",
+    "eslint-loader": "^4.0",
+    "eslint-plugin-import": "^2.22",
+    "eslint-plugin-node": "^11.1",
+    "eslint-plugin-prettier": "^3.1",
+    "eslint-plugin-promise": "^4.2",
+    "eslint-plugin-vue": "^6.2",
+    "favicons-webpack-plugin": "^4.2.0",
+    "file-loader": "^6.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "html-webpack-plugin": "^4.3",
+    "jest": "^26.1",
+    "jest-transform-stub": "^2.0",
+    "js-cookie": "^2.2",
+    "postcss": "^8.0.6",
+    "prettier": "^2.0",
+    "terser-webpack-plugin": "^4.2.2",
+    "url-loader": "^4.1",
+    "vue": "^2.6",
+    "vue-i18n": "^8.18",
+    "vue-jest": "^3.0",
+    "vue-loader": "^15.9",
+    "vue-meta": "^2.4",
+    "vue-router": "^3.3",
+    "vue-template-compiler": "^2.6",
+    "vuex": "^3.5",
+    "webpack": "^4.43",
+    "webpack-cli": "^3.3",
+    "webpack-dev-server": "^3.11",
+    "workbox-webpack-plugin": "^5.1"
+  },
+  "engines": {
+    "node": ">= 12.0"
+  },
+  "browserslist": [
+    "last 2 chrome versions",
+    "last 2 and_chr versions",
+    "last 2 firefox versions",
+    "last 2 and_ff versions",
+    "ie 11"
+  ],
+  "config": {
+    "appName": "incwadi by André Baldeweg",
+    "appShortName": "incwadi",
+    "color": "#e1661e",
+    "lang": "de-DE"
+  }
+}
