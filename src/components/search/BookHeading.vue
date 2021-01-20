@@ -2,10 +2,10 @@
   <b-container size="l" v-if="hasBooks">
     <div class="search-head">
       <div class="search-head_title">
-        <h2>{{ $t('books') }}</h2>
+        <h2>{{ $t('search.books') }}</h2>
         <span v-if="counter >= 2 && counter !== books.length">
           {{
-            $t('show_x_of_y_found_books', {
+            $t('search.show_x_of_y_found_books', {
               show: books.length,
               found: counter,
             })
@@ -13,13 +13,13 @@
         </span>
         <span v-if="counter >= 2 && counter === books.length">
           {{
-            $t('show_x_found_books', {
+            $t('search.show_x_found_books', {
               found: counter,
             })
           }}
         </span>
         <span v-if="counter === 1 && counter === books.length">
-          {{ $t('show_1_found_book') }}
+          {{ $t('search.show_1_found_book') }}
         </span>
       </div>
     </div>

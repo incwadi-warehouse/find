@@ -12,7 +12,7 @@
         {{ book.genre.name }}
       </td>
       <td>
-        {{ $t(book.type) }}
+        {{ $t('search.'.book.type) }}
       </td>
       <td style="text-align: right">
         {{ book.releaseYear }}
@@ -21,7 +21,7 @@
         {{ book.price | formatPrice }}
       </td>
       <td style="text-align: right">
-        <span @click="$emit('book', book)">{{ $t('detail') }}</span>
+        <span @click="$emit('book', book)">{{ $t('search.details') }}</span>
       </td>
     </tr>
   </tbody>

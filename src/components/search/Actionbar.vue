@@ -2,7 +2,7 @@
   <b-actionbar>
     <template #input>
       <b-search
-        :placeholder="$t('search_in_title_author')"
+        :placeholder="$t('search.search_in_title_author')"
         icon
         @input="change"
         @submit.prevent="search"

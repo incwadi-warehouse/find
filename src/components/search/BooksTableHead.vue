@@ -2,23 +2,23 @@
   <thead>
     <tr>
       <th>
-        {{ $t('title') }}
+        {{ $t('search.title') }}
       </th>
       <th>
-        {{ $t('author') }}
+        {{ $t('search.author') }}
       </th>
       <th>
-        {{ $t('genre') }}
+        {{ $t('search.genre') }}
       </th>
       <th>
-        {{ $t('type') }}
+        {{ $t('search.type') }}
       </th>
-      <th style="text-align: right" :title="$t('release_year')">
-        {{ $t('year') }}
+      <th style="text-align: right" :title="$t('search.release_year')">
+        {{ $t('search.year') }}
       </th>
       <th style="text-align: right">
         <!-- @fix currency -->
-        {{ $t('price') }}
+        {{ $t('search.price') }}
       </th>
       <th></th>
     </tr>
