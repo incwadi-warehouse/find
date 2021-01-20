@@ -14,7 +14,7 @@ export default {
     show_1_found_book: 'Zeige ein gefundenes Buch.',
     paperback: 'Taschenbuch',
     hardcover: 'Gebundenes Buch',
-    detail: 'Details',
+    details: 'Details',
     title: 'Titel',
     author: 'Autor/in',
     genre: 'Rubrik',

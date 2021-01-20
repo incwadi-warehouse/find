@@ -13,7 +13,7 @@ export default {
     show_1_found_book: 'Show one found book.',
     paperback: 'Paperback',
     hardcover: 'Hardcover',
-    detail: 'Details',
+    details: 'Details',
     title: 'Title',
     author: 'Author',
     genre: 'Genre',

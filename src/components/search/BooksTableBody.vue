@@ -12,7 +12,7 @@
         {{ book.genre.name }}
       </td>
       <td>
-        {{ $t('search.'.book.type) }}
+        {{ $t('search.' + book.type) }}
       </td>
       <td style="text-align: right">
         {{ book.releaseYear }}
