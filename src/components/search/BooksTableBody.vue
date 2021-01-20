@@ -2,7 +2,7 @@
   <tbody>
     <tr v-for="book in books" :key="book.id">
       <td>
-        {{ book.title }}
+        <span @click="$emit('book', book)">{{ book.title }}</span>
       </td>
       <td v-if="book.author">
         {{ book.author | formatAuthor }}
@@ -19,6 +19,9 @@
       </td>
       <td style="text-align: right">
         {{ book.price | formatPrice }}
+      </td>
+      <td style="text-align: right">
+        <span @click="$emit('book', book)">{{ $t('detail') }}</span>
       </td>
     </tr>
   </tbody>

@@ -49,10 +49,10 @@ export default {
         }
         if (filters[key].field === 'genre') {
           if (filters[key].value.length === 0) {
-            let genres = []
-            context.rootState.genre.genres.forEach((genre) => {
-              genres.push(genre.id)
-            })
+            let genres = [1, 2, 3, 4]
+            // context.rootState.genre.genres.forEach((genre) => {
+            //   genres.push(genre.id)
+            // })
 
             return flattenedFilters.push({
               field: filters[key].field,
@@ -111,7 +111,6 @@ export default {
         .then(function (response) {
           context.commit('books', response.data.books)
           context.commit('counter', response.data.counter)
-          context.dispatch('author/authors', null, { root: true })
         })
         .finally(function () {
           context.commit('search/isLoading', false, { root: true })

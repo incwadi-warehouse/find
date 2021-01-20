@@ -20,6 +20,7 @@
         <!-- @fix currency -->
         {{ $t('price') }}
       </th>
+      <th></th>
     </tr>
   </thead>
 </template>

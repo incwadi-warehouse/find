@@ -16,16 +16,12 @@
       <b-table>
         <table>
           <search-books-table-head />
-          <search-books-table-body />
+          <search-books-table-body @book="setBook" />
         </table>
       </b-table>
     </b-container>
 
-    <book-edit
-      :book="$store.state.book.book"
-      v-if="$store.state.book.book"
-      @close="closeEdit"
-    />
+    <book-show :book="book" v-if="book" @close="closeShow" />
   </article>
 </template>
 
@@ -34,7 +30,7 @@ import SearchActionbar from '../components/search/Actionbar'
 import SearchBookHeading from '../components/search/BookHeading'
 import SearchBooksTableHead from '../components/search/BooksTableHead'
 import SearchBooksTableBody from '../components/search/BooksTableBody'
-import BookEdit from '../components/book/Edit'
+import BookShow from '../components/book/Show'
 
 export default {
   name: 'search-view',
@@ -46,7 +42,12 @@ export default {
     SearchBookHeading,
     SearchBooksTableHead,
     SearchBooksTableBody,
-    BookEdit,
+    BookShow,
+  },
+  data() {
+    return {
+      book: null,
+    }
   },
   computed: {
     hasBooks() {
@@ -58,8 +59,11 @@ export default {
     },
   },
   methods: {
-    closeEdit() {
-      this.$store.commit('book/book', null)
+    setBook(book) {
+      this.book = book
+    },
+    closeShow() {
+      this.book = null
     },
   },
 }
