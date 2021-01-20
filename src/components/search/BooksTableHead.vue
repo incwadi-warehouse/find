@@ -13,11 +13,10 @@
       <th>
         {{ $t('search.type') }}
       </th>
-      <th style="text-align: right" :title="$t('search.release_year')">
+      <th :style="{ textAlign: 'right' }" :title="$t('search.release_year')">
         {{ $t('search.year') }}
       </th>
-      <th style="text-align: right">
-        <!-- @fix currency -->
+      <th :style="{ textAlign: 'right' }">
         {{ $t('search.price') }}
       </th>
       <th></th>

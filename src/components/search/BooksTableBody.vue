@@ -2,7 +2,9 @@
   <tbody>
     <tr v-for="book in books" :key="book.id">
       <td>
-        <span @click="$emit('book', book)">{{ book.title }}</span>
+        <span @click="$emit('book', book)" :style="{ cursor: 'pointer' }">
+          {{ book.title }}
+        </span>
       </td>
       <td v-if="book.author">
         {{ book.author | formatAuthor }}
@@ -14,14 +16,16 @@
       <td>
         {{ $t('search.' + book.type) }}
       </td>
-      <td style="text-align: right">
+      <td :style="{ textAlign: 'right' }">
         {{ book.releaseYear }}
       </td>
-      <td style="text-align: right">
-        {{ book.price | formatPrice }}
+      <td :style="{ textAlign: 'right' }">
+        {{ book.price | formatPrice }} {{ book.branch.currency }}
       </td>
-      <td style="text-align: right">
-        <span @click="$emit('book', book)">{{ $t('search.details') }}</span>
+      <td :style="{ textAlign: 'right' }">
+        <b-button design="text" @click="$emit('book', book)">
+          {{ $t('search.details') }}
+        </b-button>
       </td>
     </tr>
   </tbody>
