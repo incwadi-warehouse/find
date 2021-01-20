@@ -23,7 +23,6 @@
 
 <script>
 import Logo from './Logo'
-import { mapState } from 'vuex'
 
 export default {
   name: 'heading',
@@ -31,7 +30,6 @@ export default {
     Logo,
   },
   computed: {
-    ...mapState('user', ['me', 'isAuthenticated']),
     hasLogo: function () {
       return process.env.LOGO === 'false' ? false : true
     },
