@@ -22,4 +22,13 @@ export default {
     year: 'Year',
     price: 'Price',
   },
+  book: {
+    author: 'Author',
+    price: 'Price',
+    genre: 'Genre',
+    releaseYear: 'Release Year',
+    type: 'Type',
+    paperback: 'Paperback',
+    hardcover: 'Hardcover',
+  },
 }
