@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import formatter from '../../util/formatter'
+
 export default {
   name: 'show-book',
   props: {
@@ -30,16 +32,10 @@ export default {
   },
   filters: {
     formatPrice(price) {
-      return Number.parseFloat(price).toLocaleString(undefined, {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      })
+      return formatter.formatPrice(price)
     },
     formatAuthor(author) {
-      if (author.firstname === '') {
-        return author.surname
-      }
-      return author.surname + ', ' + author.firstname
+      return formatter.formatAuthor(author)
     },
   },
 }

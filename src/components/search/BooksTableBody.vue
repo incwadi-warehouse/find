@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import formatter from '../../util/formatter'
 import { mapState } from 'vuex'
 
 export default {
@@ -41,16 +42,10 @@ export default {
   },
   filters: {
     formatPrice(price) {
-      return Number.parseFloat(price).toLocaleString(undefined, {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      })
+      return formatter.formatPrice(price)
     },
     formatAuthor(author) {
-      if (author.firstname === '') {
-        return author.surname
-      }
-      return author.surname + ', ' + author.firstname
+      return formatter.formatAuthor(author)
     },
   },
 }
