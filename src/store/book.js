@@ -1,6 +1,4 @@
 import api from '../api'
-import router from '../router'
-import { notification } from '@baldeweg/components'
 
 export default {
   namespaced: true,
@@ -114,112 +112,6 @@ export default {
         })
         .finally(function () {
           context.commit('search/isLoading', false, { root: true })
-        })
-    },
-    show(context, id) {
-      api(context.rootState.user.token)
-        .get('/api/v1/book/' + id)
-        .then(function (response) {
-          context.commit('book', response.data)
-          context.commit('tag/tags', response.data.tags, { root: true })
-        })
-        .catch(function () {
-          router.replace({ name: 'not-found' })
-        })
-    },
-    create(context, data) {
-      return new Promise((resolve, reject) => {
-        api(context.rootState.user.token)
-          .post('/api/v1/book/new', {
-            added: data.added,
-            title: data.title,
-            author: data.author,
-            genre: data.genre,
-            price: data.price,
-            sold: data.sold,
-            removed: data.removed,
-            releaseYear: data.releaseYear,
-            type: data.type,
-            lendTo: data.lendTo,
-            lendOn: data.lendOn,
-            cond: data.cond,
-            tags: data.tags,
-          })
-          .then(function () {
-            notification.create('book_created', 'success')
-            resolve()
-          })
-          .catch(function (error) {
-            notification.create('book_not_valid', 'error')
-            if (error.response.status === 409) {
-              notification.create('book_not_valid_duplicate', 'error')
-            }
-            reject()
-          })
-      })
-    },
-    update(context, data) {
-      return new Promise((resolve, reject) => {
-        api(context.rootState.user.token)
-          .put('/api/v1/book/' + data.id, {
-            added: data.added,
-            title: data.title,
-            author: data.author,
-            genre: data.genre,
-            price: data.price,
-            sold: data.sold,
-            removed: data.removed,
-            releaseYear: data.releaseYear,
-            type: data.type,
-            lendTo: data.lendTo,
-            lendOn: data.lendOn,
-            cond: data.cond,
-            tags: data.tags,
-          })
-          .then(function () {
-            context.dispatch('find')
-            notification.create('book_updated', 'success')
-            resolve()
-          })
-          .catch(function (error) {
-            notification.create('book_not_valid', 'error')
-            if (error.response.status === 409) {
-              notification.create('book_not_valid_duplicate', 'error')
-            }
-            reject()
-          })
-      })
-    },
-    sell(context, book) {
-      api(context.rootState.user.token)
-        .put('/api/v1/book/sell/' + book.id)
-        .then(function () {
-          context.commit('removeBook', book)
-          notification.create('book_sell_success', 'success')
-        })
-        .catch(function () {
-          notification.create('book_sell_error', 'error')
-        })
-    },
-    remove(context, book) {
-      api(context.rootState.user.token)
-        .put('/api/v1/book/remove/' + book.id)
-        .then(function () {
-          context.commit('removeBook', book)
-          notification.create('book_remove_success', 'success')
-        })
-        .catch(function () {
-          notification.create('book_remove_error', 'error')
-        })
-    },
-    clean(context) {
-      api(context.rootState.user.token)
-        .delete('/api/v1/book/clean')
-        .then(function () {
-          notification.create('book_clean_success', 'success')
-        })
-        .catch(function () {
-          notification.create('book_clean_error', 'error')
         })
     },
   },

@@ -1,8 +1,3 @@
-const flex = {
-  1: { field: 'sold', operator: 'eq', value: '0' },
-  2: { field: 'removed', operator: 'eq', value: '0' },
-  3: { field: null, operator: null, value: null },
-}
 const classic = {
   1: { field: 'genre', operator: 'in', value: [] },
   2: {
@@ -17,7 +12,7 @@ const classic = {
 export default {
   namespaced: true,
   state: {
-    elements: window.localStorage.getItem('classicFilters') ? classic : flex,
+    elements: classic,
     term: null,
     orderByField: '',
     orderByDirection: '',
@@ -125,13 +120,7 @@ export default {
     },
     reset(context) {
       if (context.state.elements === {}) return
-      context.commit(
-        'elements',
-        Object.assign(
-          {},
-          window.localStorage.getItem('classicFilters') ? classic : flex
-        )
-      )
+      context.commit('elements', Object.assign({}, classic))
       if (!window.localStorage.getItem('classicFilters')) {
         context.dispatch('addElement')
       }

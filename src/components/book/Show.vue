@@ -13,8 +13,6 @@
       <p>{{ $t('book.genre') }}: {{ book.genre.name }}</p>
       <p>{{ $t('book.releaseYear') }}: {{ book.releaseYear }}</p>
       <p>{{ $t('book.type') }}: {{ $t('book.' + book.type) }}</p>
-
-      <pre><code>{{ book }}</code></pre>
     </b-container>
   </b-modal>
 </template>
