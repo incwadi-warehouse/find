@@ -51,8 +51,8 @@ export default {
   },
   computed: {
     hasBooks() {
-      if (!this.$store.state.book.books) return false
-      return this.$store.state.book.books.length >= 1
+      if (!this.$store.state.search.books) return false
+      return this.$store.state.search.books.length >= 1
     },
     isLoading() {
       return this.$store.state.search.isLoading

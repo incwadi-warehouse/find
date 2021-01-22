@@ -32,12 +32,12 @@ import { mapState } from 'vuex'
 export default {
   name: 'book-counter-search',
   computed: {
-    ...mapState('book', ['books']),
+    ...mapState('search', ['books']),
     counter() {
-      return this.$store.state.book.counter
+      return this.$store.state.search.counter
     },
     hasBooks() {
-      return this.$store.state.book.counter >= 1
+      return this.$store.state.search.counter >= 1
     },
   },
 }

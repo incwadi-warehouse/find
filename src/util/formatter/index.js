@@ -11,4 +11,4 @@ const formatAuthor = function (author) {
   return author.surname + ', ' + author.firstname
 }
 
-export default { formatPrice, formatAuthor }
+export { formatPrice, formatAuthor }

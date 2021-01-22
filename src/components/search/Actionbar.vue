@@ -28,14 +28,14 @@ export default {
   },
   methods: {
     search() {
-      this.$store.dispatch('book/find')
+      this.$store.dispatch('search/find')
     },
     reset() {
-      this.$store.commit('book/books', [])
+      this.$store.commit('search/books', [])
     },
     change() {
       if (this.term === null) return
-      this.$store.dispatch('book/find')
+      this.$store.dispatch('search/find')
     },
   },
 }

@@ -7,7 +7,7 @@
         </span>
       </td>
       <td v-if="book.author">
-        {{ book.author | formatAuthor }}
+        {{ formatAuthor(book.author) }}
       </td>
       <td v-else></td>
       <td>
@@ -20,7 +20,7 @@
         {{ book.releaseYear }}
       </td>
       <td :style="{ textAlign: 'right' }">
-        {{ book.price | formatPrice }} {{ book.branch.currency }}
+        {{ formatPrice(book.price) }} {{ book.branch.currency }}
       </td>
       <td :style="{ textAlign: 'right' }">
         <b-button design="text" @click="$emit('book', book)">
@@ -32,21 +32,17 @@
 </template>
 
 <script>
-import formatter from '../../util/formatter'
+import { formatAuthor, formatPrice } from '../../util/formatter'
 import { mapState } from 'vuex'
 
 export default {
   name: 'books-list-search',
   computed: {
-    ...mapState('book', ['books']),
+    ...mapState('search', ['books']),
   },
-  filters: {
-    formatPrice(price) {
-      return formatter.formatPrice(price)
-    },
-    formatAuthor(author) {
-      return formatter.formatAuthor(author)
-    },
+  methods: {
+    formatAuthor: formatAuthor,
+    formatPrice: formatPrice,
   },
 }
 </script>
