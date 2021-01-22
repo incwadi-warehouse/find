@@ -31,7 +31,6 @@ export default {
         term = context.rootState.search.term
       }
 
-      // @fix remove auth
       api()
         .get('/api/public/book/find', {
           params: {

@@ -2,11 +2,7 @@
   <b-app id="app">
     <heading />
     <b-content>
-      <router-view v-if="isAuthenticated" />
-      <b-container size="s" v-if="!isAuthenticated">
-        <h1>{{ $t('login') }}</h1>
-        <profile-login />
-      </b-container>
+      <router-view />
     </b-content>
     <b-tooltip />
   </b-app>
@@ -14,8 +10,6 @@
 
 <script>
 import Heading from './components/Heading'
-import ProfileLogin from './components/profile/Login'
-import { mapState } from 'vuex'
 
 export default {
   name: 'app',
@@ -41,10 +35,6 @@ export default {
   },
   components: {
     Heading,
-    ProfileLogin,
-  },
-  computed: {
-    ...mapState('user', ['isAuthenticated']),
   },
   mounted: function () {
     const el = document.querySelector('html')
@@ -60,7 +50,6 @@ export default {
       '--color-primary-00',
       process.env.COLOR00 !== 'false' ? process.env.COLOR00 : '#f3c2a5'
     )
-    this.$store.dispatch('user/check')
     this.$i18n.locale =
       window.localStorage.getItem('locale') || process.env.LOCALE
   },
