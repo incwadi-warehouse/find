@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import formatter from '../../util/formatter'
+import { formatAuthor, formatPrice } from '../../util/formatter'
 
 export default {
   name: 'show-book',
@@ -28,13 +28,9 @@ export default {
       required: true,
     },
   },
-  filters: {
-    formatPrice(price) {
-      return formatter.formatPrice(price)
-    },
-    formatAuthor(author) {
-      return formatter.formatAuthor(author)
-    },
+  methods: {
+    formatAuthor: formatAuthor,
+    formatPrice: formatPrice,
   },
 }
 </script>

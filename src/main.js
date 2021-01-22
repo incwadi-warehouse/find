@@ -7,7 +7,6 @@ import components from '@baldeweg/components'
 import VueMeta from 'vue-meta'
 
 Vue.use(components)
-Vue.themes()
 Vue.use(VueMeta, {
   keyName: 'head',
 })

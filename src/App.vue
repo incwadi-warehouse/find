@@ -4,7 +4,6 @@
     <b-content>
       <router-view />
     </b-content>
-    <b-tooltip />
   </b-app>
 </template>
 
@@ -60,9 +59,6 @@ export default {
 
 <style>
 html {
-  --color-primary-05: #e9915d;
-  --color-primary-00: #f3c2a5;
-
   --masthead-height: 66px;
 }
 </style>

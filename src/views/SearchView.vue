@@ -21,7 +21,7 @@
       </b-table>
     </b-container>
 
-    <book-show :book="book" v-if="book" @close="closeShow" />
+    <search-book-show :book="book" v-if="book" @close="closeBookModal" />
   </article>
 </template>
 
@@ -30,7 +30,7 @@ import SearchActionbar from '../components/search/Actionbar'
 import SearchBookHeading from '../components/search/BookHeading'
 import SearchBooksTableHead from '../components/search/BooksTableHead'
 import SearchBooksTableBody from '../components/search/BooksTableBody'
-import BookShow from '../components/book/Show'
+import SearchBookShow from '../components/search/Show'
 
 export default {
   name: 'search-view',
@@ -42,7 +42,7 @@ export default {
     SearchBookHeading,
     SearchBooksTableHead,
     SearchBooksTableBody,
-    BookShow,
+    SearchBookShow,
   },
   data() {
     return {
@@ -62,7 +62,7 @@ export default {
     setBook(book) {
       this.book = book
     },
-    closeShow() {
+    closeBookModal() {
       this.book = null
     },
   },

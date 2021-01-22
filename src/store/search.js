@@ -25,17 +25,11 @@ export default {
   actions: {
     find(context) {
       context.commit('isLoading', true)
-
-      let term = undefined
-      if (context.rootState.search.term) {
-        term = context.rootState.search.term
-      }
-
       api()
         .get('/api/public/book/find', {
           params: {
             options: {
-              term,
+              term: context.state.term,
             },
           },
         })
