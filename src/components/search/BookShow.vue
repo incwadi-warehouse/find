@@ -2,20 +2,20 @@
   <b-modal @close="$emit('close', $event)">
     <b-container size="m">
       <h1>{{ book.title }}</h1>
+      <p v-if="book.authorSurname || book.authorFirstname">
+        {{ $t('search.by') }}
+        {{ formatAuthor(book.authorFirstname, book.authorSurname) }}
+      </p>
     </b-container>
 
     <b-container size="m" v-if="book">
       <p>
-        {{ $t('book.author') }}:
-        {{ formatAuthor(book.authorFirstname, book.authorSurname) }}
-      </p>
-      <p>
-        {{ $t('book.price') }}: {{ formatPrice(book.price) }}
+        {{ $t('search.price') }}: {{ formatPrice(book.price) }}
         {{ book.currency }}
       </p>
-      <p>{{ $t('book.genre') }}: {{ book.genre }}</p>
-      <p>{{ $t('book.releaseYear') }}: {{ book.releaseYear }}</p>
-      <p>{{ $t('book.type') }}: {{ $t('book.' + book.type) }}</p>
+      <p>{{ $t('search.genre') }}: {{ book.genre }}</p>
+      <p>{{ $t('search.releaseYear') }}: {{ book.releaseYear }}</p>
+      <p>{{ $t('search.type') }}: {{ $t('search.' + book.type) }}</p>
     </b-container>
   </b-modal>
 </template>
@@ -24,7 +24,7 @@
 import { formatAuthor, formatPrice } from '../../util/formatter'
 
 export default {
-  name: 'show-book',
+  name: 'book-show',
   props: {
     book: {
       type: Object,

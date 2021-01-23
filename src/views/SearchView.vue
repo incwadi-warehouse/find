@@ -30,7 +30,7 @@ import SearchActionbar from '../components/search/Actionbar'
 import SearchBookHeading from '../components/search/BookHeading'
 import SearchBooksTableHead from '../components/search/BooksTableHead'
 import SearchBooksTableBody from '../components/search/BooksTableBody'
-import SearchBookShow from '../components/search/Show'
+import SearchBookShow from '../components/search/BookShow'
 
 export default {
   name: 'search-view',

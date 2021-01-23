@@ -13,7 +13,7 @@
       <th>
         {{ $t('search.type') }}
       </th>
-      <th :style="{ textAlign: 'right' }" :title="$t('search.release_year')">
+      <th :style="{ textAlign: 'right' }" :title="$t('search.releaseYear')">
         {{ $t('search.year') }}
       </th>
       <th :style="{ textAlign: 'right' }">

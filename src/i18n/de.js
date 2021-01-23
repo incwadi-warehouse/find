@@ -22,14 +22,6 @@ export default {
     release_year: 'Veröffentlichungsjahr',
     year: 'Jahr',
     price: 'Preis',
-  },
-  book: {
-    author: 'Autor/in',
-    price: 'Preis',
-    genre: 'Rubrik',
-    releaseYear: 'Veröffentlichungsjahr',
-    type: 'Typ',
-    paperback: 'Taschenbuch',
-    hardcover: 'Gebundenes Buch',
+    by: 'von',
   },
 }
