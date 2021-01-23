@@ -8,10 +8,6 @@
       <b-spinner size="l" />
     </b-container>
 
-    <div v-if="hasBooks">
-      <search-book-heading />
-    </div>
-
     <b-container size="l" v-if="hasBooks">
       <b-table>
         <table>
@@ -27,7 +23,6 @@
 
 <script>
 import SearchActionbar from '../components/search/Actionbar'
-import SearchBookHeading from '../components/search/BookHeading'
 import SearchBooksTableHead from '../components/search/BooksTableHead'
 import SearchBooksTableBody from '../components/search/BooksTableBody'
 import SearchBookShow from '../components/search/BookShow'
@@ -39,7 +34,6 @@ export default {
   },
   components: {
     SearchActionbar,
-    SearchBookHeading,
     SearchBooksTableHead,
     SearchBooksTableBody,
     SearchBookShow,

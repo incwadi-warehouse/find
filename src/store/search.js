@@ -6,7 +6,6 @@ export default {
     term: null,
     isLoading: false,
     books: [],
-    counter: 0,
   },
   mutations: {
     term(state, term) {
@@ -17,9 +16,6 @@ export default {
     },
     books(state, books) {
       state.books = books
-    },
-    counter(state, counter) {
-      state.counter = counter
     },
   },
   actions: {
@@ -34,8 +30,7 @@ export default {
           },
         })
         .then(function (response) {
-          context.commit('books', response.data.books)
-          context.commit('counter', response.data.counter)
+          context.commit('books', response.data)
         })
         .finally(function () {
           context.commit('isLoading', false)

@@ -7,11 +7,6 @@ export default {
   },
   search: {
     search_in_title_author: 'Suche in Titel oder Autor',
-    books: 'Bücher',
-    show_x_of_y_found_books:
-      'Zeige {show} Bücher von {found} gefundenen Büchern.',
-    show_x_found_books: 'Zeige {found} gefundene Bücher.',
-    show_1_found_book: 'Zeige ein gefundenes Buch.',
     paperback: 'Taschenbuch',
     hardcover: 'Gebundenes Buch',
     details: 'Details',
