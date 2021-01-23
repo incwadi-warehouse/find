@@ -6,12 +6,12 @@
           {{ book.title }}
         </span>
       </td>
-      <td v-if="book.author">
-        {{ formatAuthor(book.author) }}
+      <td v-if="book.authorSurname || book.authorFirstname">
+        {{ formatAuthor(book.authorFirstname, book.authorSurname) }}
       </td>
       <td v-else></td>
       <td>
-        {{ book.genre.name }}
+        {{ book.genre }}
       </td>
       <td>
         {{ $t('search.' + book.type) }}
@@ -20,7 +20,7 @@
         {{ book.releaseYear }}
       </td>
       <td :style="{ textAlign: 'right' }">
-        {{ formatPrice(book.price) }} {{ book.branch.currency }}
+        {{ formatPrice(book.price) }} {{ book.currency }}
       </td>
       <td :style="{ textAlign: 'right' }">
         <b-button design="text" @click="$emit('book', book)">

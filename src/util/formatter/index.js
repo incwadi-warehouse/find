@@ -4,11 +4,11 @@ const formatPrice = function (price) {
     maximumFractionDigits: 2,
   })
 }
-const formatAuthor = function (author) {
-  if (author.firstname === '') {
-    return author.surname
+const formatAuthor = function (firstname, surname) {
+  if (firstname === '') {
+    return surname
   }
-  return author.surname + ', ' + author.firstname
+  return surname + ', ' + firstname
 }
 
 export { formatPrice, formatAuthor }

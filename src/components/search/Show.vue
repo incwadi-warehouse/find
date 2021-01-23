@@ -5,12 +5,15 @@
     </b-container>
 
     <b-container size="m" v-if="book">
-      <p>{{ $t('book.author') }}: {{ book.author | formatAuthor }}</p>
       <p>
-        {{ $t('book.price') }}: {{ book.price | formatPrice }}
-        {{ book.branch.currency }}
+        {{ $t('book.author') }}:
+        {{ formatAuthor(book.authorFirstname, book.authorSurname) }}
       </p>
-      <p>{{ $t('book.genre') }}: {{ book.genre.name }}</p>
+      <p>
+        {{ $t('book.price') }}: {{ formatPrice(book.price) }}
+        {{ book.currency }}
+      </p>
+      <p>{{ $t('book.genre') }}: {{ book.genre }}</p>
       <p>{{ $t('book.releaseYear') }}: {{ book.releaseYear }}</p>
       <p>{{ $t('book.type') }}: {{ $t('book.' + book.type) }}</p>
     </b-container>
