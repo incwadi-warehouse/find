@@ -18,5 +18,6 @@ export default {
     year: 'Jahr',
     price: 'Preis',
     by: 'von',
+    branch: 'Filiale',
   },
 }

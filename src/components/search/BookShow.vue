@@ -18,6 +18,11 @@
       <p>{{ $t('search.releaseYear') }}: {{ book.releaseYear }}</p>
       <p>{{ $t('search.type') }}: {{ $t('search.' + book.type) }}</p>
     </b-container>
+
+    <b-container size="m">
+      <p>{{ $t('search.branch') }}: {{ book.branchName }}</p>
+      <p>{{ book.branchOrdering }}</p>
+    </b-container>
   </b-modal>
 </template>
 

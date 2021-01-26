@@ -18,5 +18,6 @@ export default {
     year: 'Year',
     price: 'Price',
     by: 'by',
+    branch: 'Branch',
   },
 }
