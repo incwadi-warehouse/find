@@ -6,6 +6,7 @@
         {{ $t('search.by') }}
         {{ formatAuthor(book.authorFirstname, book.authorSurname) }}
       </p>
+      <p>{{ book.shortDescription }}</p>
     </b-container>
 
     <b-container size="m" v-if="book">
