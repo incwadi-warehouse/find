@@ -14,7 +14,7 @@ export default {
     author: 'Autor/in',
     genre: 'Rubrik',
     type: 'Typ',
-    release_year: 'Veröffentlichungsjahr',
+    releaseYear: 'Veröffentlichungsjahr',
     year: 'Jahr',
     price: 'Preis',
     by: 'von',
