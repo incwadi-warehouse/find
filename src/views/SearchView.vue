@@ -1,31 +1,25 @@
 <template>
   <article>
-    <b-container size="l">
+    <b-container size="m">
       <search-actionbar />
     </b-container>
 
-    <b-container size="l" v-if="isLoading">
+    <b-container size="m" v-if="isLoading">
       <b-spinner size="l" />
     </b-container>
 
-    <b-container size="l" v-if="hasBooks">
-      <b-table>
-        <table>
-          <search-books-table-head />
-          <search-books-table-body @book="setBook" />
-        </table>
-      </b-table>
+    <b-container size="m" v-if="hasBooks">
+      <search-books-list @book="setBook" />
     </b-container>
 
-    <search-book-show :book="book" v-if="book" @close="closeBookModal" />
+    <search-book-show :book="book" v-if="book" @close="book = null" />
   </article>
 </template>
 
 <script>
 import SearchActionbar from '../components/search/Actionbar'
-import SearchBooksTableHead from '../components/search/BooksTableHead'
-import SearchBooksTableBody from '../components/search/BooksTableBody'
 import SearchBookShow from '../components/search/BookShow'
+import SearchBooksList from '../components/search/BooksList'
 
 export default {
   name: 'search-view',
@@ -34,9 +28,8 @@ export default {
   },
   components: {
     SearchActionbar,
-    SearchBooksTableHead,
-    SearchBooksTableBody,
     SearchBookShow,
+    SearchBooksList,
   },
   data() {
     return {
@@ -55,9 +48,6 @@ export default {
   methods: {
     setBook(book) {
       this.book = book
-    },
-    closeBookModal() {
-      this.book = null
     },
   },
 }

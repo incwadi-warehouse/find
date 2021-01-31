@@ -6,6 +6,14 @@
         {{ $t('search.by') }}
         {{ formatAuthor(book.authorFirstname, book.authorSurname) }}
       </p>
+    </b-container>
+
+    <b-container size="m">
+      <img :src="book.cover_m" v-if="!hasZoom" @click="hasZoom = !hasZoom" />
+      <img :src="book.cover_l" v-if="hasZoom" @click="hasZoom = !hasZoom" />
+    </b-container>
+
+    <b-container size="m">
       <p>{{ book.shortDescription }}</p>
     </b-container>
 
@@ -21,7 +29,7 @@
 
     <b-container size="m">
       <p>{{ $t('search.branch') }}: {{ book.branchName }}</p>
-      <p>{{ book.branchOrdering }}</p>
+      <p :style="{ whiteSpace: 'pre' }">{{ book.branchOrdering }}</p>
     </b-container>
   </b-modal>
 </template>
@@ -36,6 +44,11 @@ export default {
       type: Object,
       required: true,
     },
+  },
+  data() {
+    return {
+      hasZoom: false,
+    }
   },
   methods: {
     formatAuthor: formatAuthor,
