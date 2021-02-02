@@ -14,8 +14,10 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
-  name: 'search-search',
+  name: 'search-actionbar',
   computed: {
     term: {
       get: function () {
@@ -27,9 +29,7 @@ export default {
     },
   },
   methods: {
-    search() {
-      this.$store.dispatch('search/find')
-    },
+    ...mapActions('search', ['find']),
     reset() {
       this.$store.commit('search/books', [])
     },

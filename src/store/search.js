@@ -3,16 +3,16 @@ import api from '../api'
 export default {
   namespaced: true,
   state: {
-    term: null,
     isLoading: false,
+    term: null,
     books: [],
   },
   mutations: {
-    term(state, term) {
-      state.term = term
-    },
     isLoading(state, isLoading) {
       state.isLoading = isLoading
+    },
+    term(state, term) {
+      state.term = term
     },
     books(state, books) {
       state.books = books

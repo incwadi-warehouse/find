@@ -6,7 +6,11 @@
       :key="book.id"
     >
       <template #image>
-        <img :src="book.cover_s" />
+        <img
+          :src="book.cover_s"
+          :style="{ cursor: 'pointer' }"
+          @click="$emit('book', book)"
+        />
       </template>
       <template #title>
         <span :style="{ cursor: 'pointer' }">

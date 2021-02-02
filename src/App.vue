@@ -35,7 +35,7 @@ export default {
   components: {
     Heading,
   },
-  mounted: function () {
+  mounted() {
     const el = document.querySelector('html')
     el.style.setProperty(
       '--color-primary-10',

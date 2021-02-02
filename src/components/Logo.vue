@@ -10,7 +10,7 @@ export default {
       logo: null,
     }
   },
-  created: function () {
+  created() {
     return process.env.LOGO !== 'false'
       ? import('../../' + process.env.LOGO).then(
           (logo) => (this.logo = logo.default)

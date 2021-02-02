@@ -30,7 +30,7 @@ export default {
     Logo,
   },
   computed: {
-    hasLogo: function () {
+    hasLogo() {
       return process.env.LOGO === 'false' ? false : true
     },
   },
