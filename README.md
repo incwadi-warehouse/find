@@ -26,6 +26,7 @@ COLOR05=false
 COLOR00=false
 LOGO=src/assets/logo.png # set to false for default logo
 LOCALE=en
+ABOUT=<p>This is your about text!<p>
 ```
 
 Start the build process.
