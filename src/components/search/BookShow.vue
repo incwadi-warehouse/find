@@ -8,12 +8,12 @@
       </p>
     </b-container>
 
-    <b-container size="m">
+    <b-container size="m" v-if="book.cover_m && book.cover_l">
       <img :src="book.cover_m" v-if="!hasZoom" @click="hasZoom = !hasZoom" />
       <img :src="book.cover_l" v-if="hasZoom" @click="hasZoom = !hasZoom" />
     </b-container>
 
-    <b-container size="m">
+    <b-container size="m" v-if="book.shortDescription">
       <p>{{ book.shortDescription }}</p>
     </b-container>
 
