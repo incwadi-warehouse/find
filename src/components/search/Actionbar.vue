@@ -5,7 +5,7 @@
         :placeholder="$t('search.search_in_title_author')"
         icon
         @input="change"
-        @submit.prevent="search"
+        @submit.prevent="find"
         @reset="reset"
         v-model="term"
       />
