@@ -25,6 +25,7 @@
       <p>{{ $t('search.genre') }}: {{ book.genre }}</p>
       <p>{{ $t('search.releaseYear') }}: {{ book.releaseYear }}</p>
       <p>{{ $t('search.type') }}: {{ $t('search.' + book.type) }}</p>
+      <p v-if="book.cond">{{ $t('search.condition') }}: {{ book.cond }}</p>
     </b-container>
 
     <b-container size="m">

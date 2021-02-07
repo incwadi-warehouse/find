@@ -19,5 +19,6 @@ export default {
     price: 'Price',
     by: 'by',
     branch: 'Branch',
+    condition: 'Condition',
   },
 }

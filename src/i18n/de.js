@@ -19,5 +19,6 @@ export default {
     price: 'Preis',
     by: 'von',
     branch: 'Filiale',
+    condition: 'Zustand',
   },
 }
