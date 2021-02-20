@@ -5,7 +5,7 @@
       v-for="book in books"
       :key="book.id"
     >
-      <template #image>
+      <template #image v-if="book.cover_s">
         <img
           :src="book.cover_s"
           :style="{ cursor: 'pointer' }"
