@@ -49,7 +49,7 @@ export default {
       return this.$store.state.search.isLoading
     },
     about() {
-      return process.env.ABOUT
+      return process.env.VUE_APP_ABOUT
     },
   },
   methods: {
