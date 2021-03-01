@@ -13,10 +13,6 @@
     </b-container>
 
     <search-book-show :book="book" v-if="book" @close="book = null" />
-
-    <b-container size="m">
-      <div v-html="about" />
-    </b-container>
   </article>
 </template>
 
@@ -47,9 +43,6 @@ export default {
     },
     isLoading() {
       return this.$store.state.search.isLoading
-    },
-    about() {
-      return process.env.ABOUT
     },
   },
   methods: {

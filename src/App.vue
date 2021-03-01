@@ -4,6 +4,9 @@
     <b-content>
       <router-view />
     </b-content>
+    <b-container size="m">
+      <div v-html="about" />
+    </b-container>
   </b-app>
 </template>
 
@@ -34,6 +37,11 @@ export default {
   },
   components: {
     Heading,
+  },
+  computed: {
+    about() {
+      return process.env.ABOUT
+    },
   },
   mounted() {
     const el = document.querySelector('html')
