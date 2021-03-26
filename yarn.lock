@@ -998,10 +998,10 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@baldeweg/components@5.3.0":
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/@baldeweg/components/-/components-5.3.0.tgz#62c0cc2190714280a86a8dafa002243bff899d08"
-  integrity sha512-xl65vE6U9V7dOOJM48nHR12I91wqfOiWc2SEjEu65gGpsOzFques8AjrbJU5o3bzQb9IgrPfz9sA5iBJaKuQ1g==
+"@baldeweg/components@5.4.2":
+  version "5.4.2"
+  resolved "https://registry.yarnpkg.com/@baldeweg/components/-/components-5.4.2.tgz#b0c10a1604d73426d2a372a41202e7ea170e52c4"
+  integrity sha512-XMvYMWSzCrJJPQJdmWJ5kBHa/Y9zDj5UQzfjC0OJ2xiax/dupieXg1F/GPXB1Pref5Xj6qQ8Hr2TGWzw5ZqCFg==
   dependencies:
     ejs "^3.1"
     lodash "^4.17"
