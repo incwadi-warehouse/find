@@ -6,6 +6,8 @@ export default {
     isLoading: false,
     term: null,
     books: [],
+    pages: 1,
+    page: 1,
   },
   mutations: {
     isLoading(state, isLoading) {
@@ -17,6 +19,12 @@ export default {
     books(state, books) {
       state.books = books
     },
+    pages(state, pages) {
+      state.pages = pages
+    },
+    page(state, page) {
+      state.page = page
+    },
   },
   actions: {
     find(context) {
@@ -26,11 +34,13 @@ export default {
           params: {
             options: {
               term: context.state.term,
+              offset: context.state.page * 20 - 20,
             },
           },
         })
         .then(function (response) {
-          context.commit('books', response.data)
+          context.commit('books', response.data.books)
+          context.commit('pages', Math.ceil(response.data.counter / 20))
         })
         .finally(function () {
           context.commit('isLoading', false)

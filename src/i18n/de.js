@@ -20,5 +20,6 @@ export default {
     by: 'von',
     branch: 'Filiale',
     condition: 'Zustand',
+    page: 'Seite',
   },
 }

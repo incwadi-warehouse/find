@@ -15,9 +15,15 @@
 
 <script>
 import { mapActions } from 'vuex'
+import _debounce from 'lodash/debounce'
 
 export default {
   name: 'search-actionbar',
+  data() {
+    return {
+      changeRequest: null,
+    }
+  },
   computed: {
     term: {
       get: function () {
@@ -34,8 +40,14 @@ export default {
       this.$store.commit('search/books', [])
     },
     change() {
-      if (this.term === null) return
-      this.$store.dispatch('search/find')
+      if (null !== this.changeRequest) {
+        this.changeRequest.cancel()
+      }
+      this.changeRequest = _debounce(() => {
+        if (this.term === null) return
+        this.$store.dispatch('search/find')
+      }, 500)
+      this.changeRequest()
     },
   },
 }

@@ -5,11 +5,13 @@ import store from './store'
 import i18n from './i18n'
 import components from '@baldeweg/components'
 import VueMeta from 'vue-meta'
+import VueCompositionAPI from '@vue/composition-api'
 
 Vue.use(components)
 Vue.use(VueMeta, {
   keyName: 'head',
 })
+Vue.use(VueCompositionAPI)
 Vue.config.productionTip = false
 
 if (process.env.NODE_ENV === 'production') {

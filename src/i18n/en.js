@@ -20,5 +20,6 @@ export default {
     by: 'by',
     branch: 'Branch',
     condition: 'Condition',
+    page: 'Page',
   },
 }
