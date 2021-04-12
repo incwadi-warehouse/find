@@ -32,6 +32,12 @@
       <p>{{ $t('search.branch') }}: {{ book.branchName }}</p>
       <p :style="{ whiteSpace: 'pre' }">{{ book.branchOrdering }}</p>
     </b-container>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
   </b-modal>
 </template>
 
