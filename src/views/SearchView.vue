@@ -15,7 +15,7 @@
     <b-container size="m" v-if="pages > 1">
       <ul class="pagination">
         <li class="pagination_info">
-          {{ $t('search.page') }} {{ currentPage }} / {{ pages }}
+          {{ $t('page') }} {{ currentPage }} / {{ pages }}
         </li>
         <li
           class="pagination_item"

@@ -27,7 +27,7 @@
         <b-list-separator />
         {{ book.genre }}
         <b-list-separator />
-        {{ $t('search.' + book.type) }}
+        {{ $t(book.type) }}
         <b-list-separator />
         {{ book.releaseYear }}
       </template>

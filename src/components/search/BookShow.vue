@@ -3,7 +3,7 @@
     <b-container size="m">
       <h1>{{ book.title }}</h1>
       <p v-if="book.authorSurname || book.authorFirstname">
-        {{ $t('search.by') }}
+        {{ $t('by') }}
         {{ formatAuthor(book.authorFirstname, book.authorSurname) }}
       </p>
     </b-container>
@@ -19,17 +19,17 @@
 
     <b-container size="m" v-if="book">
       <p>
-        {{ $t('search.price') }}: {{ formatPrice(book.price) }}
+        {{ $t('price') }}: {{ formatPrice(book.price) }}
         {{ book.currency }}
       </p>
-      <p>{{ $t('search.genre') }}: {{ book.genre }}</p>
-      <p>{{ $t('search.releaseYear') }}: {{ book.releaseYear }}</p>
-      <p>{{ $t('search.type') }}: {{ $t('search.' + book.type) }}</p>
-      <p v-if="book.cond">{{ $t('search.condition') }}: {{ book.cond }}</p>
+      <p>{{ $t('genre') }}: {{ book.genre }}</p>
+      <p>{{ $t('releaseYear') }}: {{ book.releaseYear }}</p>
+      <p>{{ $t('type') }}: {{ $t(book.type) }}</p>
+      <p v-if="book.cond">{{ $t('condition') }}: {{ book.cond }}</p>
     </b-container>
 
     <b-container size="m">
-      <p>{{ $t('search.branch') }}: {{ book.branchName }}</p>
+      <p>{{ $t('branch') }}: {{ book.branchName }}</p>
       <p :style="{ whiteSpace: 'pre' }">{{ book.branchOrdering }}</p>
     </b-container>
 
