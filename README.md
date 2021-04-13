@@ -8,6 +8,7 @@ incwadi is a book database to manage your books.
 
 - NodeJS 12LTS
 - Yarn
+- VueJS Binary
 
 ## Getting Started
 
@@ -17,17 +18,7 @@ Download the files from the repository.
 git clone https://github.com/abaldeweg/incwadi_find.git
 ```
 
-Create the `.env` file with the following content. Please fit it to your needs.
-
-```shell
-API=URL
-COLOR10=false
-COLOR05=false
-COLOR00=false
-LOGO=src/assets/logo.png # set to false for default logo
-LOCALE=en
-ABOUT=<p>This is your about text!<p>
-```
+Create the file `.env.local` and overwrite env vars from `.env`, if needed.
 
 Start the build process.
 
@@ -37,9 +28,9 @@ yarn build
 
 The files in `dest/` should be located in your web root.
 
-Configure your webserver to redirect all requests to the `index.html` file.
+## Apache
 
-Example for Apache
+Configure your webserver to redirect all requests to the `index.html` file.
 
 ```apache
 <IfModule mod_rewrite.c>
@@ -57,11 +48,5 @@ Example for Apache
 Remove the old files and download the new ones like you would install the app.
 
 ```shell
-bin/update
+bin/setup
 ```
-
-## CLI
-
-- yarn build - Builds the app.
-- yarn watch - Starts the development environment.
-- yarn test - Runs the unit tests.

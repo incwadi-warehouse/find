@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils'
-import Create from './../../src/components/book/Create'
-const $t = () => { }
+import Create from './../../src/components/search/BooksList'
+const $t = () => {}
 
 describe('Create', () => {
   it('renders a section', () => {
@@ -8,21 +8,21 @@ describe('Create', () => {
       state: {
         books: {
           hasCreateError: false,
-          isDuplicate: false
+          isDuplicate: false,
         },
         genres: {
-          genres: null
-        }
+          genres: null,
+        },
       },
       dispatch: function () {
         return
-      }
+      },
     }
     const wrapper = shallowMount(Create, {
       mocks: {
         $store,
-        $t
-      }
+        $t,
+      },
     })
 
     expect(wrapper.contains('section')).toBe(true)

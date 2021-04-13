@@ -1,41 +1,22 @@
 import Vue from 'vue'
-import App from './App'
+import App from './App.vue'
+import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import i18n from './i18n'
-import components from '@baldeweg/components'
-import VueMeta from 'vue-meta'
+import meta from './meta'
+import components from './components'
+import './theme.css'
 import VueCompositionAPI from '@vue/composition-api'
 
-Vue.use(components)
-Vue.use(VueMeta, {
-  keyName: 'head',
-})
-Vue.use(VueCompositionAPI)
 Vue.config.productionTip = false
-
-if (process.env.NODE_ENV === 'production') {
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker
-        .register('/sw.js')
-        .then(() => {
-          console.log('SW registered!')
-        })
-        .catch(() => {
-          console.log('SW registration failed!')
-        })
-    })
-  }
-}
+Vue.use(VueCompositionAPI)
 
 new Vue({
-  el: '#app',
   router,
   store,
   i18n,
-  template: '<App/>',
-  components: {
-    App,
-  },
-})
+  meta,
+  components,
+  render: (h) => h(App),
+}).$mount('#app')
