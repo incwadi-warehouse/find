@@ -17,7 +17,7 @@
 import _debounce from 'lodash/debounce'
 
 export default {
-  name: 'search-actionbar',
+  name: 'search-actionbar-search',
   props: {
     value: String,
   },

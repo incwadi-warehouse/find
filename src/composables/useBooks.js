@@ -43,9 +43,8 @@ export default function useBooks() {
         state.books = response.data.books
         state.pages = Math.ceil(response.data.counter / 20)
       })
-      .catch((e) => {
+      .catch(() => {
         state.hasFindError = true
-        console.error(e)
       })
       .finally(() => {
         state.isLoading = false
