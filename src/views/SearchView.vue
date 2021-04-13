@@ -1,25 +1,29 @@
 <template>
   <article>
     <b-container size="m">
-      <search-actionbar />
+      <search-actionbar
+        v-model="state.term"
+        @find="find"
+        @reset="state.books = []"
+      />
     </b-container>
 
-    <b-container size="m" v-if="isLoading">
+    <b-container size="m" v-if="state.isLoading">
       <b-spinner size="l" />
     </b-container>
 
     <b-container size="m" v-if="hasBooks">
-      <search-books-list @book="setBook" />
+      <search-books-list :books="state.books" @book="setBook" />
     </b-container>
 
-    <b-container size="m" v-if="pages > 1">
+    <b-container size="m" v-if="state.pages > 1">
       <ul class="pagination">
         <li class="pagination_info">
-          {{ $t('page') }} {{ currentPage }} / {{ pages }}
+          {{ $t('page') }} {{ state.page }} / {{ state.pages }}
         </li>
         <li
           class="pagination_item"
-          v-for="page in pages"
+          v-for="page in state.pages"
           :key="page"
           @click="setPage(page)"
         >
@@ -28,7 +32,11 @@
       </ul>
     </b-container>
 
-    <search-book-show :book="book" v-if="book" @close="book = null" />
+    <search-book-show
+      :book="state.book"
+      v-if="state.book"
+      @close="state.book = null"
+    />
   </article>
 </template>
 
@@ -36,6 +44,7 @@
 import SearchActionbar from '../components/search/Actionbar'
 import SearchBookShow from '../components/search/BookShow'
 import SearchBooksList from '../components/search/BooksList'
+import useBooks from '@/composables/useBooks'
 
 export default {
   name: 'search-view',
@@ -47,34 +56,16 @@ export default {
     SearchBookShow,
     SearchBooksList,
   },
-  data() {
+  setup() {
+    const { state, hasBooks, setBook, setPage, find } = useBooks()
+
     return {
-      book: null,
+      state,
+      hasBooks,
+      setBook,
+      setPage,
+      find,
     }
-  },
-  computed: {
-    hasBooks() {
-      if (!this.$store.state.search.books) return false
-      return this.$store.state.search.books.length >= 1
-    },
-    isLoading() {
-      return this.$store.state.search.isLoading
-    },
-    currentPage() {
-      return this.$store.state.search.page
-    },
-    pages() {
-      return this.$store.state.search.pages
-    },
-  },
-  methods: {
-    setBook(book) {
-      this.book = book
-    },
-    setPage(page) {
-      this.$store.commit('search/page', page)
-      this.$store.dispatch('search/find')
-    },
   },
 }
 </script>

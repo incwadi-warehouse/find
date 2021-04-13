@@ -1,5 +1,5 @@
 <template>
-  <article>
+  <div v-if="books">
     <b-list
       @click-title.prevent="$emit('book', book)"
       v-for="book in books"
@@ -32,17 +32,16 @@
         {{ book.releaseYear }}
       </template>
     </b-list>
-  </article>
+  </div>
 </template>
 
 <script>
 import { formatAuthor, formatPrice } from '../../util/formatter'
-import { mapState } from 'vuex'
 
 export default {
   name: 'books-list-search',
-  computed: {
-    ...mapState('search', ['books']),
+  props: {
+    books: Array,
   },
   methods: {
     formatAuthor: formatAuthor,

@@ -1,7 +1,7 @@
 <template>
-  <b-modal @close="$emit('close', $event)">
+  <b-modal :width="900" @close="$emit('close', $event)" v-if="book">
     <b-container size="m">
-      <h1>{{ book.title }}</h1>
+      <h2>{{ book.title }}</h2>
       <p v-if="book.authorSurname || book.authorFirstname">
         {{ $t('by') }}
         {{ formatAuthor(book.authorFirstname, book.authorSurname) }}
@@ -42,20 +42,18 @@
 </template>
 
 <script>
+import { ref } from '@vue/composition-api'
 import { formatAuthor, formatPrice } from '../../util/formatter'
 
 export default {
   name: 'book-show',
   props: {
-    book: {
-      type: Object,
-      required: true,
-    },
+    book: Object,
   },
-  data() {
-    return {
-      hasZoom: false,
-    }
+  setup() {
+    let hasZoom = ref(false)
+
+    return { hasZoom }
   },
   methods: {
     formatAuthor: formatAuthor,
