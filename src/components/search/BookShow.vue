@@ -43,7 +43,7 @@
 
 <script>
 import { ref } from '@vue/composition-api'
-import { formatAuthor, formatPrice } from '../../util/formatter'
+import { author, price } from '../../services/formatter'
 
 export default {
   name: 'book-show',
@@ -56,8 +56,8 @@ export default {
     return { hasZoom }
   },
   methods: {
-    formatAuthor: formatAuthor,
-    formatPrice: formatPrice,
+    formatAuthor: author,
+    formatPrice: price,
   },
 }
 </script>

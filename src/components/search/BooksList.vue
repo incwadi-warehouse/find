@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { formatAuthor, formatPrice } from '../../util/formatter'
+import { author, price } from '../../services/formatter'
 
 export default {
   name: 'books-list-search',
@@ -44,8 +44,8 @@ export default {
     books: Array,
   },
   methods: {
-    formatAuthor: formatAuthor,
-    formatPrice: formatPrice,
+    formatAuthor: author,
+    formatPrice: price,
   },
 }
 </script>
