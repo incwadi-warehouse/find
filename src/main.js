@@ -11,6 +11,10 @@ import VueCompositionAPI from '@vue/composition-api'
 Vue.config.productionTip = false
 Vue.use(VueCompositionAPI)
 
+if (process.env.VUE_APP_THEME !== 'false') {
+  import('../' + process.env.VUE_APP_THEME)
+}
+
 new Vue({
   router,
   i18n,
