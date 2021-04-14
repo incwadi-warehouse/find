@@ -1,5 +1,13 @@
 <template>
   <b-modal :width="1200" @close="$emit('close', $event)" v-if="book">
+    <b-container size="m">
+      <h2>{{ book.title }}</h2>
+      <p v-if="book.authorSurname || book.authorFirstname">
+        {{ $t('by') }}
+        {{ formatAuthor(book.authorFirstname, book.authorSurname) }}
+      </p>
+    </b-container>
+
     <div class="product">
       <div class="product_image">
         <b-container size="m" v-if="book.cover_m && book.cover_l">
@@ -13,15 +21,11 @@
       </div>
 
       <div class="product_details">
-        <b-container size="m">
-          <h2>{{ book.title }}</h2>
-          <p v-if="book.authorSurname || book.authorFirstname">
-            {{ $t('by') }}
-            {{ formatAuthor(book.authorFirstname, book.authorSurname) }}
-          </p>
-        </b-container>
-
-        <b-container size="m" v-if="book.shortDescription">
+        <b-container
+          size="m"
+          v-if="book.shortDescription"
+          :style="{ paddingTop: '0' }"
+        >
           <p>{{ book.shortDescription }}</p>
         </b-container>
 
