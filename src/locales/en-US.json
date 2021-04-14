@@ -2,7 +2,7 @@
   "notFound": "Not Found",
   "notFoundDesc": "The requested page could not be found.",
   "goToHomepage": "Go to homepage",
-  "searchInTitleAuthor": "Search in Title or Author",
+  "searchInTitleAuthorGenre": "Search in Title, Author or Genre",
   "paperback": "Paperback",
   "hardcover": "Hardcover",
   "genre": "Genre",

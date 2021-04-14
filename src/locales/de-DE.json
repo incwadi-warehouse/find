@@ -2,7 +2,7 @@
   "notFound": "Seite nicht gefunden",
   "notFoundDesc": "Die gesuchte Seite konnte leider nicht gefunden werden.",
   "goToHomepage": "Zur Startseite",
-  "searchInTitleAuthor": "Suche in Titel oder Autor",
+  "searchInTitleAuthorGenre": "Suche in Titel, Autor oder Rubrik",
   "paperback": "Taschenbuch",
   "hardcover": "Gebundenes Buch",
   "genre": "Rubrik",
