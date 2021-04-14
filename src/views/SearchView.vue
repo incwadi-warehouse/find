@@ -1,11 +1,7 @@
 <template>
   <article>
     <b-container size="m">
-      <search-actionbar
-        v-model="state.term"
-        @find="find"
-        @reset="state.books = []"
-      />
+      <search-actionbar v-model="state.term" @find="find" @reset="reset" />
     </b-container>
 
     <b-container size="m" v-if="state.isLoading">
@@ -17,19 +13,11 @@
     </b-container>
 
     <b-container size="m" v-if="state.pages > 1">
-      <ul class="pagination">
-        <li class="pagination_info">
-          {{ $t('page') }} {{ state.page }} / {{ state.pages }}
-        </li>
-        <li
-          class="pagination_item"
-          v-for="page in state.pages"
-          :key="page"
-          @click="setPage(page)"
-        >
-          {{ page }}
-        </li>
-      </ul>
+      <search-pagination
+        :pages="state.pages"
+        :page="state.page"
+        @set-page="setPage"
+      />
     </b-container>
 
     <search-book-show
@@ -44,7 +32,8 @@
 import SearchActionbar from '../components/search/Actionbar'
 import SearchBookShow from '../components/search/BookShow'
 import SearchBooksList from '../components/search/BooksList'
-import useBooks from '@/composables/useBooks'
+import SearchPagination from '@/components/search/Pagination'
+import useSearch from '@/composables/useSearch'
 
 export default {
   name: 'search-view',
@@ -55,9 +44,10 @@ export default {
     SearchActionbar,
     SearchBookShow,
     SearchBooksList,
+    SearchPagination,
   },
   setup() {
-    const { state, hasBooks, setBook, setPage, find } = useBooks()
+    const { state, hasBooks, setBook, setPage, find, reset } = useSearch()
 
     return {
       state,
@@ -65,30 +55,8 @@ export default {
       setBook,
       setPage,
       find,
+      reset,
     }
   },
 }
 </script>
-
-<style scoped>
-.pagination {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.pagination_info {
-  float: left;
-  padding: 10px 10px 10px 0;
-  margin: 10px 10px 10px 0;
-}
-.pagination_item {
-  float: left;
-  border: 1px solid var(--color-neutral-02);
-  padding: 10px;
-  margin: 10px;
-  cursor: pointer;
-}
-.pagination_item:hover {
-  border: 1px solid var(--color-primary-10);
-}
-</style>

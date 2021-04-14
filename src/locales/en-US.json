@@ -12,5 +12,6 @@
   "by": "by",
   "branch": "Branch",
   "condition": "Condition",
-  "page": "Page"
+  "back": "Back",
+  "forward": "Forward"
 }

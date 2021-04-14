@@ -12,5 +12,6 @@
   "by": "von",
   "branch": "Filiale",
   "condition": "Zustand",
-  "page": "Seite"
+  "back": "Zurück",
+  "forward": "Weiter"
 }

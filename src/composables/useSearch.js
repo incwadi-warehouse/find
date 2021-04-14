@@ -1,7 +1,7 @@
 import { find as findAction } from '@/api/search'
 import { computed, reactive } from '@vue/composition-api'
 
-export default function useBooks() {
+export default function useSearch() {
   const state = reactive({
     isLoading: false,
     term: null,
@@ -24,6 +24,7 @@ export default function useBooks() {
   const setPage = (page) => {
     state.page = page
     find()
+    window.scrollTo(0, 0)
   }
 
   const find = () => {
@@ -51,11 +52,19 @@ export default function useBooks() {
       })
   }
 
+  const reset = () => {
+    state.term = null
+    state.books = []
+    state.pages = 1
+    state.page = 1
+  }
+
   return {
     state,
     hasBooks,
     setBook,
     setPage,
     find,
+    reset,
   }
 }
