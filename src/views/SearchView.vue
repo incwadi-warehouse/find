@@ -13,6 +13,12 @@
       <b-spinner size="l" />
     </b-container>
 
+    <b-container size="m" v-if="state.hasEmptyResult">
+      <b-notification type="warning">
+        <p>{{ $t('foundNothing') }}</p>
+      </b-notification>
+    </b-container>
+
     <b-container size="m" v-if="hasBooks">
       <search-books-list :books="state.books" @book="setBook" />
     </b-container>

@@ -10,6 +10,7 @@ export default function useSearch() {
     pages: 1,
     page: 1,
     hasFindError: false,
+    hasEmptyResult: false,
   })
 
   const hasBooks = computed(() => {
@@ -61,6 +62,7 @@ export default function useSearch() {
     state.books = []
     state.pages = 1
     state.page = 1
+    state.hasEmptyResult = false
   }
 
   return {

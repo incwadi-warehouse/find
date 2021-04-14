@@ -13,5 +13,6 @@
   "branch": "Branch",
   "condition": "Condition",
   "back": "Back",
-  "forward": "Forward"
+  "forward": "Forward",
+  "foundNothing": "Sorry! We did not found something fitting the query."
 }

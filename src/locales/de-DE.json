@@ -13,5 +13,6 @@
   "branch": "Filiale",
   "condition": "Zustand",
   "back": "Zurück",
-  "forward": "Weiter"
+  "forward": "Weiter",
+  "foundNothing": "Entschuldigung! Wir konnten nichts zum Suchbegriff passendes finden."
 }
