@@ -42,6 +42,10 @@ export default function useSearch() {
       .then((response) => {
         state.hasFindError = false
         state.books = response.data.books
+        state.hasEmptyResult = false
+        if (response.data.books.length === 0) {
+          state.hasEmptyResult = true
+        }
         state.pages = Math.ceil(response.data.counter / 20)
       })
       .catch(() => {

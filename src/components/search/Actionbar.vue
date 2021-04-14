@@ -32,6 +32,7 @@ export default {
       changeRequest = _debounce(() => {
         if (null === term) return
         emit('input', term)
+        emit('reset-page')
         emit('find')
       }, 500)
 

@@ -1,7 +1,12 @@
 <template>
   <article>
     <b-container size="m">
-      <search-actionbar v-model="state.term" @find="find" @reset="reset" />
+      <search-actionbar
+        v-model="state.term"
+        @reset-page="state.page = 1"
+        @find="find"
+        @reset="reset"
+      />
     </b-container>
 
     <b-container size="m" v-if="state.isLoading">
