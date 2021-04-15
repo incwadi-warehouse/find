@@ -7,29 +7,37 @@ export default function useSearch() {
     term: null,
     books: [],
     book: null,
-    pages: 1,
+    counter: 0,
+    pages: computed(() => {
+      return Math.ceil(state.counter / 20)
+    }),
     page: 1,
     hasFindError: false,
-    hasEmptyResult: false,
+    hasBooks: computed(() => {
+      if (!state.books) return false
+      return state.books.length >= 1
+    }),
+    hasEmptyResult: computed(() => {
+      return (
+        state.term !== null &&
+        state.books.length === 0 &&
+        state.isLoading === false
+      )
+    }),
   })
 
-  const hasBooks = computed(() => {
-    if (!state.books) return false
-    return state.books.length >= 1
-  })
-
-  const setBook = (id) => {
-    state.book = id
+  const setBook = (book) => {
+    state.book = book
   }
 
   const setPage = (page) => {
+    if (page < 1 || page > state.pages) return
     state.page = page
     find()
     window.scrollTo(0, 0)
   }
 
-  const find = () => {
-    state.isLoading = true
+  const fetchBooks = () => {
     const params = {
       params: {
         options: {
@@ -39,16 +47,16 @@ export default function useSearch() {
       },
     }
 
-    findAction(params)
-      .then((response) => {
-        state.hasFindError = false
-        state.books = response.data.books
-        state.hasEmptyResult = false
-        if (response.data.books.length === 0) {
-          state.hasEmptyResult = true
-        }
-        state.pages = Math.ceil(response.data.counter / 20)
-      })
+    return findAction(params).then((response) => {
+      state.books = response.data.books
+      state.counter = response.data.counter
+    })
+  }
+
+  const find = () => {
+    state.isLoading = true
+    state.hasFindError = false
+    fetchBooks()
       .catch(() => {
         state.hasFindError = true
       })
@@ -60,14 +68,12 @@ export default function useSearch() {
   const reset = () => {
     state.term = null
     state.books = []
-    state.pages = 1
+    state.counter = 0
     state.page = 1
-    state.hasEmptyResult = false
   }
 
   return {
     state,
-    hasBooks,
     setBook,
     setPage,
     find,

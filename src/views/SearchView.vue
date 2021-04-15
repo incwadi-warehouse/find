@@ -19,7 +19,7 @@
       </b-notification>
     </b-container>
 
-    <b-container size="m" v-if="hasBooks">
+    <b-container size="m" v-if="state.hasBooks">
       <search-books-list :books="state.books" @book="setBook" />
     </b-container>
 
@@ -58,11 +58,10 @@ export default {
     SearchPagination,
   },
   setup() {
-    const { state, hasBooks, setBook, setPage, find, reset } = useSearch()
+    const { state, setBook, setPage, find, reset } = useSearch()
 
     return {
       state,
-      hasBooks,
       setBook,
       setPage,
       find,
