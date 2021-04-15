@@ -23,7 +23,7 @@ export default {
   },
   data() {
     return {
-      query: this.term === undefined ? null : this.term,
+      query: this.term,
     }
   },
   setup(props, { emit }) {

@@ -46,12 +46,6 @@
         </b-container>
       </div>
     </div>
-
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
   </b-modal>
 </template>
 
