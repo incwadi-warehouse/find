@@ -42,7 +42,7 @@
 
         <b-container size="m">
           <p>{{ $t('branch') }}: {{ book.branchName }}</p>
-          <p :style="{ whiteSpace: 'pre' }">{{ book.branchOrdering }}</p>
+          <p :style="{ whiteSpace: 'pre-wrap' }">{{ book.branchOrdering }}</p>
         </b-container>
       </div>
     </div>
