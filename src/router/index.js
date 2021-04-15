@@ -6,8 +6,17 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    name: 'index',
+    redirect: { name: 'search' },
+  },
+  {
+    path: '/search',
     name: 'search',
     component: () => import('../views/SearchView'),
+    props: (route) => ({
+      term: route.query.term,
+      page: parseInt(route.query.page),
+    }),
   },
   {
     path: '*',

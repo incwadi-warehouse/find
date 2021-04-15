@@ -1,17 +1,18 @@
 import { find as findAction } from '@/api/search'
-import { computed, reactive } from '@vue/composition-api'
+import { computed, onMounted, reactive, watch } from '@vue/composition-api'
+import router from '@/router'
 
-export default function useSearch() {
+export default function useSearch(term, page) {
   const state = reactive({
     isLoading: false,
-    term: null,
+    term: term,
     books: [],
     book: null,
     counter: 0,
     pages: computed(() => {
       return Math.ceil(state.counter / 20)
     }),
-    page: 1,
+    page: page,
     hasFindError: false,
     hasBooks: computed(() => {
       if (!state.books) return false
@@ -19,22 +20,48 @@ export default function useSearch() {
     }),
     hasEmptyResult: computed(() => {
       return (
-        state.term !== null &&
+        state.term !== undefined &&
         state.books.length === 0 &&
         state.isLoading === false
       )
     }),
   })
 
+  watch([() => state.term, () => state.page], () => {
+    if (!state.term) {
+      state.books = []
+      state.counter = 0
+    }
+    search()
+  })
+
   const setBook = (book) => {
     state.book = book
   }
 
+  const navigate = (term, page) => {
+    router.push({
+      name: 'search',
+      query: { term, page },
+    })
+  }
+
+  const setTerm = (term) => {
+    if (term === state.term) return
+
+    navigate(term, 1)
+  }
+
   const setPage = (page) => {
     if (page < 1 || page > state.pages) return
-    state.page = page
-    find()
+    if (page === state.page) return
+
+    navigate(state.term, page)
     window.scrollTo(0, 0)
+  }
+
+  const reset = () => {
+    navigate(undefined, undefined)
   }
 
   const fetchBooks = () => {
@@ -53,7 +80,9 @@ export default function useSearch() {
     })
   }
 
-  const find = () => {
+  const search = () => {
+    if (!state.term) return
+
     state.isLoading = true
     state.hasFindError = false
     fetchBooks()
@@ -65,18 +94,13 @@ export default function useSearch() {
       })
   }
 
-  const reset = () => {
-    state.term = null
-    state.books = []
-    state.counter = 0
-    state.page = 1
-  }
+  onMounted(search)
 
   return {
     state,
     setBook,
+    setTerm,
     setPage,
-    find,
     reset,
   }
 }

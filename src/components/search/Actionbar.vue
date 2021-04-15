@@ -5,9 +5,9 @@
         :placeholder="$t('searchInTitleAuthorGenre')"
         icon
         @input="change"
-        @submit.prevent="$emit('find')"
+        @submit.prevent="$emit('set-term', query)"
         @reset="$emit('reset')"
-        :value="value"
+        v-model="query"
       />
     </template>
   </b-actionbar>
@@ -17,9 +17,14 @@
 import _debounce from 'lodash/debounce'
 
 export default {
-  name: 'search-actionbar-search',
+  name: 'actionbar-search',
   props: {
-    value: String,
+    term: String,
+  },
+  data() {
+    return {
+      query: this.term === undefined ? null : this.term,
+    }
   },
   setup(props, { emit }) {
     let changeRequest = null
@@ -31,9 +36,7 @@ export default {
 
       changeRequest = _debounce(() => {
         if (null === term) return
-        emit('input', term)
-        emit('reset-page')
-        emit('find')
+        emit('set-term', term)
       }, 500)
 
       changeRequest()

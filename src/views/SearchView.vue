@@ -1,12 +1,7 @@
 <template>
   <article>
     <b-container size="m">
-      <search-actionbar
-        v-model="state.term"
-        @reset-page="state.page = 1"
-        @find="find"
-        @reset="reset"
-      />
+      <search-actionbar :term="state.term" @set-term="setTerm" @reset="reset" />
     </b-container>
 
     <b-container size="m" v-if="state.isLoading">
@@ -45,6 +40,7 @@ import SearchBookShow from '../components/search/BookShow'
 import SearchBooksList from '../components/search/BooksList'
 import SearchPagination from '@/components/search/Pagination'
 import useSearch from '@/composables/useSearch'
+import { toRefs } from '@vue/composition-api'
 
 export default {
   name: 'search-view',
@@ -57,14 +53,19 @@ export default {
     SearchBooksList,
     SearchPagination,
   },
-  setup() {
-    const { state, setBook, setPage, find, reset } = useSearch()
+  props: {
+    term: String,
+    page: Number,
+  },
+  setup(props) {
+    let { term, page } = toRefs(props)
+    const { state, setBook, setTerm, setPage, reset } = useSearch(term, page)
 
     return {
       state,
       setBook,
+      setTerm,
       setPage,
-      find,
       reset,
     }
   },
