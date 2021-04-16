@@ -102,5 +102,6 @@ export default function useSearch(term, page) {
     setTerm,
     setPage,
     reset,
+    search,
   }
 }

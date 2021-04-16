@@ -5,9 +5,9 @@
         :placeholder="$t('searchInTitleAuthorGenre')"
         icon
         @input="change"
-        @submit.prevent="$emit('set-term', query)"
+        @submit.prevent="$emit('find')"
         @reset="$emit('reset')"
-        v-model="query"
+        :value="term"
       />
     </template>
   </b-actionbar>
@@ -20,11 +20,6 @@ export default {
   name: 'actionbar-search',
   props: {
     term: String,
-  },
-  data() {
-    return {
-      query: this.term,
-    }
   },
   setup(props, { emit }) {
     let changeRequest = null

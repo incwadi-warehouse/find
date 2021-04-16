@@ -1,7 +1,12 @@
 <template>
   <article>
     <b-container size="m">
-      <search-actionbar :term="state.term" @set-term="setTerm" @reset="reset" />
+      <search-actionbar
+        :term="state.term"
+        @set-term="setTerm"
+        @reset="reset"
+        @search="search"
+      />
     </b-container>
 
     <b-container size="m" v-if="state.isLoading">
@@ -59,7 +64,10 @@ export default {
   },
   setup(props) {
     let { term, page } = toRefs(props)
-    const { state, setBook, setTerm, setPage, reset } = useSearch(term, page)
+    const { state, setBook, setTerm, setPage, reset, search } = useSearch(
+      term,
+      page
+    )
 
     return {
       state,
@@ -67,6 +75,7 @@ export default {
       setTerm,
       setPage,
       reset,
+      search,
     }
   },
 }
