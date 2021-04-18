@@ -10,13 +10,8 @@
 
     <div class="product">
       <div class="product_image">
-        <b-container size="m" v-if="book.cover_m && book.cover_l">
-          <img
-            :src="book.cover_m"
-            v-if="!hasZoom"
-            @click="hasZoom = !hasZoom"
-          />
-          <img :src="book.cover_l" v-if="hasZoom" @click="hasZoom = !hasZoom" />
+        <b-container size="m" v-if="book.cover_l">
+          <img :src="book.cover_l" />
         </b-container>
       </div>
 
@@ -50,18 +45,12 @@
 </template>
 
 <script>
-import { ref } from '@vue/composition-api'
 import { author, price } from '../../services/formatter'
 
 export default {
   name: 'book-show',
   props: {
     book: Object,
-  },
-  setup() {
-    let hasZoom = ref(true)
-
-    return { hasZoom }
   },
   methods: {
     formatAuthor: author,
