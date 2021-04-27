@@ -9,8 +9,8 @@
     </b-container>
 
     <div class="product">
-      <div class="product_image">
-        <b-container size="m" v-if="book.cover_l">
+      <div class="product_image" v-if="book.cover_l">
+        <b-container size="m">
           <img :src="book.cover_l" />
         </b-container>
       </div>
