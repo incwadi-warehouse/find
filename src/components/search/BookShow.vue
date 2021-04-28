@@ -1,7 +1,7 @@
 <template>
   <b-modal :width="1200" @close="$emit('close', $event)" v-if="book">
     <b-container size="m">
-      <h2>{{ book.title }}</h2>
+      <h2 :style="{ wordBreak: 'break-word' }">{{ book.title }}</h2>
       <p v-if="book.authorSurname || book.authorFirstname">
         {{ $t('by') }}
         {{ formatAuthor(book.authorFirstname, book.authorSurname) }}
