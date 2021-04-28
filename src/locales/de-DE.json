@@ -14,5 +14,7 @@
   "condition": "Zustand",
   "back": "Zurück",
   "forward": "Weiter",
-  "foundNothing": "Entschuldigung! Wir konnten nichts zum Suchbegriff passendes finden."
+  "foundNothing": "Entschuldigung! Wir konnten nichts zum Suchbegriff passendes finden.",
+  "none": "nichts",
+  "chooseBranch": "Bitte wählen Sie Ihre Filiale!"
 }

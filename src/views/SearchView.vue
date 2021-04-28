@@ -1,11 +1,24 @@
 <template>
   <article>
-    <b-container size="m">
+    <b-container size="m" v-if="state.filters.branch">
       <search-actionbar
         :term="state.term"
         @set-term="setTerm"
         @reset="reset"
         @search="search"
+      />
+    </b-container>
+
+    <b-container size="m" v-if="!state.filters.branch">
+      <p>{{ $t('chooseBranch') }}</p>
+    </b-container>
+
+    <b-container size="m">
+      <search-radio-filter
+        :selectedItem="state.filters.branch"
+        :items="state.branches"
+        :title="$t('branch')"
+        @select="handleFilter('branch', $event)"
       />
     </b-container>
 
@@ -44,6 +57,7 @@ import SearchActionbar from '../components/search/Actionbar'
 import SearchBookShow from '../components/search/BookShow'
 import SearchBooksList from '../components/search/BooksList'
 import SearchPagination from '@/components/search/Pagination'
+import SearchRadioFilter from '@/components/search/RadioFilter'
 import useSearch from '@/composables/useSearch'
 import { toRefs } from '@vue/composition-api'
 
@@ -57,17 +71,24 @@ export default {
     SearchBookShow,
     SearchBooksList,
     SearchPagination,
+    SearchRadioFilter,
   },
   props: {
     term: String,
     page: Number,
+    branch: Number,
   },
   setup(props) {
-    let { term, page } = toRefs(props)
-    const { state, setBook, setTerm, setPage, reset, search } = useSearch(
-      term,
-      page
-    )
+    let { term, page, branch } = toRefs(props)
+    const {
+      state,
+      setBook,
+      setTerm,
+      setPage,
+      reset,
+      search,
+      handleFilter,
+    } = useSearch(term, page, branch)
 
     return {
       state,
@@ -76,6 +97,7 @@ export default {
       setPage,
       reset,
       search,
+      handleFilter,
     }
   },
 }

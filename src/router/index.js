@@ -15,7 +15,8 @@ const routes = [
     component: () => import('../views/SearchView'),
     props: (route) => ({
       term: route.query.term,
-      page: parseInt(route.query.page),
+      page: parseInt(route.query.page) || undefined,
+      branch: parseInt(route.query.branch),
     }),
   },
   {
