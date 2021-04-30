@@ -1,4 +1,7 @@
-import { find as findAction } from '@/api/search'
+import {
+  find as findAction,
+  recommendation as recommendationAction,
+} from '@/api/search'
 import { computed, onMounted, reactive, watch } from '@vue/composition-api'
 import router from '@/router'
 
@@ -13,6 +16,7 @@ export default function useSearch(term, page) {
       return Math.ceil(state.counter / 20)
     }),
     page: page,
+    recommendations: [],
     hasFindError: false,
     hasBooks: computed(() => {
       if (!state.books) return false
@@ -95,6 +99,14 @@ export default function useSearch(term, page) {
   }
 
   onMounted(search)
+
+  const fetchRecommendations = () => {
+    return recommendationAction().then((response) => {
+      state.recommendations = response.data
+    })
+  }
+
+  onMounted(fetchRecommendations)
 
   return {
     state,

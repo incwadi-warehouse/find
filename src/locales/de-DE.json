@@ -14,5 +14,6 @@
   "condition": "Zustand",
   "back": "Zurück",
   "forward": "Weiter",
-  "foundNothing": "Entschuldigung! Wir konnten nichts zum Suchbegriff passendes finden."
+  "foundNothing": "Entschuldigung! Wir konnten nichts zum Suchbegriff passendes finden.",
+  "recommendations": "Empfehlungen"
 }

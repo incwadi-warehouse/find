@@ -31,6 +31,11 @@
       />
     </b-container>
 
+    <b-container size="m" v-if="state.term == null || state.hasEmptyResult">
+      <h3>{{ $t('recommendations') }}</h3>
+      <search-books-card :books="state.recommendations.books" @book="setBook" />
+    </b-container>
+
     <search-book-show
       :book="state.book"
       v-if="state.book"
@@ -43,6 +48,7 @@
 import SearchActionbar from '../components/search/Actionbar'
 import SearchBookShow from '../components/search/BookShow'
 import SearchBooksList from '../components/search/BooksList'
+import SearchBooksCard from '../components/search/BooksCard'
 import SearchPagination from '@/components/search/Pagination'
 import useSearch from '@/composables/useSearch'
 import { toRefs } from '@vue/composition-api'
@@ -56,6 +62,7 @@ export default {
     SearchActionbar,
     SearchBookShow,
     SearchBooksList,
+    SearchBooksCard,
     SearchPagination,
   },
   props: {
