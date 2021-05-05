@@ -139,13 +139,16 @@ export default function useSearch(term, page, branch) {
   }
 
   onMounted(fetchBranches)
+
   const fetchRecommendations = () => {
-    return recommendationAction().then((response) => {
+    if (!branch.value) return
+    return recommendationAction(branch.value).then((response) => {
       state.recommendations = response.data
     })
   }
 
   onMounted(fetchRecommendations)
+  watch(branch, fetchRecommendations)
 
   return {
     state,

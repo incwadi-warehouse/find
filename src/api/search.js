@@ -8,6 +8,6 @@ export const branch = function () {
   return request().get('/api/public/book/branch')
 }
 
-export const recommendation = function () {
-  return request().get('/api/public/book/recommendation')
+export const recommendation = function (branch) {
+  return request().get('/api/public/book/recommendation/' + branch)
 }
