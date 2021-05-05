@@ -16,5 +16,6 @@
   "forward": "Forward",
   "foundNothing": "Sorry! We did not found something fitting the query.",
   "none": "none",
-  "chooseBranch": "Please, choose your branch!"
+  "chooseBranch": "Please, choose your branch!",
+  "recommendations": "Recommendations"
 }
