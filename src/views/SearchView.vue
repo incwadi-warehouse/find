@@ -44,10 +44,18 @@
       />
     </b-container>
 
-    <b-container size="m" v-if="state.term == null || state.hasEmptyResult">
-      <h3>{{ $t('recommendations') }}</h3>
-      <search-books-card :books="state.recommendations.books" @book="setBook" />
-    </b-container>
+    <div v-if="state.term == null || state.hasEmptyResult">
+      <b-container size="m">
+        <h3>{{ $t('recommendations') }}</h3>
+      </b-container>
+
+      <b-container size="m">
+        <search-books-card
+          :books="state.recommendations.books"
+          @book="setBook"
+        />
+      </b-container>
+    </div>
 
     <search-book-show
       :book="state.book"

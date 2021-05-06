@@ -7,8 +7,11 @@
         @click="$emit('book', book)"
         v-if="book.cover_l"
       />
+      <p :style="{ height: '50px', overflow: 'hidden' }">
+        {{ formatAuthor(book.authorFirstname, book.authorSurname) }}
+      </p>
       <p
-        :style="{ height: '60px', fontWeight: 'bold', cursor: 'pointer' }"
+        :style="{ height: '120px', fontWeight: 'bold', cursor: 'pointer' }"
         @click="$emit('book', book)"
         :title="book.title"
       >
@@ -26,7 +29,7 @@
 </template>
 
 <script>
-import { price } from '../../services/formatter'
+import { author, price } from '../../services/formatter'
 
 export default {
   name: 'books-card-search',
@@ -35,8 +38,9 @@ export default {
   },
   methods: {
     formatPrice: price,
+    formatAuthor: author,
     title(title) {
-      const limit = 25
+      const limit = 50
       if (title.length > limit) {
         return title.slice(0, limit - 4) + '...'
       }
