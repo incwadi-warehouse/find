@@ -11,7 +11,7 @@
     <div class="product">
       <div class="product_image" v-if="book.cover_l">
         <b-container size="m">
-          <img :src="book.cover_l" />
+          <img :src="book.cover_l" :alt="book.title" />
         </b-container>
       </div>
 

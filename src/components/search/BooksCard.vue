@@ -3,6 +3,7 @@
     <b-horizontal-list-item size="s" v-for="book in books" :key="book.id">
       <img
         :src="book.cover_l"
+        :alt="book.title"
         :style="{ cursor: 'pointer' }"
         @click="$emit('book', book)"
         v-if="book.cover_l"

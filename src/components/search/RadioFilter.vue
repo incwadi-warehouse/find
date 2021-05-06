@@ -5,7 +5,7 @@
     v-if="items"
   >
     <template #selector>
-      <b>{{ title }} </b>
+      <strong>{{ title }} </strong>
       <span v-if="selectedItem">{{ selectedItem[name] }}</span>
       <span v-else>{{ $t('none') }}</span>
     </template>

@@ -8,6 +8,7 @@
       <template #image v-if="book.cover_s">
         <img
           :src="book.cover_s"
+          :alt="book.title"
           :style="{ cursor: 'pointer' }"
           @click="$emit('book', book)"
         />
