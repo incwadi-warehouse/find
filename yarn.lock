@@ -873,10 +873,10 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@baldeweg/components@6.0.0-beta.2":
-  version "6.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/@baldeweg/components/-/components-6.0.0-beta.2.tgz#903567d0bdbe6f78974eba1bf4dd01e98befa71e"
-  integrity sha512-iSmE+N1Uiv8/7bKp6S6TcrkvEDmJ3IrDcm2ZK8f4He8BUbMy6Lpto6NDFPiXBX7xaAg0J01/OUBbTCSqOLMzPw==
+"@baldeweg/components@6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@baldeweg/components/-/components-6.0.0.tgz#aaa1f27e4f9dd7c2e4ebed71eda53490901bf59c"
+  integrity sha512-Q1eBM5qZadA65rQDzloBT2gVmIXqZ3BpjbzqQn9A66OlhBBXNvv71j96ec9sBc/bMJImhMT/53oicQU0IL5yfA==
   dependencies:
     core-js "^3.10.2"
     vue "^2.6.12"
