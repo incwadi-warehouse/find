@@ -11,7 +11,7 @@
     "watch": "vue-cli-service serve"
   },
   "dependencies": {
-    "@baldeweg/components": "6.0.0-beta.2",
+    "@baldeweg/components": "6.0.0",
     "@vue/composition-api": "1.0.0-rc.8",
     "axios": "0.21.1",
     "core-js": "3.12.1",
