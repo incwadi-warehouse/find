@@ -95,15 +95,8 @@ export default {
   },
   setup(props) {
     let { term, page, branch } = toRefs(props)
-    const {
-      state,
-      setBook,
-      setTerm,
-      setPage,
-      reset,
-      search,
-      handleFilter,
-    } = useSearch(term, page, branch)
+    const { state, setBook, setTerm, setPage, reset, search, handleFilter } =
+      useSearch(term, page, branch)
 
     return {
       state,
