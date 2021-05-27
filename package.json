@@ -1,6 +1,6 @@
 {
   "name": "find",
-  "version": "2.5.1",
+  "version": "2.6.1",
   "author": "André Baldeweg <a@baldeweg.org>",
   "scripts": {
     "serve": "vue-cli-service serve",
