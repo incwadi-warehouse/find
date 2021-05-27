@@ -21,7 +21,7 @@
       <b-button
         design="text"
         @click="$emit('book', book)"
-        :style="{ float: 'right', paddingRight: '0' }"
+        :style="{ float: 'right', paddingRight: '0', fontWeight: '600' }"
       >
         {{ formatPrice(book.price) }} {{ book.currency }}
       </b-button>
