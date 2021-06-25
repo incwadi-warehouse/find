@@ -5,9 +5,10 @@
       v-for="book in books"
       :key="book.id"
     >
-      <template #image v-if="book.cover_s">
+      <template #image>
         <img
-          :src="book.cover_s"
+          :src="image(book.id)"
+          width="100"
           :alt="book.title"
           :style="{ cursor: 'pointer' }"
           @click="$emit('book', book)"
@@ -47,6 +48,14 @@ export default {
   methods: {
     formatAuthor: author,
     formatPrice: price,
+    image(id) {
+      return (
+        process.env.VUE_APP_API +
+        '/api/public/book/cover/' +
+        id +
+        '_100x100.jpg'
+      )
+    },
   },
 }
 </script>

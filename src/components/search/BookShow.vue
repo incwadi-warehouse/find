@@ -9,9 +9,9 @@
     </b-container>
 
     <div class="product">
-      <div class="product_image" v-if="book.cover_l">
+      <div class="product_image">
         <b-container size="m">
-          <img :src="book.cover_l" :alt="book.title" />
+          <img :src="image(book.id)" width="400" :alt="book.title" />
         </b-container>
       </div>
 
@@ -55,6 +55,14 @@ export default {
   methods: {
     formatAuthor: author,
     formatPrice: price,
+    image(id) {
+      return (
+        process.env.VUE_APP_API +
+        '/api/public/book/cover/' +
+        id +
+        '_400x400.jpg'
+      )
+    },
   },
 }
 </script>
