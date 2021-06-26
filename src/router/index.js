@@ -17,12 +17,12 @@ const routes = [
       term: route.query.term,
       page: parseInt(route.query.page) || undefined,
       branch: parseInt(route.query.branch),
+      is404: route.params.is404,
     }),
   },
   {
     path: '*',
-    name: 'not-found',
-    component: () => import('../views/NotFoundView'),
+    redirect: { name: 'search', params: { is404: true } },
   },
 ]
 

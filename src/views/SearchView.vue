@@ -1,5 +1,11 @@
 <template>
   <article>
+    <b-container size="l" v-if="is404">
+      <b-notification type="warning" hidable>
+        {{ $t('notFoundDesc') }}
+      </b-notification>
+    </b-container>
+
     <b-container size="m" v-if="state.filters.branch">
       <search-actionbar
         :term="state.term"
@@ -92,6 +98,10 @@ export default {
     term: String,
     page: Number,
     branch: Number,
+    is404: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props) {
     let { term, page, branch } = toRefs(props)
