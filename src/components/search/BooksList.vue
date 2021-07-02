@@ -29,7 +29,7 @@
         <b-list-separator />
         {{ book.genre }}
         <b-list-separator />
-        {{ $t(book.type) }}
+        {{ book.format_name ? book.format_name : $t(book.type) }}
         <b-list-separator />
         {{ book.releaseYear }}
       </template>

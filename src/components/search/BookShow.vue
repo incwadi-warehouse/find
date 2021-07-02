@@ -31,7 +31,10 @@
           </p>
           <p>{{ $t('genre') }}: {{ book.genre }}</p>
           <p>{{ $t('releaseYear') }}: {{ book.releaseYear }}</p>
-          <p>{{ $t('type') }}: {{ $t(book.type) }}</p>
+          <p>
+            {{ $t('format') }}:
+            {{ book.format_name ? book.format_name : $t(book.type) }}
+          </p>
           <p v-if="book.cond">{{ $t('condition') }}: {{ book.cond }}</p>
         </b-container>
 
