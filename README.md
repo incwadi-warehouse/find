@@ -21,7 +21,7 @@ git clone https://github.com/abaldeweg/incwadi_find.git
 Create the file `.env.local` and overwrite env vars from `.env`, if needed.
 
 Start the build process.
-
+     
 ```shell
 yarn build
 ```
