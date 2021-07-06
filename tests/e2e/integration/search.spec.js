@@ -1,10 +1,3 @@
-describe('Home', () => {
-  it('show home', () => {
-    cy.visit('/')
-    cy.url().should('include', '/search')
-  })
-})
-
 describe('Choose branch', () => {
   it('Selects a branch', () => {
     cy.server()
