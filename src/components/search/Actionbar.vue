@@ -2,19 +2,19 @@
   <b-actionbar>
     <template #input>
       <b-search
-        :placeholder="$t('searchInTitleAuthorGenre')"
         icon
+        :placeholder="$t('searchInTitleAuthorGenre')"
+        :value="term"
         @input="change"
         @submit.prevent="$emit('find')"
         @reset="$emit('reset')"
-        :value="term"
       />
     </template>
   </b-actionbar>
 </template>
 
 <script>
-import _debounce from 'lodash/debounce'
+import { debounce } from 'lodash'
 
 export default {
   name: 'actionbar-search',
@@ -29,7 +29,7 @@ export default {
         changeRequest.cancel()
       }
 
-      changeRequest = _debounce(() => {
+      changeRequest = debounce(() => {
         if (null === term) return
         emit('set-term', term)
       }, 500)

@@ -1,5 +1,5 @@
 <template>
-  <div :style="{ textAlign: 'center' }">
+  <div class="pagination_wrapper">
     <ul class="pagination">
       <li class="pagination_item" @click="$emit('set-page', page - 1)">
         &lt; {{ $t('back') }}
@@ -39,6 +39,9 @@ export default {
 </script>
 
 <style scoped>
+.pagination_wrapper {
+  text-align: center;
+}
 .pagination {
   display: inline-block;
   list-style: none;

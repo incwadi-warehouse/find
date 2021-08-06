@@ -4,7 +4,7 @@
       <h2 :style="{ wordBreak: 'break-word' }">{{ book.title }}</h2>
       <p v-if="book.authorSurname || book.authorFirstname">
         {{ $t('by') }}
-        {{ formatAuthor(book.authorFirstname, book.authorSurname) }}
+        {{ author(book.authorFirstname, book.authorSurname) }}
       </p>
     </b-container>
 
@@ -26,14 +26,14 @@
 
         <b-container size="m" v-if="book">
           <p>
-            {{ $t('price') }}: {{ formatPrice(book.price) }}
+            {{ $t('price') }}: {{ price(book.price) }}
             {{ book.currency }}
           </p>
           <p>{{ $t('genre') }}: {{ book.genre }}</p>
           <p>{{ $t('releaseYear') }}: {{ book.releaseYear }}</p>
           <p>
             {{ $t('format') }}:
-            {{ book.format_name ? book.format_name : $t(book.type) }}
+            {{ book.format_name }}
           </p>
           <p v-if="book.cond">{{ $t('condition') }}: {{ book.cond }}</p>
         </b-container>
@@ -51,21 +51,21 @@
 import { author, price } from '../../services/formatter'
 
 export default {
-  name: 'book-show',
+  name: 'book-show-search',
   props: {
     book: Object,
   },
-  methods: {
-    formatAuthor: author,
-    formatPrice: price,
-    image(id) {
+  setup() {
+    const image = (id) => {
       return (
         process.env.VUE_APP_API +
         '/api/public/book/cover/' +
         id +
         '_400x400.jpg'
       )
-    },
+    }
+
+    return { author, price, image }
   },
 }
 </script>

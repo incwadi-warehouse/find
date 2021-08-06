@@ -1,9 +1,5 @@
 <template>
-  <b-dropdown
-    position="bottom"
-    :style="{ display: 'inline-block', marginRight: '20px' }"
-    v-if="items"
-  >
+  <b-dropdown position="bottom" v-if="items">
     <template #selector>
       <strong>{{ title }} </strong>
       <span v-if="selectedItem">{{ selectedItem[name] }}</span>

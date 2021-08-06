@@ -7,29 +7,31 @@
     >
       <template #image>
         <img
-          :src="image(book.id)"
           width="100"
+          :src="image(book.id)"
           :alt="book.title"
           :style="{ cursor: 'pointer' }"
           @click="$emit('book', book)"
         />
       </template>
+
       <template #title>
         <span :style="{ cursor: 'pointer' }">
           {{ book.title }}
         </span>
       </template>
+
       <template #options>
         <b-button design="text" @click="$emit('book', book)">
-          {{ formatPrice(book.price) }} {{ book.currency }}
+          {{ price(book.price) }} {{ book.currency }}
         </b-button>
       </template>
       <template #meta>
-        {{ formatAuthor(book.authorFirstname, book.authorSurname) }}
+        {{ author(book.authorFirstname, book.authorSurname) }}
         <b-list-separator />
         {{ book.genre }}
         <b-list-separator />
-        {{ book.format_name ? book.format_name : $t(book.type) }}
+        format: {{ book.format_name }}
         <b-list-separator />
         {{ book.releaseYear }}
       </template>
@@ -45,17 +47,17 @@ export default {
   props: {
     books: Array,
   },
-  methods: {
-    formatAuthor: author,
-    formatPrice: price,
-    image(id) {
+  setup() {
+    const image = (id) => {
       return (
         process.env.VUE_APP_API +
         '/api/public/book/cover/' +
         id +
         '_100x100.jpg'
       )
-    },
+    }
+
+    return { author, price, image }
   },
 }
 </script>
