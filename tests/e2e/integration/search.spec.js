@@ -62,7 +62,6 @@ describe('Find books', () => {
           releaseYear: 2021,
           shortDescription: 'desc',
           title: 'Title',
-          type: 'paperback',
         },
       ],
     })
