@@ -1,6 +1,6 @@
 {
   "notFoundDesc": "Die gesuchte Seite konnte leider nicht gefunden werden.",
-  "searchInTitleAuthorGenre": "Suche in Titel, Autor oder Rubrik",
+  "searchInTitleAuthorGenre": "Suche in Titel, Autor und Rubrik",
   "genre": "Rubrik",
   "releaseYear": "Veröffentlichungsjahr",
   "price": "Preis",
@@ -9,7 +9,7 @@
   "condition": "Zustand",
   "back": "Zurück",
   "forward": "Weiter",
-  "foundNothing": "Entschuldigung! Wir konnten nichts zum Suchbegriff passendes finden.",
+  "foundNothing": "Entschuldigung! Wir konnten zum Suchbegriff leider nichts finden.",
   "none": "nichts",
   "chooseBranch": "Bitte wählen Sie Ihre Filiale!",
   "recommendations": "Empfehlungen",
