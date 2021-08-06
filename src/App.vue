@@ -4,6 +4,7 @@
 
     <b-content>
       <router-view />
+
       <b-container size="m">
         <div v-html="about" />
       </b-container>
