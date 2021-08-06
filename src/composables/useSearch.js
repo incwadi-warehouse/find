@@ -1,8 +1,8 @@
 import {
   find as findAction,
-  branch as branchAction,
   recommendation as recommendationAction,
-} from '@/api/search'
+} from '@/api/book'
+import { list as branchAction } from '@/api/branch'
 import { computed, onMounted, reactive, watch } from '@vue/composition-api'
 import router from '@/router'
 
@@ -148,6 +148,7 @@ export default function useSearch(term, page, branch) {
   }
 
   onMounted(fetchRecommendations)
+
   watch(branch, fetchRecommendations)
 
   return {
