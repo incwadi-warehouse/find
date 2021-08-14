@@ -21,7 +21,7 @@
           v-if="book.shortDescription"
           :style="{ paddingTop: '0' }"
         >
-          <p>{{ book.shortDescription }}</p>
+          <p :style="{ whiteSpace: 'pre-wrap' }">{{ book.shortDescription }}</p>
         </b-container>
 
         <b-container size="m" v-if="book">
