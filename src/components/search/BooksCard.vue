@@ -35,12 +35,12 @@ export default {
     books: Array,
   },
   setup() {
-    const title = (title) => {
+    const title = (data) => {
       const limit = 50
-      if (title.length > limit) {
-        return title.slice(0, limit - 4) + '...'
+      if (data.length > limit) {
+        return data.slice(0, limit - 4) + '...'
       }
-      return title
+      return data
     }
 
     return { price, author, title }

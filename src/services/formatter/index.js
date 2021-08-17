@@ -1,5 +1,5 @@
-export const price = function (price) {
-  return Number.parseFloat(price).toLocaleString(undefined, {
+export const price = function (data) {
+  return Number.parseFloat(data).toLocaleString(undefined, {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   })
