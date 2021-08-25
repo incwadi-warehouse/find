@@ -7,3 +7,7 @@ export const find = function (params) {
 export const recommendation = function (branch) {
   return request().get('/api/public/book/recommendation/' + branch)
 }
+
+export const fetch = function (book) {
+  return request().get('/api/public/book/' + book)
+}

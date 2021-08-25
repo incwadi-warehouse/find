@@ -62,24 +62,18 @@
         />
       </b-container>
     </div>
-
-    <search-book-show
-      :book="state.book"
-      v-if="state.book"
-      @close="state.book = null"
-    />
   </article>
 </template>
 
 <script>
 import SearchActionbar from '../components/search/Actionbar'
-import SearchBookShow from '../components/search/BookShow'
 import SearchBooksList from '../components/search/BooksList'
 import SearchBooksCard from '../components/search/BooksCard'
 import SearchPagination from '@/components/search/Pagination'
 import SearchRadioFilter from '@/components/search/RadioFilter'
 import useSearch from '@/composables/useSearch'
 import { toRefs } from '@vue/composition-api'
+import router from '@/router'
 
 export default {
   name: 'search-view',
@@ -88,7 +82,6 @@ export default {
   },
   components: {
     SearchActionbar,
-    SearchBookShow,
     SearchBooksList,
     SearchBooksCard,
     SearchPagination,
@@ -105,8 +98,15 @@ export default {
   },
   setup(props) {
     let { term, page, branch } = toRefs(props)
-    const { state, setBook, setTerm, setPage, reset, search, handleFilter } =
-      useSearch(term, page, branch)
+    const { state, setTerm, setPage, reset, search, handleFilter } = useSearch(
+      term,
+      page,
+      branch
+    )
+
+    const setBook = (book) => {
+      router.push({ name: 'book', params: { book: book.id } })
+    }
 
     return {
       state,

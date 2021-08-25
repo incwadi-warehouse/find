@@ -11,7 +11,6 @@ export default function useSearch(term, page, branch) {
     isLoading: false,
     term: term,
     books: [],
-    book: null,
     counter: 0,
     pages: computed(() => {
       return Math.ceil(state.counter / 20)
@@ -54,10 +53,6 @@ export default function useSearch(term, page, branch) {
     }
     search()
   })
-
-  const setBook = (book) => {
-    state.book = book
-  }
 
   const navigate = (term, page, branch) => {
     router.push({
@@ -153,7 +148,6 @@ export default function useSearch(term, page, branch) {
 
   return {
     state,
-    setBook,
     setTerm,
     setPage,
     reset,

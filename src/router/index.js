@@ -21,6 +21,12 @@ const routes = [
     }),
   },
   {
+    path: '/book/:book',
+    name: 'book',
+    component: () => import('../views/BookView'),
+    props: true,
+  },
+  {
     path: '*',
     redirect: { name: 'search', params: { is404: true } },
   },
