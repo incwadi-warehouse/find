@@ -31,7 +31,7 @@
         <b-list-separator />
         {{ book.genre }}
         <b-list-separator />
-        format: {{ book.format_name }}
+        {{ book.format_name }}
         <b-list-separator />
         {{ book.releaseYear }}
       </template>
