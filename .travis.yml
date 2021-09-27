@@ -3,5 +3,6 @@ dist: focal
 node_js:
   - 12
 script:
+  - cypress install
   - yarn test:unit
   - yarn test:e2e --headless
