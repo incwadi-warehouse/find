@@ -71,13 +71,3 @@ describe('Find books', () => {
     cy.get('aside.notification_warning').should('not.exist')
   })
 })
-
-describe('Show Book', () => {
-  it('Opens details', () => {
-    cy.get('h3.list_title').click()
-    cy.get('div.modal')
-    cy.get('span.modal_close').click()
-    cy.get('div.modal').should('not.exist')
-    cy.get('div.modal_overlay').should('not.exist')
-  })
-})
