@@ -15,10 +15,8 @@ workflows:
                 - 'test:unit'
           pkg-manager: yarn
       - cypress/run:
-          matrix:
-            parameters:
-              version:
-                - 'lts'
-                - '12.22'
-          pkg-manager: yarn
+          executor: cypress/base-14
+          record: false
+      - cypress/run:
+          executor: cypress/base-12
           record: false
