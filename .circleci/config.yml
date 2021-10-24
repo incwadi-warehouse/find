@@ -15,8 +15,8 @@ jobs:
       - checkout
       - node/install-packages:
           pkg-manager: yarn
-      - run:
-          command: yarn components:generate
+      # - run:
+      #     command: yarn components:generate
       - run:
           command: yarn test:unit
 workflows:
@@ -35,6 +35,6 @@ workflows:
                 - cypress/base-14
                 - cypress/base-12
           yarn: true
-          post-install:
-            - run: yarn components:generate
+          # post-install:
+          #   - run: yarn components:generate
           command: yarn test:e2e --headless
