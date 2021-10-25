@@ -45,6 +45,9 @@ export default {
     about() {
       return process.env.VUE_APP_ABOUT
     },
+    hasLogo() {
+      return process.env.VUE_APP_LOGO === 'false' ? false : true
+    },
   },
 }
 </script>
