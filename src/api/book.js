@@ -1,4 +1,4 @@
-import request from '@/api'
+import request from '~b/api'
 
 export const find = function (params) {
   return request().get('/api/public/book/find', params)
@@ -11,3 +11,5 @@ export const recommendation = function (branch) {
 export const fetch = function (book) {
   return request().get('/api/public/book/' + book)
 }
+
+export default { find, recommendation, fetch }
