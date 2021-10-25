@@ -6,59 +6,59 @@
       </b-alert>
     </b-container>
 
-    <b-container size="m" v-if="state.filters.branch">
+    <b-container size="m" v-if="search.state.filters.branch">
       <search-actionbar
-        :term="state.term"
-        @set-term="setTerm"
-        @reset="reset"
-        @search="search"
+        :term="search.state.term"
+        @set-term="search.setTerm"
+        @reset="search.reset"
+        @search="search.search"
       />
     </b-container>
 
-    <b-container size="m" v-if="!state.filters.branch">
+    <b-container size="m" v-if="!search.state.filters.branch">
       <p>{{ $t('chooseBranch') }}</p>
     </b-container>
 
     <b-container size="m">
       <search-radio-filter
-        :selectedItem="state.filters.branch"
-        :items="state.branches"
+        :selectedItem="search.state.filters.branch"
+        :items="search.state.branches"
         :title="$t('branch')"
-        @select="handleFilter('branch', $event)"
+        @select="search.handleFilter('branch', $event)"
       />
     </b-container>
 
-    <b-container size="m" v-if="state.isLoading">
+    <b-container size="m" v-if="search.state.isLoading">
       <b-spinner size="l" />
     </b-container>
 
-    <b-container size="m" v-if="state.hasEmptyResult">
+    <b-container size="m" v-if="search.state.hasEmptyResult">
       <b-alert type="warning">
         <p>{{ $t('foundNothing') }}</p>
       </b-alert>
     </b-container>
 
-    <b-container size="m" v-if="state.hasBooks">
-      <search-books-list :books="state.books" @book="setBook" />
+    <b-container size="m" v-if="search.state.hasBooks">
+      <search-books-list :books="search.state.books" @book="openBook" />
     </b-container>
 
-    <b-container size="m" v-if="state.pages > 1">
+    <b-container size="m" v-if="search.state.pages > 1">
       <search-pagination
-        :pages="state.pages"
-        :page="state.page"
-        @set-page="setPage"
+        :pages="search.state.pages"
+        :page="search.state.page"
+        @set-page="search.setPage"
       />
     </b-container>
 
-    <div v-if="state.term == null || state.hasEmptyResult">
+    <div v-if="search.state.term == null || search.state.hasEmptyResult">
       <b-container size="m">
         <h3>{{ $t('recommendations') }}</h3>
       </b-container>
 
       <b-container size="m">
         <search-books-card
-          :books="state.recommendations.books"
-          @book="setBook"
+          :books="search.state.recommendations.books"
+          @book="openBook"
         />
       </b-container>
     </div>
@@ -98,24 +98,16 @@ export default {
   },
   setup(props) {
     let { term, page, branch } = toRefs(props)
-    const { state, setTerm, setPage, reset, search, handleFilter } = useSearch(
-      term,
-      page,
-      branch
-    )
 
-    const setBook = (book) => {
-      router.push({ name: 'book', params: { book: book.id } })
+    const search = useSearch(term, page, branch)
+
+    const openBook = (book) => {
+      router.push({ name: 'book', params: { book_id: book.id } })
     }
 
     return {
-      state,
-      setBook,
-      setTerm,
-      setPage,
-      reset,
       search,
-      handleFilter,
+      openBook,
     }
   },
 }

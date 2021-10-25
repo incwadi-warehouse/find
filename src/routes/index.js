@@ -16,7 +16,7 @@ export default [
     }),
   },
   {
-    path: '/book/:book',
+    path: '/book/:book_id',
     name: 'book',
     component: () => import('../views/BookView'),
     props: true,
