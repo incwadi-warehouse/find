@@ -1,5 +1,5 @@
 import { mount, createLocalVue } from '@vue/test-utils'
-import BooksList from './../../src/components/search/BooksList'
+import Pagination from './../../../src/components/search/Pagination'
 import VueCompositionApi from '@vue/composition-api'
 import components from '@baldeweg/components'
 
@@ -7,21 +7,22 @@ const localVue = createLocalVue()
 localVue.use(VueCompositionApi)
 localVue.use(components)
 
-describe('BooksList', () => {
-  it('lists the books', () => {
-    const expected = [{ name: 'Title' }]
+describe('Pagination', () => {
+  it('shows the pagination', () => {
     const $t = () => {}
-    const wrapper = mount(BooksList, {
+    const wrapper = mount(Pagination, {
       localVue,
       propsData: {
-        books: expected,
+        pages: 10,
+        page: 1,
       },
       mocks: {
         $t,
       },
     })
 
-    expect(wrapper.props('books')).toEqual(expected)
-    expect(wrapper.find('.list').exists()).toBeTruthy()
+    expect(wrapper.props('pages')).toEqual(10)
+    expect(wrapper.props('page')).toEqual(1)
+    expect(wrapper.find('.pagination').exists()).toBeTruthy()
   })
 })

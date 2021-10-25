@@ -1,5 +1,5 @@
 import { mount, createLocalVue } from '@vue/test-utils'
-import Actionbar from './../../src/components/search/Actionbar'
+import Image from './../../../src/components/book/Image'
 import VueCompositionApi from '@vue/composition-api'
 import components from '@baldeweg/components'
 
@@ -7,21 +7,21 @@ const localVue = createLocalVue()
 localVue.use(VueCompositionApi)
 localVue.use(components)
 
-describe('Actionbar', () => {
-  it('shows the searchbar', () => {
-    const expected = 'term'
+describe('Image', () => {
+  it('shows the image', () => {
+    const expected = { name: 'name' }
     const $t = () => {}
-    const wrapper = mount(Actionbar, {
+    const wrapper = mount(Image, {
       localVue,
       propsData: {
-        term: expected,
+        book: expected,
       },
       mocks: {
         $t,
       },
     })
 
-    expect(wrapper.props('term')).toEqual(expected)
-    expect(wrapper.find('input.search_input').exists()).toBeTruthy()
+    expect(wrapper.props('book')).toEqual(expected)
+    expect(wrapper.find('section').exists()).toBeTruthy()
   })
 })

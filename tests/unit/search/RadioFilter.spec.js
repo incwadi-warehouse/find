@@ -1,5 +1,5 @@
 import { mount, createLocalVue } from '@vue/test-utils'
-import RadioFilter from './../../src/components/search/RadioFilter'
+import RadioFilter from './../../../src/components/search/RadioFilter'
 import VueCompositionApi from '@vue/composition-api'
 import components from '@baldeweg/components'
 
