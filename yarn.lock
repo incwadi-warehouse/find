@@ -910,17 +910,15 @@
     "@babel/helper-validator-identifier" "^7.14.9"
     to-fast-properties "^2.0.0"
 
-"@baldeweg/components@6.0.1":
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/@baldeweg/components/-/components-6.0.1.tgz#97d5d828c1a490f9aa52267cab13e916307880b7"
-  integrity sha512-1OSWz4z55+zPcnWBXXU8HVR1wCamsWqo6+8kPcjU+CCSa56Ha98/7/xAnKy8kbU9dmLR5J5Ghs3fweo/ZRXZIA==
+"@baldeweg/components@7.0.0-beta.11":
+  version "7.0.0-beta.11"
+  resolved "https://registry.yarnpkg.com/@baldeweg/components/-/components-7.0.0-beta.11.tgz#0688987996662a17aebfc7ac6b9862a978101216"
+  integrity sha512-liXBFgjH7wqvTxj/bTL4xFj+bfvevHIWybi5KQtFPitZPOLUiNv9TyY847fEsPPy64O2BGNWuensU3gX8GhhhQ==
   dependencies:
-    core-js "^3.10.2"
-    vue "^2.6.12"
-    vue-i18n "^8.24.3"
-    vue-meta "^2.4.0"
-    vue-router "^3.5.1"
-    vuex "^3.6.2"
+    core-js "3.18.1"
+    vue "2.6.14"
+    vue-meta "2.4.0"
+    vue-router "3.5.2"
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
@@ -3447,6 +3445,11 @@ core-js-compat@^3.16.0, core-js-compat@^3.16.2, core-js-compat@^3.6.5:
     browserslist "^4.17.3"
     semver "7.0.0"
 
+core-js@3.18.1:
+  version "3.18.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.18.1.tgz#289d4be2ce0085d40fc1244c0b1a54c00454622f"
+  integrity sha512-vJlUi/7YdlCZeL6fXvWNaLUPh/id12WXj3MbkMw5uOyF0PfWPBNOCNbs53YqgrvtujLNlt9JQpruyIKkUZ+PKA==
+
 core-js@3.19.0:
   version "3.19.0"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.19.0.tgz#9e40098a9bc326c7e81b486abbd5e12b9d275176"
@@ -3457,7 +3460,7 @@ core-js@^2.4.0:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
   integrity sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
 
-core-js@^3.10.2, core-js@^3.6.5:
+core-js@^3.6.5:
   version "3.18.3"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.18.3.tgz#86a0bba2d8ec3df860fefcc07a8d119779f01509"
   integrity sha512-tReEhtMReZaPFVw7dajMx0vlsz3oOb8ajgPoHVYGxr8ErnZ6PcYEvvmjGmXlfpnxpkYSdOQttjB+MvVbCGfvLw==
@@ -10770,7 +10773,7 @@ vue-i18n@8.26.4:
   resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-8.26.4.tgz#c6d40cf083a84f20cb2b55dc3f4e07806fcfadf5"
   integrity sha512-ngwndlGMXBNtq3tjsIVzNW/yT7+iUgbUuBimH/1OAomy5UezzfKDzunDexLkVoeN3DeckWnsE+cZwK83cx0JMA==
 
-vue-i18n@^8.17.0, vue-i18n@^8.24.3:
+vue-i18n@^8.17.0:
   version "8.26.5"
   resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-8.26.5.tgz#b61e994e7ae83564c6aebd004543156bbdc7c7e9"
   integrity sha512-qYqfsFd8v2QFSLDAabqXXXpwjGvkuqJtTWqRpZPXpAFO6PArGH4A9vSplnA0HLmnB8km7OB5ZSdP8lkkX0rLew==
@@ -10812,14 +10815,14 @@ vue-loader@^15.9.2:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
-vue-meta@2.4.0, vue-meta@^2.4.0:
+vue-meta@2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/vue-meta/-/vue-meta-2.4.0.tgz#a419fb4b4135ce965dab32ec641d1989c2ee4845"
   integrity sha512-XEeZUmlVeODclAjCNpWDnjgw+t3WA6gdzs6ENoIAgwO1J1d5p1tezDhtteLUFwcaQaTtayRrsx7GL6oXp/m2Jw==
   dependencies:
     deepmerge "^4.2.2"
 
-vue-router@3.5.2, vue-router@^3.5.1:
+vue-router@3.5.2:
   version "3.5.2"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.5.2.tgz#5f55e3f251970e36c3e8d88a7cd2d67a350ade5c"
   integrity sha512-807gn82hTnjCYGrnF3eNmIw/dk7/GE4B5h69BlyCK9KHASwSloD1Sjcn06zg9fVG4fYH2DrsNBZkpLtb25WtaQ==
@@ -10845,15 +10848,10 @@ vue-template-es2015-compiler@^1.6.0, vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue@2.6.14, vue@^2.6.11, vue@^2.6.12:
+vue@2.6.14, vue@^2.6.11:
   version "2.6.14"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.14.tgz#e51aa5250250d569a3fbad3a8a5a687d6036e235"
   integrity sha512-x2284lgYvjOMj3Za7kqzRcUSxBboHqtgRE2zlos1qWaOye5yUmHn42LB1250NJBLRwEcdrB0JRwyPTEPhfQjiQ==
-
-vuex@^3.6.2:
-  version "3.6.2"
-  resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.6.2.tgz#236bc086a870c3ae79946f107f16de59d5895e71"
-  integrity sha512-ETW44IqCgBpVomy520DT5jf8n0zoCac+sxWnn+hMe/CzaSejb/eVw2YToiXYX+Ex/AuHHia28vWTq4goAexFbw==
 
 w3c-hr-time@^1.0.1:
   version "1.0.2"

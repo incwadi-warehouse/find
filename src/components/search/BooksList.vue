@@ -1,10 +1,6 @@
 <template>
   <div v-if="books">
-    <b-list
-      @click-title.prevent="$emit('book', book)"
-      v-for="book in books"
-      :key="book.id"
-    >
+    <b-list v-for="book in books" :key="book.id" divider>
       <template #image>
         <img
           width="100"
@@ -16,7 +12,10 @@
       </template>
 
       <template #title>
-        <span :style="{ cursor: 'pointer' }">
+        <span
+          :style="{ cursor: 'pointer' }"
+          @click.prevent="$emit('book', book)"
+        >
           {{ book.title }}
         </span>
       </template>
@@ -28,11 +27,11 @@
       </template>
       <template #meta>
         {{ author(book.authorFirstname, book.authorSurname) }}
-        <b-list-separator />
+        &bull;
         {{ book.genre }}
-        <b-list-separator />
+        &bull;
         {{ book.format_name }}
-        <b-list-separator />
+        &bull;
         {{ book.releaseYear }}
       </template>
     </b-list>

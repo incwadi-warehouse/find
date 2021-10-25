@@ -2,13 +2,11 @@
   <b-app id="app">
     <heading />
 
-    <b-content>
-      <router-view />
+    <router-view />
 
-      <b-container size="m">
-        <div v-html="about" />
-      </b-container>
-    </b-content>
+    <b-container size="m">
+      <div v-html="about" />
+    </b-container>
   </b-app>
 </template>
 

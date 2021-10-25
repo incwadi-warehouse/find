@@ -1,9 +1,9 @@
 <template>
   <article>
-    <b-container size="l" v-if="is404">
-      <b-notification type="warning" hidable>
+    <b-container size="m" v-if="is404">
+      <b-alert type="warning">
         {{ $t('notFoundDesc') }}
-      </b-notification>
+      </b-alert>
     </b-container>
 
     <b-container size="m" v-if="state.filters.branch">
@@ -33,9 +33,9 @@
     </b-container>
 
     <b-container size="m" v-if="state.hasEmptyResult">
-      <b-notification type="warning">
+      <b-alert type="warning">
         <p>{{ $t('foundNothing') }}</p>
-      </b-notification>
+      </b-alert>
     </b-container>
 
     <b-container size="m" v-if="state.hasBooks">

@@ -1,16 +1,12 @@
 <template>
-  <b-actionbar>
-    <template #input>
-      <b-search
-        icon
-        :placeholder="$t('searchInTitleAuthorGenre')"
-        :value="term"
-        @input="change"
-        @submit.prevent="$emit('find')"
-        @reset="$emit('reset')"
-      />
-    </template>
-  </b-actionbar>
+  <b-search
+    :placeholder="$t('searchInTitleAuthorGenre')"
+    focus
+    :value="term"
+    @input="change"
+    @submit.prevent="$emit('find')"
+    @reset="$emit('reset')"
+  />
 </template>
 
 <script>
