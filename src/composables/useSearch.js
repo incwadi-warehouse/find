@@ -4,7 +4,7 @@ import {
 } from '@/api/book'
 import { list as branchAction } from '@/api/branch'
 import { computed, onMounted, reactive, watch } from '@vue/composition-api'
-import router from '@/router'
+import router from '~b/router'
 
 export default function useSearch(term, page, branch) {
   const state = reactive({

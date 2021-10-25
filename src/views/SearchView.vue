@@ -73,7 +73,7 @@ import SearchPagination from '@/components/search/Pagination'
 import SearchRadioFilter from '@/components/search/RadioFilter'
 import useSearch from '@/composables/useSearch'
 import { toRefs } from '@vue/composition-api'
-import router from '@/router'
+import router from '~b/router'
 
 export default {
   name: 'search-view',

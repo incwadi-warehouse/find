@@ -8,7 +8,8 @@
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
-    "i18n:report": "vue-cli-service i18n:report --src \"./src/**/*.?(js|vue)\" --locales \"./src/locales/**/*.json\"",
+    "components:generate": "vue-cli-service components:generate",
+    "i18n:report": "vue-cli-service i18n:report --src \"./{src,.components}/**/*.?(js|vue)\" --locales \"./src/locales/**/*.json\"",
     "watch": "vue-cli-service serve"
   },
   "dependencies": {
@@ -24,6 +25,7 @@
     "vue-router": "3.5.2"
   },
   "devDependencies": {
+    "@baldeweg/vue-cli-plugin-components": "0.3.4",
     "@vue/cli-plugin-babel": "4.5.14",
     "@vue/cli-plugin-e2e-cypress": "4.5.14",
     "@vue/cli-plugin-eslint": "4.5.14",

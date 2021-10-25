@@ -1,7 +1,4 @@
 module.exports = {
-  devServer: {
-    open: true,
-  },
   pwa: {
     workboxOptions: {
       importWorkboxFrom: 'local',
@@ -10,6 +7,10 @@ module.exports = {
     themeColor: '#d7621d',
   },
   pluginOptions: {
+    components: {
+      title: 'incwadi',
+      needsAuth: false,
+    },
     i18n: {
       locale: 'de-DE',
       fallbackLocale: 'en-US',
