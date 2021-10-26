@@ -19,22 +19,18 @@
 
 <script>
 export default {
-  name: 'radio-filter-search',
+  name: 'search-radio-filter',
   props: {
     selectedItem: Object,
     items: Array,
     title: String,
     id: {
       type: String,
-      default() {
-        return 'id'
-      },
+      default: 'id',
     },
     name: {
       type: String,
-      default() {
-        return 'name'
-      },
+      default: 'name',
     },
   },
 }

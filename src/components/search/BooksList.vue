@@ -42,7 +42,7 @@
 import { author, price } from '../../services/formatter'
 
 export default {
-  name: 'books-list-search',
+  name: 'search-books-list',
   props: {
     books: Array,
   },

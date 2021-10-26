@@ -30,7 +30,7 @@
 import { author, price } from '../../services/formatter'
 
 export default {
-  name: 'books-card-search',
+  name: 'search-books-card',
   props: {
     books: Array,
   },

@@ -30,7 +30,7 @@
 
 <script>
 export default {
-  name: 'pagination-search',
+  name: 'search-pagination',
   props: {
     pages: Number,
     page: Number,

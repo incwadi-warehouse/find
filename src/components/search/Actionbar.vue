@@ -1,7 +1,7 @@
 <template>
   <b-search
-    :placeholder="$t('searchInTitleAuthorGenre')"
     focus
+    :placeholder="$t('searchInTitleAuthorGenre')"
     :value="term"
     @input="change"
     @submit.prevent="$emit('find')"
@@ -10,27 +10,27 @@
 </template>
 
 <script>
-import { debounce } from 'lodash'
+import debounce from 'lodash/debounce'
 
 export default {
-  name: 'actionbar-search',
+  name: 'search-actionbar',
   props: {
     term: String,
   },
   setup(props, { emit }) {
-    let changeRequest = null
+    let request = null
 
     const change = (term) => {
-      if (null !== changeRequest) {
-        changeRequest.cancel()
+      if (null !== request) {
+        request.cancel()
       }
 
-      changeRequest = debounce(() => {
+      request = debounce(() => {
         if (null === term) return
         emit('set-term', term)
       }, 500)
 
-      changeRequest()
+      request()
     }
 
     return { change }
