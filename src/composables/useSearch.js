@@ -1,8 +1,5 @@
-import {
-  find as findAction,
-  recommendation as recommendationAction,
-} from '@/api/book'
-import { list as branchAction } from '@/api/branch'
+import book from '@/api/book'
+import branchApi from '@/api/branch'
 import { computed, onMounted, reactive, watch } from '@vue/composition-api'
 import router from '~b/router'
 
@@ -96,7 +93,7 @@ export default function useSearch(term, page, branch) {
       },
     }
 
-    return findAction(params).then((response) => {
+    return book.find(params).then((response) => {
       state.books = response.data.books
       state.counter = response.data.counter
     })
@@ -124,7 +121,7 @@ export default function useSearch(term, page, branch) {
   }
 
   const fetchBranches = () => {
-    branchAction().then((response) => {
+    branchApi.list().then((response) => {
       state.branches = response.data.branches
 
       if (state.branches && state.branches.length === 1) {
@@ -137,7 +134,7 @@ export default function useSearch(term, page, branch) {
 
   const fetchRecommendations = () => {
     if (!branch.value) return
-    return recommendationAction(branch.value).then((response) => {
+    return book.recommendation(branch.value).then((response) => {
       state.recommendations = response.data
     })
   }
