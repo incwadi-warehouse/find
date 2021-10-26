@@ -3,7 +3,7 @@
     <b-masthead>
       <b-masthead-item type="center">
         <router-link :to="{ name: 'index' }">
-          <logo v-if="hasLogo" />
+          <logo v-if="state.hasLogo" />
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="50"
@@ -23,12 +23,13 @@
     <slot />
 
     <b-container size="m">
-      <div v-html="about" />
+      <div v-html="state.about" />
     </b-container>
   </b-app>
 </template>
 
 <script>
+import { computed, reactive } from '@vue/composition-api'
 import Logo from './components/Logo'
 
 export default {
@@ -41,13 +42,17 @@ export default {
   components: {
     Logo,
   },
-  computed: {
-    about() {
-      return process.env.VUE_APP_ABOUT
-    },
-    hasLogo() {
-      return process.env.VUE_APP_LOGO === 'false' ? false : true
-    },
+  setup() {
+    const state = reactive({
+      about: computed(() => {
+        return process.env.VUE_APP_ABOUT
+      }),
+      hasLogo: computed(() => {
+        return process.env.VUE_APP_LOGO === 'false' ? false : true
+      }),
+    })
+
+    return { state }
   },
 }
 </script>
