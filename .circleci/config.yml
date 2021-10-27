@@ -29,6 +29,7 @@ workflows:
                 - 'lts'
                 - '12.22'
       - cypress/run:
+          browser: chrome
           matrix:
             parameters:
               executor:
