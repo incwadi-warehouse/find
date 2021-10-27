@@ -30,6 +30,7 @@ workflows:
                 - '12.22'
       - cypress/run:
           browser: chrome
+          timeout: 500ms
           matrix:
             parameters:
               executor:
