@@ -8,7 +8,7 @@ describe('Choose branch', () => {
       ],
     })
     cy.visit('/search')
-    cy.get('article span:nth(1)').click()
+    cy.get('main article section article span:nth(1)').click()
     cy.get('.dropdown-item:nth(0)').click()
     cy.url().should('include', 'branch=1')
   })
