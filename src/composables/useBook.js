@@ -1,5 +1,5 @@
-import book from '@/api/book'
 import { onMounted, reactive } from '@vue/composition-api'
+import { request } from '~b/api'
 
 export default function useSearch(book_id) {
   const state = reactive({
@@ -7,7 +7,7 @@ export default function useSearch(book_id) {
   })
 
   const fetchBook = () => {
-    book.fetch(book_id).then((response) => {
+    return request('get', '/api/public/book/' + book_id).then((response) => {
       state.book = response.data
     })
   }

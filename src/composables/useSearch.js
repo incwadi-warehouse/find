@@ -1,7 +1,6 @@
-import book from '@/api/book'
-import branchApi from '@/api/branch'
 import { computed, onMounted, reactive, watch } from '@vue/composition-api'
 import router from '~b/router'
+import { request } from '~b/api'
 
 export default function useSearch(term, page, branch) {
   const state = reactive({
@@ -78,25 +77,25 @@ export default function useSearch(term, page, branch) {
 
   const fetchBooks = () => {
     const params = {
-      params: {
-        options: {
-          term: state.term,
-          filter: [
-            {
-              field: 'branch',
-              operator: 'eq',
-              value: state.filters.branch ? state.filters.branch.id : null,
-            },
-          ],
-          offset: state.page * 20 - 20,
-        },
+      options: {
+        term: state.term,
+        filter: [
+          {
+            field: 'branch',
+            operator: 'eq',
+            value: state.filters.branch ? state.filters.branch.id : null,
+          },
+        ],
+        offset: state.page * 20 - 20,
       },
     }
 
-    return book.find(params).then((response) => {
-      state.books = response.data.books
-      state.counter = response.data.counter
-    })
+    return request('get', '/api/public/book/find', null, params).then(
+      (response) => {
+        state.books = response.data.books
+        state.counter = response.data.counter
+      }
+    )
   }
 
   const search = () => {
@@ -121,7 +120,7 @@ export default function useSearch(term, page, branch) {
   }
 
   const fetchBranches = () => {
-    branchApi.list().then((response) => {
+    return request('get', '/api/public/branch/').then((response) => {
       state.branches = response.data.branches
 
       if (state.branches && state.branches.length === 1) {
@@ -134,7 +133,10 @@ export default function useSearch(term, page, branch) {
 
   const fetchRecommendations = () => {
     if (!branch.value) return
-    return book.recommendation(branch.value).then((response) => {
+    return request(
+      'get',
+      '/api/public/book/recommendation/' + branch.value
+    ).then((response) => {
       state.recommendations = response.data
     })
   }
