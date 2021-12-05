@@ -18,7 +18,7 @@ export default function useReservation() {
     return request('post', base + '/new', data)
       .then(() => {
         state.hasSuccess = true
-        document.dispatchEvent(new Event('cart-clean'))
+        document.dispatchEvent(new CustomEvent('cart-update', { detail: [] }))
       })
       .catch(() => {
         state.hasError = true
