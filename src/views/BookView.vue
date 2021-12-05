@@ -19,12 +19,27 @@
         </div>
 
         <div class="product_details">
-          <b-container
-            size="m"
-            v-if="book.state.book.shortDescription"
-            :style="{ paddingTop: '0' }"
-          >
-            <p :style="{ whiteSpace: 'pre-wrap' }">
+          <b-container size="m" :style="{ paddingTop: '0' }">
+            <b-button
+              design="primary"
+              :style="{ float: 'right', marginTop: '10px' }"
+              @click="cart.add(book.state.book)"
+              v-if="!isInCart"
+              >{{ $t('reservate') }}</b-button
+            >
+            <b-button
+              design="outline"
+              disabled
+              :style="{ float: 'right', marginTop: '10px' }"
+              @click="cart.add(book.state.book)"
+              v-if="isInCart"
+              >{{ $t('added_to_cart') }}</b-button
+            >
+
+            <p
+              v-if="book.state.book.shortDescription"
+              :style="{ whiteSpace: 'pre-wrap' }"
+            >
               {{ book.state.book.shortDescription }}
             </p>
           </b-container>
@@ -61,6 +76,9 @@
 import useBook from '@/composables/useBook'
 import { author, price } from '../services/formatter'
 import BookImage from '@/components/book/Image'
+import useCart from '@/composables/useCart'
+import { find } from 'lodash'
+import { computed } from '@vue/composition-api'
 
 export default {
   name: 'book-view',
@@ -78,11 +96,20 @@ export default {
   },
   setup(props) {
     const book = useBook(props.book_id)
+    const cart = useCart()
+
+    const isInCart = computed(() => {
+      return find(cart.cart.value, (item) => {
+        return item.id === props.book_id
+      })
+    })
 
     return {
       author,
       price,
       book,
+      cart,
+      isInCart,
     }
   },
 }

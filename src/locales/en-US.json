@@ -13,5 +13,11 @@
   "none": "none",
   "chooseBranch": "Please, choose your branch!",
   "recommendations": "Recommendations",
-  "format": "Type"
+  "format": "Type",
+  "reservate": "Reservate",
+  "added_to_cart": "Added to Cart",
+  "cart": "Cart",
+  "sending_request": "Sending the request",
+  "request_error": "Sorry, the request failed. Reservation was not possible.",
+  "request_successful": "Thanks! The request was send successfully."
 }

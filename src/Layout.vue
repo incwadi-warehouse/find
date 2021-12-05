@@ -20,6 +20,8 @@
       </b-masthead-item>
     </b-masthead>
 
+    <cart />
+
     <slot />
 
     <b-container size="m">
@@ -31,6 +33,7 @@
 <script>
 import { computed, reactive } from '@vue/composition-api'
 import Logo from './components/Logo'
+import Cart from '@/components/Cart'
 
 export default {
   name: 'layout',
@@ -41,6 +44,7 @@ export default {
   },
   components: {
     Logo,
+    Cart,
   },
   setup() {
     const state = reactive({
