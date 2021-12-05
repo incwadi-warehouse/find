@@ -17,10 +17,18 @@
         </li>
       </ul>
 
+      <b-form-textarea
+        id="contact"
+        placeholder="Contact Information"
+        v-model="state.contact"
+      />
+
       <b-button
         type="button"
         design="text"
-        @click="reservation.create({ books: state.books })"
+        @click="
+          reservation.create({ books: state.books, notes: state.contact })
+        "
       >
         {{ $t('reservate') }}
       </b-button>
@@ -65,6 +73,7 @@ export default {
         })
         return list.join(',')
       }),
+      contact: null,
     })
 
     return { state, cart, reservation }
