@@ -6,6 +6,7 @@ export default function useCart() {
 
   const load = (data) => {
     cart.value = data.detail
+    window.localStorage.setItem('cart', JSON.stringify(cart.value))
   }
 
   const add = (book) => {
@@ -35,6 +36,7 @@ export default function useCart() {
   }
 
   onMounted(() => {
+    cart.value = JSON.parse(window.localStorage.getItem('cart')) || []
     document.addEventListener('cart-update', load)
   })
 
