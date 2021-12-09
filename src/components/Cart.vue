@@ -13,13 +13,40 @@
           {{ $t('cart') }}
         </template>
 
-        <template #footer v-if="hasProducts">
-          <b-form-group buttons>
-            <b-button type="submit" design="primary">
+        <template #footer>
+          <b-form-group buttons v-if="hasProducts">
+            <b-button
+              type="submit"
+              design="text"
+              v-if="reservation.state.isCreating"
+            >
+              <b-spinner size="m" />
+            </b-button>
+            <b-button type="submit" design="primary" v-else>
               {{ $t('reservate') }}
             </b-button>
           </b-form-group>
+
+          <b-form-group buttons v-else>
+            <b-button
+              type="button"
+              design="primary"
+              @click="
+                toggleModal()
+                reservation.state.hasSuccess = false
+              "
+            >
+              {{ $t('ok') }}
+            </b-button>
+          </b-form-group>
         </template>
+
+        <b-container
+          size="m"
+          v-if="!hasProducts && !reservation.state.hasSuccess"
+        >
+          <p>{{ $t('cart_is_empty') }}</p>
+        </b-container>
 
         <b-container size="m" v-if="hasProducts">
           <ul>
@@ -42,29 +69,63 @@
             </b-form-item>
           </b-form-group>
 
-          <b-form-group>
+          <b-form-fieldset>
+            <b-form-legend>
+              {{ $t('how_to_contact') }}
+            </b-form-legend>
+
+            <b-form-group>
+              <b-form-item>
+                <input
+                  type="radio"
+                  id="contact_mail"
+                  value="mail"
+                  v-model="contact"
+                />
+                <b-form-label for="contact_mail">{{ $t('mail') }}</b-form-label>
+              </b-form-item>
+
+              <b-form-item>
+                <input
+                  type="radio"
+                  id="contact_phone"
+                  value="phone"
+                  v-model="contact"
+                />
+                <b-form-label for="contact_phone">
+                  {{ $t('phone') }}
+                </b-form-label>
+              </b-form-item>
+            </b-form-group>
+          </b-form-fieldset>
+
+          <b-form-group v-if="contact === 'mail'">
             <b-form-item>
               <b-form-label for="mail">{{ $t('mail') }}</b-form-label>
             </b-form-item>
             <b-form-item>
-              <b-form-input id="mail" v-model="state.mail" />
+              <b-form-input
+                type="email"
+                id="mail"
+                :required="contact === 'mail'"
+                v-model="state.mail"
+              />
             </b-form-item>
           </b-form-group>
 
-          <b-form-group>
+          <b-form-group v-if="contact === 'phone'">
             <b-form-item>
               <b-form-label for="phone">{{ $t('phone') }}</b-form-label>
             </b-form-item>
             <b-form-item>
-              <b-form-input id="phone" v-model="state.phone" />
+              <b-form-input
+                type="tel"
+                id="phone"
+                :required="contact === 'phone'"
+                v-model="state.phone"
+              />
             </b-form-item>
           </b-form-group>
-        </b-container>
-
-        <b-container size="m" v-if="reservation.state.isCreating">
-          <b-alert type="neutral">
-            <p>{{ $t('sending_request') }}</p>
-          </b-alert>
         </b-container>
 
         <b-container size="m" v-if="reservation.state.hasError">
@@ -76,14 +137,6 @@
         <b-container size="m" v-if="reservation.state.hasSuccess">
           <b-alert type="success">
             <p>{{ $t('request_successful') }}</p>
-            <b-button
-              design="text"
-              @click="
-                toggleModal()
-                reservation.state.hasSuccess = false
-              "
-              >{{ $t('ok') }}</b-button
-            >
           </b-alert>
         </b-container>
       </b-modal>
@@ -139,6 +192,8 @@ export default {
       return cart.cart.value.length >= 1
     })
 
+    const contact = ref('mail')
+
     return {
       state,
       cart,
@@ -147,6 +202,7 @@ export default {
       toggleModal,
       reservate,
       hasProducts,
+      contact,
     }
   },
 }
@@ -158,6 +214,7 @@ export default {
   background: var(--color-primary-10);
   border-radius: 50%;
   font-size: 15px;
+  font-weight: bold;
   padding: 0 5px;
 }
 </style>

@@ -23,5 +23,7 @@
   "ok": "OK",
   "surname": "Nachname",
   "mail": "E-Mail",
-  "phone": "Telefon"
+  "phone": "Telefon",
+  "how_to_contact": "Wie können wir Sie kontaktieren?",
+  "cart_is_empty": "Der Warenkorb ist leer."
 }
