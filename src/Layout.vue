@@ -18,9 +18,11 @@
           </svg>
         </router-link>
       </b-masthead-item>
-    </b-masthead>
 
-    <cart />
+      <b-masthead-item type="end">
+        <cart />
+      </b-masthead-item>
+    </b-masthead>
 
     <slot />
 

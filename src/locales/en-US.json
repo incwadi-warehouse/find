@@ -20,5 +20,8 @@
   "sending_request": "Sending the request",
   "request_error": "Sorry, the request failed. Reservation was not possible.",
   "request_successful": "Thanks! The request was send successfully.",
-  "ok": "OK"
+  "ok": "OK",
+  "surname": "Surname",
+  "mail": "E-Mail",
+  "phone": "Phone"
 }

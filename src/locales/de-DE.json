@@ -20,5 +20,8 @@
   "sending_request": "Die Anfrage wird gesendet.",
   "request_error": "Entschuldigung, die Anfrage war leider nicht erfolgreich. Reservierung ist nicht möglich.",
   "request_successful": "Danke! Die Anfrage wurde erfolgreich abgesendet.",
-  "ok": "OK"
+  "ok": "OK",
+  "surname": "Nachname",
+  "mail": "E-Mail",
+  "phone": "Telefon"
 }
