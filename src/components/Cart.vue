@@ -1,5 +1,5 @@
 <template>
-  <article>
+  <span>
     <span @click="toggleModal" :style="{ cursor: 'pointer' }">
       <b-icon type="cart" :size="30" />
       <div class="badge" v-if="hasProducts">
@@ -7,8 +7,8 @@
       </div>
     </span>
 
-    <b-form @submit.prevent="reservate">
-      <b-modal :style="{ textAlign: 'left' }" @close="toggleModal" v-if="show">
+    <b-form @submit.prevent="reservate" v-if="show" :style="{ margin: '0' }">
+      <b-modal :style="{ textAlign: 'left' }" @close="toggleModal">
         <template #title>
           {{ $t('cart') }}
         </template>
@@ -141,7 +141,7 @@
         </b-container>
       </b-modal>
     </b-form>
-  </article>
+  </span>
 </template>
 
 <script>
