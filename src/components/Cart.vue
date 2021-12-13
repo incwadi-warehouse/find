@@ -178,13 +178,7 @@ export default {
     const reservate = () => {
       reservation.create({
         books: state.books,
-        notes:
-          'Name: ' +
-          state.surname +
-          ' Mail: ' +
-          state.mail +
-          ' Phone: ' +
-          state.phone,
+        notes: state.surname + '\n' + state.mail + '\n' + state.phone,
       })
     }
 
