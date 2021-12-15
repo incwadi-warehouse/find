@@ -24,7 +24,7 @@
               design="primary"
               :style="{ float: 'right', marginTop: '10px' }"
               @click="cart.add(book.state.book)"
-              v-if="!isInCart"
+              v-if="!isInCart && book.state.book.branchCart"
               >{{ $t('reservate') }}</b-button
             >
             <b-button
@@ -32,7 +32,7 @@
               disabled
               :style="{ float: 'right', marginTop: '10px' }"
               @click="cart.add(book.state.book)"
-              v-if="isInCart"
+              v-if="isInCart && book.state.book.branchCart"
               >{{ $t('added_to_cart') }}</b-button
             >
 
