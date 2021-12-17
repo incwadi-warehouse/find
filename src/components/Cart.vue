@@ -69,37 +69,7 @@
             </b-form-item>
           </b-form-group>
 
-          <b-form-fieldset>
-            <b-form-legend>
-              {{ $t('how_to_contact') }}
-            </b-form-legend>
-
-            <b-form-group>
-              <b-form-item>
-                <input
-                  type="radio"
-                  id="contact_mail"
-                  value="mail"
-                  v-model="contact"
-                />
-                <b-form-label for="contact_mail">{{ $t('mail') }}</b-form-label>
-              </b-form-item>
-
-              <b-form-item>
-                <input
-                  type="radio"
-                  id="contact_phone"
-                  value="phone"
-                  v-model="contact"
-                />
-                <b-form-label for="contact_phone">
-                  {{ $t('phone') }}
-                </b-form-label>
-              </b-form-item>
-            </b-form-group>
-          </b-form-fieldset>
-
-          <b-form-group v-if="contact === 'mail'">
+          <b-form-group>
             <b-form-item>
               <b-form-label for="mail">{{ $t('mail') }}</b-form-label>
             </b-form-item>
@@ -107,23 +77,27 @@
               <b-form-input
                 type="email"
                 id="mail"
-                :required="contact === 'mail'"
+                required
                 v-model="state.mail"
               />
             </b-form-item>
           </b-form-group>
 
-          <b-form-group v-if="contact === 'phone'">
+          <b-form-group>
             <b-form-item>
               <b-form-label for="phone">{{ $t('phone') }}</b-form-label>
             </b-form-item>
             <b-form-item>
-              <b-form-input
-                type="tel"
-                id="phone"
-                :required="contact === 'phone'"
-                v-model="state.phone"
-              />
+              <b-form-input type="tel" id="phone" v-model="state.phone" />
+            </b-form-item>
+          </b-form-group>
+
+          <b-form-group>
+            <b-form-item>
+              <b-form-label for="notes">{{ $t('notes') }}</b-form-label>
+            </b-form-item>
+            <b-form-item>
+              <b-form-textarea id="notes" v-model="state.notes" />
             </b-form-item>
           </b-form-group>
         </b-container>
@@ -167,6 +141,7 @@ export default {
       surname: null,
       mail: null,
       phone: null,
+      notes: null,
     })
 
     const show = ref(false)
@@ -178,7 +153,14 @@ export default {
     const reservate = () => {
       reservation.create({
         books: state.books,
-        notes: state.surname + '\n' + state.mail + '\n' + state.phone,
+        notes:
+          state.surname +
+          '\n' +
+          state.mail +
+          '\n' +
+          state.phone +
+          '\n' +
+          state.notes,
       })
     }
 
