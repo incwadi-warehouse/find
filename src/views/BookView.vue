@@ -114,7 +114,7 @@ export default {
   width: 200px;
 }
 .wrap {
-  white-space: 'pre-wrap';
+  white-space: pre-wrap;
 }
 
 @media all and (min-width: 600px) {
