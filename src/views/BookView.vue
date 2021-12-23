@@ -37,9 +37,7 @@
 
         <div class="product_details">
           <b-container size="m" v-if="book.state.book.shortDescription">
-            <p :style="{ whiteSpace: 'pre-wrap' }">
-              {{ book.state.book.shortDescription }}
-            </p>
+            <p class="wrap">{{ book.state.book.shortDescription }}</p>
           </b-container>
 
           <b-container size="m" v-if="book.state.book">
@@ -60,9 +58,7 @@
 
           <b-container size="m">
             <p>{{ $t('branch') }}: {{ book.state.book.branchName }}</p>
-            <p :style="{ whiteSpace: 'pre-wrap' }">
-              {{ book.state.book.branchOrdering }}
-            </p>
+            <p class="wrap">{{ book.state.book.branchOrdering }}</p>
           </b-container>
         </div>
       </div>
@@ -116,6 +112,9 @@ export default {
 <style scoped>
 .product_image {
   width: 200px;
+}
+.wrap {
+  white-space: 'pre-wrap';
 }
 
 @media all and (min-width: 600px) {
