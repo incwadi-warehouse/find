@@ -1,7 +1,24 @@
 <template>
   <div v-if="book.state.book">
     <b-container size="m">
+      <b-button
+        design="primary"
+        :style="{ float: 'right', marginTop: '10px' }"
+        @click="cart.add(book.state.book)"
+        v-if="!isInCart && book.state.book.branchCart"
+        >{{ $t('reservate') }}</b-button
+      >
+      <b-button
+        design="outline"
+        disabled
+        :style="{ float: 'right', marginTop: '10px' }"
+        @click="cart.add(book.state.book)"
+        v-if="isInCart && book.state.book.branchCart"
+        >{{ $t('added_to_cart') }}</b-button
+      >
+
       <h2 :style="{ wordBreak: 'break-word' }">{{ book.state.book.title }}</h2>
+
       <p
         v-if="book.state.book.authorSurname || book.state.book.authorFirstname"
       >
@@ -19,27 +36,8 @@
         </div>
 
         <div class="product_details">
-          <b-container size="m" :style="{ paddingTop: '0' }">
-            <b-button
-              design="primary"
-              :style="{ float: 'right', marginTop: '10px' }"
-              @click="cart.add(book.state.book)"
-              v-if="!isInCart && book.state.book.branchCart"
-              >{{ $t('reservate') }}</b-button
-            >
-            <b-button
-              design="outline"
-              disabled
-              :style="{ float: 'right', marginTop: '10px' }"
-              @click="cart.add(book.state.book)"
-              v-if="isInCart && book.state.book.branchCart"
-              >{{ $t('added_to_cart') }}</b-button
-            >
-
-            <p
-              v-if="book.state.book.shortDescription"
-              :style="{ whiteSpace: 'pre-wrap' }"
-            >
+          <b-container size="m" v-if="book.state.book.shortDescription">
+            <p :style="{ whiteSpace: 'pre-wrap' }">
               {{ book.state.book.shortDescription }}
             </p>
           </b-container>
