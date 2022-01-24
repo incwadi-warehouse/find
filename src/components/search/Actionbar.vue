@@ -1,6 +1,7 @@
 <template>
   <b-search
     focus
+    branded
     :placeholder="$t('searchInTitleAuthorGenre')"
     :value="term"
     @input="change"
