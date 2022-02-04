@@ -1,27 +1,40 @@
 <template>
   <b-horizontal-list v-if="books">
     <b-horizontal-list-item size="s" v-for="book in books" :key="book.id">
-      <div class="image_container">
-        <img
-          class="image"
-          :src="book.cover_l"
-          :alt="book.title"
-          @click="$emit('book', book)"
-          v-if="book.cover_l"
-        />
+      <div class="card">
+        <div class="card_image">
+          <img
+            class="image"
+            :src="book.cover_l"
+            :alt="book.title"
+            @click="$emit('book', book)"
+            v-if="book.cover_l"
+          />
+        </div>
+
+        <div class="card_row">
+          <p class="author">
+            {{ author(book.authorFirstname, book.authorSurname) }}
+          </p>
+        </div>
+
+        <div class="card_row" :style="{ flexGrow: '2' }">
+          <p class="title" :title="book.title" @click="$emit('book', book)">
+            {{ book.title }}
+          </p>
+        </div>
+
+        <div class="card_row">
+          <b-button
+            class="price"
+            design="text"
+            :style="{ alignSelf: 'flex-end' }"
+            @click="$emit('book', book)"
+          >
+            {{ price(book.price) }} {{ book.currency }}
+          </b-button>
+        </div>
       </div>
-
-      <p class="author">
-        {{ author(book.authorFirstname, book.authorSurname) }}
-      </p>
-
-      <p class="title" :title="book.title" @click="$emit('book', book)">
-        {{ title(book.title) }}
-      </p>
-
-      <b-button class="price" design="text" @click="$emit('book', book)">
-        {{ price(book.price) }} {{ book.currency }}
-      </b-button>
     </b-horizontal-list-item>
   </b-horizontal-list>
 </template>
@@ -35,21 +48,18 @@ export default {
     books: Array,
   },
   setup() {
-    const title = (data) => {
-      const limit = 50
-      if (data.length > limit) {
-        return data.slice(0, limit - 4) + '...'
-      }
-      return data
-    }
-
-    return { price, author, title }
+    return { price, author }
   },
 }
 </script>
 
 <style scoped>
-.image_container {
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 480px;
+}
+.card_image {
   background: var(--color-neutral-02);
   height: 300px;
   text-align: center;
@@ -61,13 +71,26 @@ export default {
   max-height: 100%;
 }
 .title {
-  height: 120px;
+  display: -webkit-box;
+  padding: 0;
+  overflow: hidden;
   font-weight: bold;
   cursor: pointer;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
 }
 .author {
-  height: 50px;
+  display: -webkit-box;
+  padding: 0;
+  margin-bottom: 10px;
   overflow: hidden;
+  font-size: 0.8rem;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
 }
 .price {
   padding-left: 0;
