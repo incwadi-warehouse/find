@@ -939,12 +939,12 @@
     vue-meta "2.4.0"
     vue-router "3.5.3"
 
-"@baldeweg/components@7.0.1":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@baldeweg/components/-/components-7.0.1.tgz#560fc3a981af1c095e7325fd5e18a76fa4158931"
-  integrity sha512-Zk1WLYbZeJNuqaYEMD7Rk7G5f0qtoyQRGZAILgtNTwTIV/LNwOayY6B8bt7Y2NQiY01kbOq8IAB6qjGF/5reng==
+"@baldeweg/components@7.1.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@baldeweg/components/-/components-7.1.0.tgz#bae19a4660588e1665ec5299e9b44d4528541e2c"
+  integrity sha512-aHcuA7RMx3cBQo6OER1oJyTEzh9hOEnxF4avjkslNwo7aRiIhymjj1p1vr1wgZvSWWjBGTjFIlDzjfPcNVwdgg==
   dependencies:
-    core-js "3.20.3"
+    core-js "3.21.0"
     vue "2.6.14"
     vue-meta "2.4.0"
     vue-router "3.5.3"
@@ -3510,11 +3510,6 @@ core-js@3.19.1:
   version "3.19.1"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.19.1.tgz#f6f173cae23e73a7d88fa23b6e9da329276c6641"
   integrity sha512-Tnc7E9iKd/b/ff7GFbhwPVzJzPztGrChB8X8GLqoYGdEOG8IpLnK1xPyo3ZoO3HsK6TodJS58VGPOxA+hLHQMg==
-
-core-js@3.20.3:
-  version "3.20.3"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.20.3.tgz#c710d0a676e684522f3db4ee84e5e18a9d11d69a"
-  integrity sha512-vVl8j8ph6tRS3B8qir40H7yw7voy17xL0piAjlbBUsH7WIfzoedL/ZOr1OV9FyZQLWXsayOJyV4tnRyXR85/ag==
 
 core-js@3.21.0:
   version "3.21.0"
