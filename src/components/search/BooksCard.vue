@@ -1,6 +1,6 @@
 <template>
   <b-horizontal-list v-if="books">
-    <b-horizontal-list-item size="s" v-for="book in books" :key="book.id">
+    <b-horizontal-list-item size="xs" v-for="book in books" :key="book.id">
       <div class="card">
         <div class="card_image">
           <img
@@ -57,11 +57,11 @@ export default {
 .card {
   display: flex;
   flex-direction: column;
-  height: 480px;
+  height: 420px;
 }
 .card_image {
   background: var(--color-neutral-02);
-  height: 300px;
+  height: 240px;
   text-align: center;
   cursor: pointer;
 }
@@ -84,7 +84,7 @@ export default {
 .author {
   display: -webkit-box;
   padding: 0;
-  margin-bottom: 10px;
+  margin: 10px 0;
   overflow: hidden;
   font-size: 0.8rem;
   line-clamp: 1;
