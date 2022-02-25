@@ -62,6 +62,27 @@
 
           <b-form-group>
             <b-form-item>
+              <b-form-label for="salutation">{{
+                $t('salutation')
+              }}</b-form-label>
+            </b-form-item>
+            <b-form-item>
+              <b-form-select
+                id="salutation"
+                required
+                :items="[
+                  { key: 'f', value: $t('mrs') },
+                  { key: 'm', value: $t('mr') },
+                  { key: 'd', value: $t('none_diverse') },
+                ]"
+                allow-empty
+                v-model="state.salutation"
+              />
+            </b-form-item>
+          </b-form-group>
+
+          <b-form-group>
+            <b-form-item>
               <b-form-label for="surname">{{ $t('surname') }}</b-form-label>
             </b-form-item>
             <b-form-item>
@@ -122,6 +143,7 @@
 import { reactive, computed, ref } from '@vue/composition-api'
 import useCart from '@/composables/useCart'
 import useReservation from '@/composables/useReservation'
+import i18n from '~b/i18n'
 
 export default {
   name: 'cart',
@@ -138,6 +160,7 @@ export default {
         })
         return list.join(',')
       }),
+      salutation: null,
       surname: null,
       mail: null,
       phone: null,
@@ -150,10 +173,27 @@ export default {
       show.value = !show.value
     }
 
+    const getSalutation = (val) => {
+      let salutation = null
+      if (val === 'f') {
+        salutation = i18n.t('mrs')
+      }
+      if (val === 'm') {
+        salutation = i18n.t('mr')
+      }
+      if (val === 'd') {
+        salutation = i18n.t('none_diverse')
+      }
+
+      return salutation
+    }
+
     const reservate = () => {
       reservation.create({
         books: state.books,
         notes:
+          getSalutation(state.salutation) +
+          '\n' +
           state.surname +
           '\n' +
           state.mail +

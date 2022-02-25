@@ -25,5 +25,9 @@
   "mail": "E-Mail",
   "phone": "Phone",
   "cart_is_empty": "The cart is empty.",
-  "notes": "Note"
+  "notes": "Note",
+  "salutation": "Salutation",
+  "mrs": "Mrs.",
+  "mr": "Mr.",
+  "none_diverse": "No indication/ Diverse"
 }
