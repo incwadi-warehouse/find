@@ -25,5 +25,9 @@
   "mail": "E-Mail",
   "phone": "Telefon",
   "cart_is_empty": "Der Warenkorb ist leer.",
-  "notes": "Anmerkungen"
+  "notes": "Anmerkungen",
+  "salutation": "Anrede",
+  "mrs": "Frau",
+  "mr": "Herr",
+  "none_diverse": "Keine Angabe/ Divers"
 }
