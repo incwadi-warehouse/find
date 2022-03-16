@@ -1,7 +1,7 @@
 import { onMounted, reactive } from '@vue/composition-api'
 import { request } from '~b/api'
 
-export default function useSearch(book_id) {
+export default function useBook(book_id) {
   const state = reactive({
     book: false,
   })
