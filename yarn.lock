@@ -958,6 +958,16 @@
     vue-meta "2.4.0"
     vue-router "3.5.3"
 
+"@baldeweg/components@7.3.0":
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/@baldeweg/components/-/components-7.3.0.tgz#31a580a879ae457be86c1c28ffea19c6158fae3a"
+  integrity sha512-hTVIP98sVEQ7jy6dfOVF6nPBy6rh8VECHc+XixsI9dshvGStL1xLdKUojyslfuYDEDp3MSDt0SBUDGg18UapiA==
+  dependencies:
+    core-js "3.21.1"
+    vue "2.6.14"
+    vue-meta "2.4.0"
+    vue-router "3.5.3"
+
 "@baldeweg/vue-cli-plugin-components@0.4.5":
   version "0.4.5"
   resolved "https://registry.yarnpkg.com/@baldeweg/vue-cli-plugin-components/-/vue-cli-plugin-components-0.4.5.tgz#67b92ded737a99675effe7dbf953ea92d722d028"
