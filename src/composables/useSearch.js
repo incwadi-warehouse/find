@@ -1,6 +1,6 @@
 import { computed, onMounted, reactive, watch } from '@vue/composition-api'
-import router from '~b/router'
-import { request } from '~b/api'
+import router from '@/router'
+import { request } from '@/api'
 
 export default function useSearch(term, page, branch) {
   const state = reactive({

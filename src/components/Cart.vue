@@ -143,7 +143,7 @@
 import { reactive, computed, ref } from '@vue/composition-api'
 import useCart from '@/composables/useCart'
 import useReservation from '@/composables/useReservation'
-import i18n from '~b/i18n'
+import i18n from '@/i18n'
 
 export default {
   name: 'cart',
