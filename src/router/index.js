@@ -19,7 +19,6 @@ const router = new VueRouter({
       props: (route) => ({
         term: route.query.term,
         page: parseInt(route.query.page) || undefined,
-        branch: parseInt(route.query.branch),
         is404: route.params.is404,
       }),
     },

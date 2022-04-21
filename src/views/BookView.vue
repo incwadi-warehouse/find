@@ -1,64 +1,58 @@
 <template>
-  <div v-if="book.state.book">
+  <div v-if="book">
     <b-container size="m">
       <b-button
         design="primary"
         :style="{ float: 'right', marginTop: '10px' }"
-        @click="cart.add(book.state.book)"
-        v-if="!isInCart && book.state.book.branchCart"
+        @click="cart.add(book)"
+        v-if="!isInCart && book.branchCart"
         >{{ $t('reservate') }}</b-button
       >
       <b-button
         design="outline"
         disabled
         :style="{ float: 'right', marginTop: '10px' }"
-        @click="cart.add(book.state.book)"
-        v-if="isInCart && book.state.book.branchCart"
+        @click="cart.add(book)"
+        v-if="isInCart && book.branchCart"
         >{{ $t('added_to_cart') }}</b-button
       >
 
-      <h2 :style="{ wordBreak: 'break-word' }">{{ book.state.book.title }}</h2>
+      <h2 :style="{ wordBreak: 'break-word' }">{{ book.title }}</h2>
 
-      <p
-        v-if="book.state.book.authorSurname || book.state.book.authorFirstname"
-      >
+      <p v-if="book.authorSurname || book.authorFirstname">
         {{ $t('by') }}
-        {{
-          author(book.state.book.authorFirstname, book.state.book.authorSurname)
-        }}
+        {{ author(book.authorFirstname, book.authorSurname) }}
       </p>
     </b-container>
 
     <b-container size="m">
       <div class="product">
         <div class="product_image">
-          <book-image :book="book.state.book" />
+          <book-image :book="book" />
         </div>
 
         <div class="product_details">
-          <b-container size="m" v-if="book.state.book.shortDescription">
-            <p class="wrap">{{ book.state.book.shortDescription }}</p>
+          <b-container size="m" v-if="book.shortDescription">
+            <p class="wrap">{{ book.shortDescription }}</p>
           </b-container>
 
-          <b-container size="m" v-if="book.state.book">
+          <b-container size="m" v-if="book">
             <p>
-              {{ $t('price') }}: {{ price(book.state.book.price) }}
-              {{ book.state.book.currency }}
+              {{ $t('price') }}: {{ price(book.price) }}
+              {{ book.currency }}
             </p>
-            <p>{{ $t('genre') }}: {{ book.state.book.genre }}</p>
-            <p>{{ $t('releaseYear') }}: {{ book.state.book.releaseYear }}</p>
+            <p>{{ $t('genre') }}: {{ book.genre }}</p>
+            <p>{{ $t('releaseYear') }}: {{ book.releaseYear }}</p>
             <p>
               {{ $t('format') }}:
-              {{ book.state.book.format_name }}
+              {{ book.format_name }}
             </p>
-            <p v-if="book.state.book.cond">
-              {{ $t('condition') }}: {{ book.state.book.cond }}
-            </p>
+            <p v-if="book.cond">{{ $t('condition') }}: {{ book.cond }}</p>
           </b-container>
 
           <b-container size="m">
-            <p>{{ $t('branch') }}: {{ book.state.book.branchName }}</p>
-            <p class="wrap">{{ book.state.book.branchOrdering }}</p>
+            <p>{{ $t('branch') }}: {{ book.branchName }}</p>
+            <p class="wrap">{{ book.branchOrdering }}</p>
           </b-container>
         </div>
       </div>
@@ -89,7 +83,9 @@ export default {
     },
   },
   setup(props) {
-    const book = useBook(props.book_id)
+    const { book, getBook } = useBook()
+    getBook(props.book_id)
+
     const cart = useCart()
 
     const isInCart = computed(() => {

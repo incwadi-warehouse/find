@@ -7,7 +7,9 @@
             class="image"
             :src="book.cover_l"
             :alt="book.title"
-            @click="$emit('book', book)"
+            @click="
+              $router.push({ name: 'book', params: { book_id: book.id } })
+            "
             v-if="book.cover_l"
           />
         </div>
@@ -19,7 +21,13 @@
         </div>
 
         <div class="card_row" :style="{ flexGrow: '2' }">
-          <p class="title" :title="book.title" @click="$emit('book', book)">
+          <p
+            class="title"
+            :title="book.title"
+            @click="
+              $router.push({ name: 'book', params: { book_id: book.id } })
+            "
+          >
             {{ book.title }}
           </p>
         </div>
@@ -29,7 +37,9 @@
             class="price"
             design="text"
             :style="{ alignSelf: 'flex-end' }"
-            @click="$emit('book', book)"
+            @click="
+              $router.push({ name: 'book', params: { book_id: book.id } })
+            "
           >
             {{ price(book.price) }} {{ book.currency }}
           </b-button>

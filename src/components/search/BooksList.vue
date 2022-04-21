@@ -7,21 +7,26 @@
           :src="image(book.id)"
           :alt="book.title"
           :style="{ cursor: 'pointer' }"
-          @click="$emit('book', book)"
+          @click="$router.push({ name: 'book', params: { book_id: book.id } })"
         />
       </template>
 
       <template #title>
         <span
           :style="{ cursor: 'pointer' }"
-          @click.prevent="$emit('book', book)"
+          @click.prevent="
+            $router.push({ name: 'book', params: { book_id: book.id } })
+          "
         >
           {{ book.title }}
         </span>
       </template>
 
       <template #options>
-        <b-button design="text" @click="$emit('book', book)">
+        <b-button
+          design="text"
+          @click="$router.push({ name: 'book', params: { book_id: book.id } })"
+        >
           {{ price(book.price) }} {{ book.currency }}
         </b-button>
       </template>

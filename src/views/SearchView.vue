@@ -6,47 +6,49 @@
       </b-alert>
     </b-container>
 
-    <b-container size="m" v-if="search.state.filters.branch">
+    <b-container size="m">
       <search-actionbar
-        :term="search.state.term"
-        @set-term="search.setTerm"
-        @reset="search.reset"
-        @search="search.search"
+        :term="term"
+        @set-term="
+          $router.push({
+            name: 'search',
+            query: { term: $event, page },
+          })
+        "
+        @reset="
+          $router.push({
+            name: 'search',
+          })
+        "
+        @search="search"
       />
     </b-container>
 
-    <b-container size="m" v-if="search.state.isLoading">
+    <b-container size="m" v-if="isLoading">
       <b-spinner size="l" />
     </b-container>
 
-    <b-container size="m" v-if="search.state.hasEmptyResult">
+    <b-container size="m" v-if="term && books.length == 0">
       <b-alert type="warning">
         <p>{{ $t('foundNothing') }}</p>
       </b-alert>
     </b-container>
 
-    <b-container size="m" v-if="search.state.hasBooks">
-      <search-books-list :books="search.state.books" @book="openBook" />
+    <b-container size="m" v-if="books.length >= 1">
+      <search-books-list :books="books" />
     </b-container>
 
-    <b-container size="m" v-if="search.state.pages > 1">
-      <search-pagination
-        :pages="search.state.pages"
-        :page="search.state.page"
-        @set-page="search.setPage"
-      />
+    <b-container size="m" v-if="pages > 1">
+      <search-pagination :pages="pages" :page="page" @set-page="setPage" />
     </b-container>
 
-    <div v-if="search.state.term == null || search.state.hasEmptyResult">
+    <div v-if="term == null || books.length == 0">
       <b-container size="m">
         <h3>{{ $t('recommendations') }}</h3>
       </b-container>
 
       <b-container size="m">
-        <search-books-card
-          :books="search.state.recommendations.books"
-          @book="openBook"
-        />
+        <search-books-card :books="recommendations" />
       </b-container>
     </div>
   </article>
@@ -57,8 +59,9 @@ import SearchActionbar from '../components/search/Actionbar'
 import SearchBooksList from '../components/search/BooksList'
 import SearchBooksCard from '../components/search/BooksCard'
 import SearchPagination from '@/components/search/Pagination'
-import useSearch from '@/composables/useSearch'
-import { toRefs } from '@vue/composition-api'
+import useRecommendation from '@/composables/useRecommendation'
+import useBook from '@/composables/useBook'
+import { computed, onMounted, toRefs, watch } from '@vue/composition-api'
 import router from '@/router'
 
 export default {
@@ -75,24 +78,59 @@ export default {
   props: {
     term: String,
     page: Number,
-    branch: Number,
     is404: {
       type: Boolean,
       default: false,
     },
   },
   setup(props) {
-    let { term, page, branch } = toRefs(props)
+    const { term, page } = toRefs(props)
 
-    const search = useSearch(term, page, branch)
+    const { recommendations, listRecommendations } = useRecommendation()
 
-    const openBook = (book) => {
-      router.push({ name: 'book', params: { book_id: book.id } })
+    const { books, counter, isLoading, listBooks } = useBook()
+
+    onMounted(listRecommendations)
+
+    const pages = computed(() => {
+      return Math.ceil(counter.value / 20)
+    })
+
+    const setPage = (page) => {
+      if (page < 1 || page > pages.value) return
+      if (page === page.value) return
+
+      router.push({
+        name: 'search',
+        query: { term: term.value, page },
+      })
+      window.scrollTo(0, 0)
     }
 
+    const search = () => {
+      if (!term.value) return
+
+      listBooks(term.value, page.value)
+    }
+
+    onMounted(search)
+
+    watch([() => term.value, () => page.value], () => {
+      if (!term.value) {
+        books.value = []
+        counter.value = 0
+      }
+      search()
+    })
+
     return {
+      recommendations,
+      books,
+      counter,
+      isLoading,
+      pages,
+      setPage,
       search,
-      openBook,
     }
   },
 }
