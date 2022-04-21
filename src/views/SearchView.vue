@@ -15,19 +15,6 @@
       />
     </b-container>
 
-    <b-container size="m" v-if="!search.state.filters.branch">
-      <p>{{ $t('chooseBranch') }}</p>
-    </b-container>
-
-    <b-container size="m">
-      <search-radio-filter
-        :selectedItem="search.state.filters.branch"
-        :items="search.state.branches"
-        :title="$t('branch')"
-        @select="search.handleFilter('branch', $event)"
-      />
-    </b-container>
-
     <b-container size="m" v-if="search.state.isLoading">
       <b-spinner size="l" />
     </b-container>
@@ -70,7 +57,6 @@ import SearchActionbar from '../components/search/Actionbar'
 import SearchBooksList from '../components/search/BooksList'
 import SearchBooksCard from '../components/search/BooksCard'
 import SearchPagination from '@/components/search/Pagination'
-import SearchRadioFilter from '@/components/search/RadioFilter'
 import useSearch from '@/composables/useSearch'
 import { toRefs } from '@vue/composition-api'
 import router from '@/router'
@@ -85,7 +71,6 @@ export default {
     SearchBooksList,
     SearchBooksCard,
     SearchPagination,
-    SearchRadioFilter,
   },
   props: {
     term: String,

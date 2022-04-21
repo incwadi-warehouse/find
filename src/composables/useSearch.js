@@ -119,6 +119,10 @@ export default function useSearch(term, page, branch) {
     navigate(state.term, state.page, state.filters.branch)
   }
 
+  onMounted(() => {
+    handleFilter('branch', process.env.VUE_APP_BRANCH)
+  })
+
   const fetchBranches = () => {
     return request('get', '/api/public/branch/').then((response) => {
       state.branches = response.data.branches
