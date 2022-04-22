@@ -1,33 +1,6 @@
-describe('Choose branch', () => {
-  it('Selects a branch', () => {
-    cy.server()
-    cy.route('GET', '**/api/public/branch/', {
-      branches: [
-        { id: '1', name: 'branch 1' },
-        { id: '2', name: 'branch 2' },
-      ],
-    })
-    cy.visit('/search')
-    cy.wait(500)
-    cy.get('article span:nth(1)').click()
-    cy.get('.dropdown-item:nth(0)').click()
-    cy.url().should('include', 'branch=1')
-  })
-})
-
-describe('Automatically choose a branch', () => {
-  it('Shows home', () => {
-    cy.server()
-    cy.route('GET', '**/api/public/branch/', {
-      branches: [{ id: '1', name: 'branch 1' }],
-    })
-    cy.visit('/search')
-    cy.url().should('include', 'branch=1')
-  })
-})
-
 describe('Search', () => {
   it('Shows home view', () => {
+    cy.visit('/search')
     cy.get('h3')
   })
 })

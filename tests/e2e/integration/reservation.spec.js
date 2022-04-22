@@ -23,7 +23,7 @@ describe('Show Book', () => {
     cy.visit('/book/id')
 
     cy.get('.btn_primary').click()
-    cy.get('span:nth-child(1) > .icon').click() // cart button
+    cy.get('.badge .icon').click() // cart button
     cy.get('#surname').type('name')
     cy.get('#mail').type('mail@domain.tld')
     cy.get('#phone').type('123')
