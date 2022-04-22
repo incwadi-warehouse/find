@@ -3,16 +3,15 @@
     <b-container size="m">
       <b-button
         design="primary"
-        :style="{ float: 'right', marginTop: '10px' }"
-        @click="cart.add(book)"
+        class="cta"
+        @click="addToCart(book)"
         v-if="!isInCart && book.branchCart"
         >{{ $t('reservate') }}</b-button
       >
       <b-button
         design="outline"
         disabled
-        :style="{ float: 'right', marginTop: '10px' }"
-        @click="cart.add(book)"
+        class="cta"
         v-if="isInCart && book.branchCart"
         >{{ $t('added_to_cart') }}</b-button
       >
@@ -21,7 +20,7 @@
 
       <p v-if="book.authorSurname || book.authorFirstname">
         {{ $t('by') }}
-        {{ author(book.authorFirstname, book.authorSurname) }}
+        {{ formatAuthor(book.authorFirstname, book.authorSurname) }}
       </p>
     </b-container>
 
@@ -38,7 +37,7 @@
 
           <b-container size="m" v-if="book">
             <p>
-              {{ $t('price') }}: {{ price(book.price) }}
+              {{ $t('price') }}: {{ formatPrice(book.price) }}
               {{ book.currency }}
             </p>
             <p>{{ $t('genre') }}: {{ book.genre }}</p>
@@ -62,7 +61,6 @@
 
 <script>
 import useBook from '@/composables/useBook'
-import { author, price } from '../services/formatter'
 import BookImage from '@/components/book/Image'
 import useCart from '@/composables/useCart'
 import { find } from 'lodash'
@@ -77,28 +75,27 @@ export default {
     BookImage,
   },
   props: {
-    book_id: {
-      type: String,
-      required: true,
-    },
+    book_id: String,
   },
   setup(props) {
-    const { book, getBook } = useBook()
+    const { book, getBook, formatPrice, formatAuthor } = useBook()
+
+    const { cart, addToCart } = useCart()
+
     getBook(props.book_id)
 
-    const cart = useCart()
-
     const isInCart = computed(() => {
-      return find(cart.cart.value, (item) => {
+      return find(cart.value, (item) => {
         return item.id === props.book_id
       })
     })
 
     return {
-      author,
-      price,
       book,
+      formatPrice,
+      formatAuthor,
       cart,
+      addToCart,
       isInCart,
     }
   },
@@ -106,6 +103,10 @@ export default {
 </script>
 
 <style scoped>
+.cta {
+  float: right;
+  margin-top: 10px;
+}
 .product_image {
   width: 200px;
 }

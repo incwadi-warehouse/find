@@ -1,27 +1,17 @@
 <template>
   <div class="pagination_wrapper">
     <ul class="pagination">
-      <li class="pagination_item" @click="$emit('set-page', page - 1)">
+      <li class="pagination_item" @click="route(page - 1)">
         &lt; {{ $t('back') }}
       </li>
-      <li
-        class="pagination_item"
-        @click="$emit('set-page', 1)"
-        v-if="1 != page"
-      >
-        1
-      </li>
-      <li class="pagination_item isSelected" @click="$emit('set-page', page)">
+      <li class="pagination_item" @click="route(1)" v-if="1 != page">1</li>
+      <li class="pagination_item isSelected" @click="route(page)">
         {{ page }}
       </li>
-      <li
-        class="pagination_item"
-        @click="$emit('set-page', pages)"
-        v-if="pages != page"
-      >
+      <li class="pagination_item" @click="route(pages)" v-if="pages != page">
         {{ pages }}
       </li>
-      <li class="pagination_item" @click="$emit('set-page', page + 1)">
+      <li class="pagination_item" @click="route(page + 1)">
         {{ $t('forward') }} &gt;
       </li>
     </ul>
@@ -29,11 +19,32 @@
 </template>
 
 <script>
+import router from '@/router'
+import { toRefs } from '@vue/composition-api'
+
 export default {
   name: 'search-pagination',
   props: {
     pages: Number,
-    page: Number,
+    page: {
+      type: Number,
+      default: 1,
+    },
+  },
+  setup(props) {
+    const { page, pages } = toRefs(props)
+
+    const route = (p) => {
+      if (p < 1 || p > pages.value || p === page.value) return
+
+      router.push({
+        name: 'search',
+        query: Object.assign({}, router.currentRoute.query, { page: p }),
+      })
+      window.scrollTo(0, 0)
+    }
+
+    return { route }
   },
 }
 </script>

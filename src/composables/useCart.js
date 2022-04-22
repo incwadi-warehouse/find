@@ -1,48 +1,29 @@
-import { onMounted, onUnmounted, ref } from '@vue/composition-api'
-import { remove as _remove } from 'lodash'
+import { ref, watch } from '@vue/composition-api'
+import { remove } from 'lodash'
+
+const cart = ref(JSON.parse(localStorage.getItem('cart')) || [])
 
 export default function useCart() {
-  const cart = ref([])
-
-  const load = (data) => {
-    cart.value = data.detail
-    window.localStorage.setItem('cart', JSON.stringify(cart.value))
-  }
-
-  const add = (book) => {
+  const addToCart = (book) => {
     cart.value.push({ id: book.id, title: book.title, price: book.price })
-
-    document.dispatchEvent(
-      new CustomEvent('cart-update', { detail: cart.value })
-    )
   }
 
-  const remove = (book) => {
-    cart.value = _remove(cart.value, (item) => {
+  const removeFromCart = (book) => {
+    cart.value = remove(cart.value, (item) => {
       return item !== book
     })
+  }
 
-    if (cart.value.length === 0) {
-      clean()
+  watch(
+    () => cart.value,
+    () => {
+      localStorage.setItem('cart', JSON.stringify(cart.value))
+
+      if (cart.value.length === 0) {
+        localStorage.removeItem('cart')
+      }
     }
+  )
 
-    document.dispatchEvent(
-      new CustomEvent('cart-update', { detail: cart.value })
-    )
-  }
-
-  const clean = () => {
-    document.dispatchEvent(new CustomEvent('cart-update', { detail: [] }))
-  }
-
-  onMounted(() => {
-    cart.value = JSON.parse(window.localStorage.getItem('cart')) || []
-    document.addEventListener('cart-update', load)
-  })
-
-  onUnmounted(() => {
-    document.removeEventListener('cart-update', load)
-  })
-
-  return { cart, add, remove, clean }
+  return { cart, addToCart, removeFromCart }
 }

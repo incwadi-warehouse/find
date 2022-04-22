@@ -2,24 +2,15 @@
   <div v-if="books">
     <b-list v-for="book in books" :key="book.id" divider>
       <template #image>
-        <img
-          width="100"
-          :src="image(book.id)"
-          :alt="book.title"
-          :style="{ cursor: 'pointer' }"
-          @click="$router.push({ name: 'book', params: { book_id: book.id } })"
-        />
+        <router-link :to="{ name: 'book', params: { book_id: book.id } }">
+          <img width="100" :src="image(book.id)" :alt="book.title" />
+        </router-link>
       </template>
 
       <template #title>
-        <span
-          :style="{ cursor: 'pointer' }"
-          @click.prevent="
-            $router.push({ name: 'book', params: { book_id: book.id } })
-          "
-        >
+        <router-link :to="{ name: 'book', params: { book_id: book.id } }">
           {{ book.title }}
-        </span>
+        </router-link>
       </template>
 
       <template #options>
@@ -27,11 +18,12 @@
           design="text"
           @click="$router.push({ name: 'book', params: { book_id: book.id } })"
         >
-          {{ price(book.price) }} {{ book.currency }}
+          {{ formatPrice(book.price) }} {{ book.currency }}
         </b-button>
       </template>
+
       <template #meta>
-        {{ author(book.authorFirstname, book.authorSurname) }}
+        {{ formatAuthor(book.authorFirstname, book.authorSurname) }}
         &bull;
         {{ book.genre }}
         &bull;
@@ -44,7 +36,7 @@
 </template>
 
 <script>
-import { author, price } from '../../services/formatter'
+import useBook from './../../composables/useBook'
 
 export default {
   name: 'search-books-list',
@@ -52,6 +44,8 @@ export default {
     books: Array,
   },
   setup() {
+    const { formatPrice, formatAuthor } = useBook()
+
     const image = (id) => {
       return (
         process.env.VUE_APP_API +
@@ -61,7 +55,7 @@ export default {
       )
     }
 
-    return { author, price, image }
+    return { formatPrice, formatAuthor, image }
   },
 }
 </script>

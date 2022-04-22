@@ -1,35 +1,34 @@
-import { reactive } from '@vue/composition-api'
+import { ref } from '@vue/composition-api'
 import { request } from '@/api'
+import useCart from './useCart'
 
 export default function useReservation() {
-  const base = '/api/public/reservation'
+  const { cart } = useCart()
 
-  const state = reactive({
-    isCreating: false,
-    hasSuccess: false,
-    hasError: false,
-  })
+  const isCreating = ref(false)
+  const hasSuccess = ref(false)
+  const hasError = ref(false)
 
-  const create = (data) => {
-    state.isCreating = true
-    state.hasSuccess = false
-    state.hasError = false
+  const createReservation = (data) => {
+    isCreating.value = true
+    hasSuccess.value = false
+    hasError.value = false
 
-    return request('post', base + '/new', data)
+    return request('post', '/api/public/reservation/new', data)
       .then(() => {
-        state.hasSuccess = true
-        document.dispatchEvent(new CustomEvent('cart-update', { detail: [] }))
+        hasSuccess.value = true
+        isCreating.value = false
+        cart.value = []
       })
       .catch(() => {
-        state.hasError = true
-      })
-      .finally(() => {
-        state.isCreating = false
+        hasError.value = true
       })
   }
 
   return {
-    state,
-    create,
+    isCreating,
+    hasSuccess,
+    hasError,
+    createReservation,
   }
 }

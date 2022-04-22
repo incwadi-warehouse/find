@@ -1,10 +1,7 @@
 import { ref } from '@vue/composition-api'
 import { request } from '@/api'
-import useToast from '@baldeweg/components/src/composables/useToast'
 
 export default function useBook() {
-  const { add } = useToast()
-
   const books = ref([])
   const book = ref(null)
   const counter = ref(0)
@@ -27,26 +24,33 @@ export default function useBook() {
       },
     }
 
-    return request('get', '/api/public/book/find', null, params)
-      .then((response) => {
+    return request('get', '/api/public/book/find', null, params).then(
+      (response) => {
         books.value = response.data.books
         counter.value = response.data.counter
-      })
-      .catch(() => {
-        add({
-          type: 'error',
-          body: 'Error while searching books',
-        })
-      })
-      .finally(() => {
         isLoading.value = false
-      })
+      }
+    )
   }
 
   const getBook = (id) => {
     return request('get', '/api/public/book/' + id).then((response) => {
       book.value = response.data
     })
+  }
+
+  const formatPrice = (data) => {
+    return Number.parseFloat(data).toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    })
+  }
+
+  const formatAuthor = (firstname, surname) => {
+    if ('' === firstname) {
+      return surname
+    }
+    return surname + ', ' + firstname
   }
 
   return {
@@ -56,5 +60,7 @@ export default function useBook() {
     isLoading,
     listBooks,
     getBook,
+    formatPrice,
+    formatAuthor,
   }
 }

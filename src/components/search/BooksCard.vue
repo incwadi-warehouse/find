@@ -3,33 +3,29 @@
     <b-horizontal-list-item size="xs" v-for="book in books" :key="book.id">
       <div class="card">
         <div class="card_image">
-          <img
-            class="image"
-            :src="book.cover_l"
-            :alt="book.title"
-            @click="
-              $router.push({ name: 'book', params: { book_id: book.id } })
-            "
-            v-if="book.cover_l"
-          />
+          <router-link :to="{ name: 'book', params: { book_id: book.id } }">
+            <img
+              class="image"
+              :src="book.cover_l"
+              :alt="book.title"
+              v-if="book.cover_l"
+            />
+          </router-link>
         </div>
 
         <div class="card_row">
           <p class="author">
-            {{ author(book.authorFirstname, book.authorSurname) }}
+            {{ formatAuthor(book.authorFirstname, book.authorSurname) }}
           </p>
         </div>
 
         <div class="card_row" :style="{ flexGrow: '2' }">
-          <p
+          <router-link
+            :to="{ name: 'book', params: { book_id: book.id } }"
             class="title"
-            :title="book.title"
-            @click="
-              $router.push({ name: 'book', params: { book_id: book.id } })
-            "
           >
             {{ book.title }}
-          </p>
+          </router-link>
         </div>
 
         <div class="card_row">
@@ -41,7 +37,7 @@
               $router.push({ name: 'book', params: { book_id: book.id } })
             "
           >
-            {{ price(book.price) }} {{ book.currency }}
+            {{ formatPrice(book.price) }} {{ book.currency }}
           </b-button>
         </div>
       </div>
@@ -50,7 +46,7 @@
 </template>
 
 <script>
-import { author, price } from '../../services/formatter'
+import useBook from './../../composables/useBook'
 
 export default {
   name: 'search-books-card',
@@ -58,7 +54,9 @@ export default {
     books: Array,
   },
   setup() {
-    return { price, author }
+    const { formatPrice, formatAuthor } = useBook()
+
+    return { formatPrice, formatAuthor }
   },
 }
 </script>
@@ -73,10 +71,8 @@ export default {
   background: var(--color-neutral-02);
   height: 240px;
   text-align: center;
-  cursor: pointer;
 }
 .image {
-  cursor: pointer;
   width: auto;
   max-height: 100%;
 }
@@ -90,6 +86,10 @@ export default {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
+  color: var(--color-neutral-10);
+}
+.title:hover {
+  color: var(--color-neutral-06);
 }
 .author {
   display: -webkit-box;

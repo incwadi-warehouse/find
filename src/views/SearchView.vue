@@ -7,20 +7,18 @@
     </b-container>
 
     <b-container size="m">
-      <search-actionbar
-        :term="term"
-        @set-term="
-          $router.push({
-            name: 'search',
-            query: { term: $event, page },
-          })
-        "
+      <b-search
+        focus
+        branded
+        :placeholder="$t('searchInTitleAuthorGenre')"
+        :value="term"
+        @input="searchOnInput"
+        @submit.prevent="search"
         @reset="
           $router.push({
             name: 'search',
           })
         "
-        @search="search"
       />
     </b-container>
 
@@ -28,7 +26,10 @@
       <b-spinner size="l" />
     </b-container>
 
-    <b-container size="m" v-if="term && books.length == 0">
+    <b-container
+      size="m"
+      v-if="term != null && books.length == 0 && !isLoading"
+    >
       <b-alert type="warning">
         <p>{{ $t('foundNothing') }}</p>
       </b-alert>
@@ -39,7 +40,7 @@
     </b-container>
 
     <b-container size="m" v-if="pages > 1">
-      <search-pagination :pages="pages" :page="page" @set-page="setPage" />
+      <search-pagination :pages="pages" :page="page" />
     </b-container>
 
     <div v-if="term == null || books.length == 0">
@@ -55,13 +56,13 @@
 </template>
 
 <script>
-import SearchActionbar from '../components/search/Actionbar'
 import SearchBooksList from '../components/search/BooksList'
 import SearchBooksCard from '../components/search/BooksCard'
 import SearchPagination from '@/components/search/Pagination'
 import useRecommendation from '@/composables/useRecommendation'
 import useBook from '@/composables/useBook'
 import { computed, onMounted, toRefs, watch } from '@vue/composition-api'
+import { debounce } from 'lodash'
 import router from '@/router'
 
 export default {
@@ -70,7 +71,6 @@ export default {
     title: 'Search',
   },
   components: {
-    SearchActionbar,
     SearchBooksList,
     SearchBooksCard,
     SearchPagination,
@@ -96,17 +96,6 @@ export default {
       return Math.ceil(counter.value / 20)
     })
 
-    const setPage = (page) => {
-      if (page < 1 || page > pages.value) return
-      if (page === page.value) return
-
-      router.push({
-        name: 'search',
-        query: { term: term.value, page },
-      })
-      window.scrollTo(0, 0)
-    }
-
     const search = () => {
       if (!term.value) return
 
@@ -123,14 +112,33 @@ export default {
       search()
     })
 
+    let request = null
+
+    const searchOnInput = (t) => {
+      if (request !== null) {
+        request.cancel()
+      }
+
+      request = debounce(() => {
+        if (t === null) return
+
+        router.push({
+          name: 'search',
+          query: { term: t, page: page.value },
+        })
+      }, 500)
+
+      request()
+    }
+
     return {
       recommendations,
       books,
       counter,
       isLoading,
       pages,
-      setPage,
       search,
+      searchOnInput,
     }
   },
 }

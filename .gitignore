@@ -1,7 +1,5 @@
-node_modules
-dist
-.components
-.scannerwork
+node_modules/
+dist/
 custom/
 .env.local
 .env.*.local

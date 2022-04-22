@@ -7,10 +7,6 @@ module.exports = {
     themeColor: '#d7621d',
   },
   pluginOptions: {
-    components: {
-      title: 'incwadi',
-      needsAuth: false,
-    },
     i18n: {
       locale: 'de-DE',
       fallbackLocale: 'en-US',

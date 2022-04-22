@@ -1,13 +1,16 @@
 <template>
-  <span>
-    <span @click="toggleModal" :style="{ cursor: 'pointer' }">
-      <b-icon type="cart" :size="30" />
-      <div class="badge" v-if="hasProducts">
-        {{ cart.cart.value.length }}
-      </div>
+  <section>
+    <span @click="toggleModal">
+      <b-badge :content="cart.length" class="cart">
+        <b-icon type="cart" :size="30" />
+      </b-badge>
     </span>
 
-    <b-form @submit.prevent="reservate" v-if="show" :style="{ margin: '0' }">
+    <b-form
+      @submit.prevent="reservate"
+      v-if="showModal"
+      :style="{ margin: '0' }"
+    >
       <b-modal :style="{ textAlign: 'left' }" @close="toggleModal">
         <template #title>
           {{ $t('cart') }}
@@ -15,11 +18,7 @@
 
         <template #footer>
           <b-form-group buttons v-if="hasProducts">
-            <b-button
-              type="submit"
-              design="text"
-              v-if="reservation.state.isCreating"
-            >
+            <b-button type="submit" design="text" v-if="isCreating">
               <b-spinner size="m" />
             </b-button>
             <b-button type="submit" design="primary" v-else>
@@ -33,7 +32,7 @@
               design="primary"
               @click="
                 toggleModal()
-                reservation.state.hasSuccess = false
+                hasSuccess = false
               "
             >
               {{ $t('ok') }}
@@ -41,20 +40,17 @@
           </b-form-group>
         </template>
 
-        <b-container
-          size="m"
-          v-if="!hasProducts && !reservation.state.hasSuccess"
-        >
+        <b-container size="m" v-if="!hasProducts && !hasSuccess">
           <p>{{ $t('cart_is_empty') }}</p>
         </b-container>
 
         <b-container size="m" v-if="hasProducts">
           <ul>
-            <li v-for="book in cart.cart.value" :key="book.id">
+            <li v-for="book in cart" :key="book.id">
               <router-link :to="{ name: 'book', params: { book_id: book.id } }">
                 {{ book.title }}
               </router-link>
-              <span @click="cart.remove(book)">
+              <span @click="removeFromCart(book)">
                 <b-icon type="close" :size="15" />
               </span>
             </li>
@@ -76,7 +72,7 @@
                   { key: 'd', value: $t('none_diverse') },
                 ]"
                 allow-empty
-                v-model="state.salutation"
+                v-model="salutation"
               />
             </b-form-item>
           </b-form-group>
@@ -86,7 +82,7 @@
               <b-form-label for="surname">{{ $t('surname') }}</b-form-label>
             </b-form-item>
             <b-form-item>
-              <b-form-input id="surname" required v-model="state.surname" />
+              <b-form-input id="surname" required v-model="surname" />
             </b-form-item>
           </b-form-group>
 
@@ -95,12 +91,7 @@
               <b-form-label for="mail">{{ $t('mail') }}</b-form-label>
             </b-form-item>
             <b-form-item>
-              <b-form-input
-                type="email"
-                id="mail"
-                required
-                v-model="state.mail"
-              />
+              <b-form-input type="email" id="mail" required v-model="mail" />
             </b-form-item>
           </b-form-group>
 
@@ -109,7 +100,7 @@
               <b-form-label for="phone">{{ $t('phone') }}</b-form-label>
             </b-form-item>
             <b-form-item>
-              <b-form-input type="tel" id="phone" v-model="state.phone" />
+              <b-form-input type="tel" id="phone" v-model="phone" />
             </b-form-item>
           </b-form-group>
 
@@ -118,29 +109,29 @@
               <b-form-label for="notes">{{ $t('notes') }}</b-form-label>
             </b-form-item>
             <b-form-item>
-              <b-form-textarea id="notes" v-model="state.notes" />
+              <b-form-textarea id="notes" v-model="notes" />
             </b-form-item>
           </b-form-group>
         </b-container>
 
-        <b-container size="m" v-if="reservation.state.hasError">
+        <b-container size="m" v-if="hasError">
           <b-alert type="error">
             <p>{{ $t('request_error') }}</p>
           </b-alert>
         </b-container>
 
-        <b-container size="m" v-if="reservation.state.hasSuccess">
+        <b-container size="m" v-if="hasSuccess">
           <b-alert type="success">
             <p>{{ $t('request_successful') }}</p>
           </b-alert>
         </b-container>
       </b-modal>
     </b-form>
-  </span>
+  </section>
 </template>
 
 <script>
-import { reactive, computed, ref } from '@vue/composition-api'
+import { computed, ref } from '@vue/composition-api'
 import useCart from '@/composables/useCart'
 import useReservation from '@/composables/useReservation'
 import i18n from '@/i18n'
@@ -148,31 +139,36 @@ import i18n from '@/i18n'
 export default {
   name: 'cart',
   setup() {
-    const cart = useCart()
-    const reservation = useReservation()
+    const { cart, removeFromCart } = useCart()
 
-    const state = reactive({
-      books: computed(() => {
-        if (null === cart.cart.value) return
-        let list = []
-        cart.cart.value.forEach((element) => {
-          list.push(element.id)
-        })
-        return list.join(',')
-      }),
-      salutation: null,
-      surname: null,
-      mail: null,
-      phone: null,
-      notes: null,
+    const { isCreating, hasSuccess, hasError, createReservation } =
+      useReservation()
+
+    const books = computed(() => {
+      if (cart.value === null) return
+      let list = []
+      cart.value.forEach((element) => {
+        list.push(element.id)
+      })
+      return list.join(',')
     })
+    const salutation = ref(null)
+    const surname = ref(null)
+    const mail = ref(null)
+    const phone = ref(null)
+    const notes = ref(null)
 
-    const show = ref(false)
+    const showModal = ref(false)
 
     const toggleModal = () => {
-      show.value = !show.value
+      showModal.value = !showModal.value
     }
 
+    const hasProducts = computed(() => {
+      return cart.value.length >= 1
+    })
+
+    // @deprecated
     const getSalutation = (val) => {
       let salutation = null
       if (val === 'f') {
@@ -188,49 +184,47 @@ export default {
       return salutation
     }
 
+    // @deprecated
     const reservate = () => {
-      reservation.create({
-        books: state.books,
+      createReservation({
+        books: books.value,
         notes:
-          getSalutation(state.salutation) +
+          getSalutation(salutation.value) +
           '\n' +
-          state.surname +
+          surname.value +
           '\n' +
-          state.mail +
+          mail.value +
           '\n' +
-          state.phone +
+          phone.value +
           '\n' +
-          state.notes,
+          notes.value,
       })
     }
 
-    const hasProducts = computed(() => {
-      return cart.cart.value.length >= 1
-    })
-
-    const contact = ref('mail')
-
     return {
-      state,
       cart,
-      reservation,
-      show,
+      removeFromCart,
+      isCreating,
+      hasSuccess,
+      hasError,
+      createReservation,
+      books,
+      salutation,
+      surname,
+      mail,
+      phone,
+      notes,
+      showModal,
       toggleModal,
-      reservate,
       hasProducts,
-      contact,
+      reservate,
     }
   },
 }
 </script>
 
 <style scoped>
-.badge {
-  display: inline-block;
-  background: var(--color-primary-10);
-  border-radius: 50%;
-  font-size: 15px;
-  font-weight: bold;
-  padding: 0 5px;
+.cart {
+  cursor: pointer;
 }
 </style>
