@@ -33,4 +33,4 @@ workflows:
                 - cypress/base-14
                 - cypress/base-12
           yarn: true
-          command: yarn test:e2e --headless
+          command: mkdir custom && touch custom/theme.css && yarn test:e2e --headless
