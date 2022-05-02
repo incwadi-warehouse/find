@@ -20,6 +20,14 @@ export default function useBook() {
             value: process.env.VUE_APP_BRANCH,
           },
         ],
+        orderBy: {
+          book: [
+            {
+              field: 'added',
+              direction: 'desc',
+            },
+          ],
+        },
         offset: page * 20 - 20,
       },
     }
