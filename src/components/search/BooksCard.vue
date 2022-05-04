@@ -3,7 +3,7 @@
     <b-horizontal-list-item size="xs" v-for="book in books" :key="book.id">
       <div class="card">
         <div class="card_image">
-          <router-link :to="{ name: 'book', params: { book_id: book.id } }">
+          <router-link :to="{ name: 'article', params: { id: book.id } }">
             <img
               class="image"
               :src="book.cover_l"
@@ -21,7 +21,7 @@
 
         <div class="card_row" :style="{ flexGrow: '2' }">
           <router-link
-            :to="{ name: 'book', params: { book_id: book.id } }"
+            :to="{ name: 'article', params: { id: book.id } }"
             class="title"
           >
             {{ book.title }}
@@ -33,9 +33,7 @@
             class="price"
             design="text"
             :style="{ alignSelf: 'flex-end' }"
-            @click="
-              $router.push({ name: 'book', params: { book_id: book.id } })
-            "
+            @click="$router.push({ name: 'article', params: { id: book.id } })"
           >
             {{ formatPrice(book.price) }} {{ book.currency }}
           </b-button>

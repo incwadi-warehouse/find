@@ -23,9 +23,9 @@ const router = new VueRouter({
       }),
     },
     {
-      path: '/book/:book_id',
-      name: 'book',
-      component: () => import('../views/BookView'),
+      path: '/article/:id',
+      name: 'article',
+      component: () => import('../views/ArticleView'),
       props: true,
     },
     {

@@ -61,7 +61,7 @@
 
 <script>
 import useBook from '@/composables/useBook'
-import BookImage from '@/components/book/Image'
+import BookImage from '@/components/article/Image'
 import useCart from '@/composables/useCart'
 import { find } from 'lodash'
 import { computed } from '@vue/composition-api'
@@ -75,18 +75,18 @@ export default {
     BookImage,
   },
   props: {
-    book_id: String,
+    id: String,
   },
   setup(props) {
     const { book, getBook, formatPrice, formatAuthor } = useBook()
 
     const { cart, addToCart } = useCart()
 
-    getBook(props.book_id)
+    getBook(props.id)
 
     const isInCart = computed(() => {
       return find(cart.value, (item) => {
-        return item.id === props.book_id
+        return item.id === props.id
       })
     })
 

@@ -47,7 +47,7 @@
         <b-container size="m" v-if="hasProducts">
           <ul>
             <li v-for="book in cart" :key="book.id">
-              <router-link :to="{ name: 'book', params: { book_id: book.id } }">
+              <router-link :to="{ name: 'article', params: { id: book.id } }">
                 {{ book.title }}
               </router-link>
               <span @click="removeFromCart(book)">

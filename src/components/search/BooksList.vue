@@ -2,13 +2,13 @@
   <div v-if="books">
     <b-list v-for="book in books" :key="book.id" divider>
       <template #image>
-        <router-link :to="{ name: 'book', params: { book_id: book.id } }">
+        <router-link :to="{ name: 'article', params: { bookid_id: book.id } }">
           <img width="100" :src="image(book.id)" :alt="book.title" />
         </router-link>
       </template>
 
       <template #title>
-        <router-link :to="{ name: 'book', params: { book_id: book.id } }">
+        <router-link :to="{ name: 'article', params: { id: book.id } }">
           {{ book.title }}
         </router-link>
       </template>
@@ -16,7 +16,7 @@
       <template #options>
         <b-button
           design="text"
-          @click="$router.push({ name: 'book', params: { book_id: book.id } })"
+          @click="$router.push({ name: 'article', params: { id: book.id } })"
         >
           {{ formatPrice(book.price) }} {{ book.currency }}
         </b-button>
