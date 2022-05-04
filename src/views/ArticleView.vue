@@ -1,57 +1,57 @@
 <template>
-  <div v-if="book">
+  <div v-if="article">
     <b-container size="m">
       <b-button
         design="primary"
         class="cta"
-        @click="addToCart(book)"
-        v-if="!isInCart && book.branchCart"
+        @click="addToCart(article)"
+        v-if="!isInCart && article.branchCart"
         >{{ $t('reservate') }}</b-button
       >
       <b-button
         design="outline"
         disabled
         class="cta"
-        v-if="isInCart && book.branchCart"
+        v-if="isInCart && article.branchCart"
         >{{ $t('added_to_cart') }}</b-button
       >
 
-      <h2 :style="{ wordBreak: 'break-word' }">{{ book.title }}</h2>
+      <h2 :style="{ wordBreak: 'break-word' }">{{ article.title }}</h2>
 
-      <p v-if="book.authorSurname || book.authorFirstname">
+      <p v-if="article.authorSurname || article.authorFirstname">
         {{ $t('by') }}
-        {{ formatAuthor(book.authorFirstname, book.authorSurname) }}
+        {{ formatAuthor(article.authorFirstname, article.authorSurname) }}
       </p>
     </b-container>
 
     <b-container size="m">
       <div class="product">
         <div class="product_image">
-          <book-image :book="book" />
+          <article-image :article="article" />
         </div>
 
         <div class="product_details">
-          <b-container size="m" v-if="book.shortDescription">
-            <p class="wrap">{{ book.shortDescription }}</p>
+          <b-container size="m" v-if="article.shortDescription">
+            <p class="wrap">{{ article.shortDescription }}</p>
           </b-container>
 
-          <b-container size="m" v-if="book">
+          <b-container size="m" v-if="article">
             <p>
-              {{ $t('price') }}: {{ formatPrice(book.price) }}
-              {{ book.currency }}
+              {{ $t('price') }}: {{ formatPrice(article.price) }}
+              {{ article.currency }}
             </p>
-            <p>{{ $t('genre') }}: {{ book.genre }}</p>
-            <p>{{ $t('releaseYear') }}: {{ book.releaseYear }}</p>
+            <p>{{ $t('genre') }}: {{ article.genre }}</p>
+            <p>{{ $t('releaseYear') }}: {{ article.releaseYear }}</p>
             <p>
               {{ $t('format') }}:
-              {{ book.format_name }}
+              {{ article.format_name }}
             </p>
-            <p v-if="book.cond">{{ $t('condition') }}: {{ book.cond }}</p>
+            <p v-if="article.cond">{{ $t('condition') }}: {{ article.cond }}</p>
           </b-container>
 
           <b-container size="m">
-            <p>{{ $t('branch') }}: {{ book.branchName }}</p>
-            <p class="wrap">{{ book.branchOrdering }}</p>
+            <p>{{ $t('branch') }}: {{ article.branchName }}</p>
+            <p class="wrap">{{ article.branchOrdering }}</p>
           </b-container>
         </div>
       </div>
@@ -60,29 +60,29 @@
 </template>
 
 <script>
-import useBook from '@/composables/useBook'
-import BookImage from '@/components/article/Image'
+import useArticle from '@/composables/useArticle'
+import ArticleImage from '@/components/article/Image'
 import useCart from '@/composables/useCart'
 import { find } from 'lodash'
 import { computed } from '@vue/composition-api'
 
 export default {
-  name: 'book-view',
+  name: 'article-view',
   head: {
-    title: 'Book',
+    title: 'article',
   },
   components: {
-    BookImage,
+    ArticleImage,
   },
   props: {
     id: String,
   },
   setup(props) {
-    const { book, getBook, formatPrice, formatAuthor } = useBook()
+    const { article, getArticle, formatPrice, formatAuthor } = useArticle()
 
     const { cart, addToCart } = useCart()
 
-    getBook(props.id)
+    getArticle(props.id)
 
     const isInCart = computed(() => {
       return find(cart.value, (item) => {
@@ -91,7 +91,7 @@ export default {
     })
 
     return {
-      book,
+      article,
       formatPrice,
       formatAuthor,
       cart,

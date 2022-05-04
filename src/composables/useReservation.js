@@ -21,6 +21,7 @@ export default function useReservation() {
         cart.value = []
       })
       .catch(() => {
+        isCreating.value = false
         hasError.value = true
       })
   }

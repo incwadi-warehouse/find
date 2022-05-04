@@ -4,13 +4,17 @@ import { remove } from 'lodash'
 const cart = ref(JSON.parse(localStorage.getItem('cart')) || [])
 
 export default function useCart() {
-  const addToCart = (book) => {
-    cart.value.push({ id: book.id, title: book.title, price: book.price })
+  const addToCart = (article) => {
+    cart.value.push({
+      id: article.id,
+      title: article.title,
+      price: article.price,
+    })
   }
 
-  const removeFromCart = (book) => {
+  const removeFromCart = (article) => {
     cart.value = remove(cart.value, (item) => {
-      return item !== book
+      return item !== article
     })
   }
 

@@ -1,30 +1,34 @@
 <template>
-  <b-horizontal-list v-if="books">
-    <b-horizontal-list-item size="xs" v-for="book in books" :key="book.id">
+  <b-horizontal-list v-if="articles">
+    <b-horizontal-list-item
+      size="xs"
+      v-for="article in articles"
+      :key="article.id"
+    >
       <div class="card">
         <div class="card_image">
-          <router-link :to="{ name: 'article', params: { id: book.id } }">
+          <router-link :to="{ name: 'article', params: { id: article.id } }">
             <img
               class="image"
-              :src="book.cover_l"
-              :alt="book.title"
-              v-if="book.cover_l"
+              :src="article.cover_l"
+              :alt="article.title"
+              v-if="article.cover_l"
             />
           </router-link>
         </div>
 
         <div class="card_row">
           <p class="author">
-            {{ formatAuthor(book.authorFirstname, book.authorSurname) }}
+            {{ formatAuthor(article.authorFirstname, article.authorSurname) }}
           </p>
         </div>
 
         <div class="card_row" :style="{ flexGrow: '2' }">
           <router-link
-            :to="{ name: 'article', params: { id: book.id } }"
+            :to="{ name: 'article', params: { id: article.id } }"
             class="title"
           >
-            {{ book.title }}
+            {{ article.title }}
           </router-link>
         </div>
 
@@ -33,9 +37,11 @@
             class="price"
             design="text"
             :style="{ alignSelf: 'flex-end' }"
-            @click="$router.push({ name: 'article', params: { id: book.id } })"
+            @click="
+              $router.push({ name: 'article', params: { id: article.id } })
+            "
           >
-            {{ formatPrice(book.price) }} {{ book.currency }}
+            {{ formatPrice(article.price) }} {{ article.currency }}
           </b-button>
         </div>
       </div>
@@ -44,15 +50,15 @@
 </template>
 
 <script>
-import useBook from './../../composables/useBook'
+import useArticle from './../../composables/useArticle'
 
 export default {
-  name: 'search-books-card',
+  name: 'search-articles-card',
   props: {
-    books: Array,
+    articles: Array,
   },
   setup() {
-    const { formatPrice, formatAuthor } = useBook()
+    const { formatPrice, formatAuthor } = useArticle()
 
     return { formatPrice, formatAuthor }
   },

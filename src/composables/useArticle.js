@@ -1,13 +1,13 @@
 import { ref } from '@vue/composition-api'
 import { request } from '@/api'
 
-export default function useBook() {
-  const books = ref([])
-  const book = ref(null)
+export default function useArticle() {
+  const articles = ref([])
+  const article = ref(null)
   const counter = ref(0)
   const isLoading = ref(false)
 
-  const listBooks = (term, page) => {
+  const listArticles = (term, page) => {
     isLoading.value = true
 
     const params = {
@@ -21,7 +21,7 @@ export default function useBook() {
           },
         ],
         orderBy: {
-          book: [
+          article: [
             {
               field: 'added',
               direction: 'desc',
@@ -34,16 +34,16 @@ export default function useBook() {
 
     return request('get', '/api/public/book/find', null, params).then(
       (response) => {
-        books.value = response.data.books
+        articles.value = response.data.books
         counter.value = response.data.counter
         isLoading.value = false
       }
     )
   }
 
-  const getBook = (id) => {
+  const getArticle = (id) => {
     return request('get', '/api/public/book/' + id).then((response) => {
-      book.value = response.data
+      article.value = response.data
     })
   }
 
@@ -62,12 +62,12 @@ export default function useBook() {
   }
 
   return {
-    books,
-    book,
+    articles,
+    article,
     counter,
     isLoading,
-    listBooks,
-    getBook,
+    listArticles,
+    getArticle,
     formatPrice,
     formatAuthor,
   }

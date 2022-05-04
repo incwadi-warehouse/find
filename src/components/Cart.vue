@@ -17,7 +17,7 @@
         </template>
 
         <template #footer>
-          <b-form-group buttons v-if="hasProducts">
+          <b-form-group buttons v-if="hasArticles">
             <b-button type="submit" design="text" v-if="isCreating">
               <b-spinner size="m" />
             </b-button>
@@ -40,17 +40,19 @@
           </b-form-group>
         </template>
 
-        <b-container size="m" v-if="!hasProducts && !hasSuccess">
+        <b-container size="m" v-if="!hasArticles && !hasSuccess">
           <p>{{ $t('cart_is_empty') }}</p>
         </b-container>
 
-        <b-container size="m" v-if="hasProducts">
+        <b-container size="m" v-if="hasArticles">
           <ul>
-            <li v-for="book in cart" :key="book.id">
-              <router-link :to="{ name: 'article', params: { id: book.id } }">
-                {{ book.title }}
+            <li v-for="article in cart" :key="article.id">
+              <router-link
+                :to="{ name: 'article', params: { id: article.id } }"
+              >
+                {{ article.title }}
               </router-link>
-              <span @click="removeFromCart(book)">
+              <span @click="removeFromCart(article)">
                 <b-icon type="close" :size="15" />
               </span>
             </li>
@@ -58,9 +60,9 @@
 
           <b-form-group>
             <b-form-item>
-              <b-form-label for="salutation">{{
-                $t('salutation')
-              }}</b-form-label>
+              <b-form-label for="salutation">
+                {{ $t('salutation') }}
+              </b-form-label>
             </b-form-item>
             <b-form-item>
               <b-form-select
@@ -144,14 +146,17 @@ export default {
     const { isCreating, hasSuccess, hasError, createReservation } =
       useReservation()
 
-    const books = computed(() => {
+    const articles = computed(() => {
       if (cart.value === null) return
+
       let list = []
       cart.value.forEach((element) => {
         list.push(element.id)
       })
+
       return list.join(',')
     })
+
     const salutation = ref(null)
     const surname = ref(null)
     const mail = ref(null)
@@ -164,7 +169,7 @@ export default {
       showModal.value = !showModal.value
     }
 
-    const hasProducts = computed(() => {
+    const hasArticles = computed(() => {
       return cart.value.length >= 1
     })
 
@@ -187,7 +192,7 @@ export default {
     // @deprecated
     const reservate = () => {
       createReservation({
-        books: books.value,
+        books: articles.value,
         notes:
           getSalutation(salutation.value) +
           '\n' +
@@ -208,7 +213,7 @@ export default {
       hasSuccess,
       hasError,
       createReservation,
-      books,
+      articles,
       salutation,
       surname,
       mail,
@@ -216,7 +221,7 @@ export default {
       notes,
       showModal,
       toggleModal,
-      hasProducts,
+      hasArticles,
       reservate,
     }
   },

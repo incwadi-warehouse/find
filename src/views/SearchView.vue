@@ -28,39 +28,39 @@
 
     <b-container
       size="m"
-      v-if="term != null && books.length == 0 && !isLoading"
+      v-if="term != null && articles.length == 0 && !isLoading"
     >
       <b-alert type="warning">
         <p>{{ $t('foundNothing') }}</p>
       </b-alert>
     </b-container>
 
-    <b-container size="m" v-if="books.length >= 1">
-      <search-books-list :books="books" />
+    <b-container size="m" v-if="articles.length >= 1">
+      <search-articles-list :articles="articles" />
     </b-container>
 
     <b-container size="m" v-if="pages > 1">
       <search-pagination :pages="pages" :page="page" />
     </b-container>
 
-    <div v-if="term == null || books.length == 0">
+    <div v-if="term == null || articles.length == 0">
       <b-container size="m">
         <h3>{{ $t('recommendations') }}</h3>
       </b-container>
 
       <b-container size="m">
-        <search-books-card :books="recommendations" />
+        <search-articles-card :articles="recommendations" />
       </b-container>
     </div>
   </article>
 </template>
 
 <script>
-import SearchBooksList from '../components/search/BooksList'
-import SearchBooksCard from '../components/search/BooksCard'
+import SearchArticlesList from '../components/search/ArticlesList'
+import SearchArticlesCard from '../components/search/ArticlesCard'
 import SearchPagination from '@/components/search/Pagination'
 import useRecommendation from '@/composables/useRecommendation'
-import useBook from '@/composables/useBook'
+import useArticle from '@/composables/useArticle'
 import { computed, onMounted, toRefs, watch } from '@vue/composition-api'
 import { debounce } from 'lodash'
 import router from '@/router'
@@ -71,8 +71,8 @@ export default {
     title: 'Search',
   },
   components: {
-    SearchBooksList,
-    SearchBooksCard,
+    SearchArticlesList,
+    SearchArticlesCard,
     SearchPagination,
   },
   props: {
@@ -88,7 +88,7 @@ export default {
 
     const { recommendations, listRecommendations } = useRecommendation()
 
-    const { books, counter, isLoading, listBooks } = useBook()
+    const { articles, counter, isLoading, listArticles } = useArticle()
 
     onMounted(listRecommendations)
 
@@ -99,14 +99,14 @@ export default {
     const search = () => {
       if (!term.value) return
 
-      listBooks(term.value, page.value)
+      listArticles(term.value, page.value)
     }
 
     onMounted(search)
 
     watch([() => term.value, () => page.value], () => {
       if (!term.value) {
-        books.value = []
+        articles.value = []
         counter.value = 0
       }
       search()
@@ -133,7 +133,7 @@ export default {
 
     return {
       recommendations,
-      books,
+      articles,
       counter,
       isLoading,
       pages,

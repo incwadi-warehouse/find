@@ -1,14 +1,14 @@
 <template>
-  <b-container size="m" v-if="book">
-    <img :src="image(book.id)" width="400" :alt="book.title" />
+  <b-container size="m" v-if="article">
+    <img :src="image(article.id)" width="400" :alt="article.title" />
   </b-container>
 </template>
 
 <script>
 export default {
-  name: 'book-image',
+  name: 'article-image',
   props: {
-    book: Object,
+    article: Object,
   },
   setup() {
     const image = (id) => {
