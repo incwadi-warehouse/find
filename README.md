@@ -1,4 +1,4 @@
-# find
+# shop
 
 incwadi is a book database to manage your books.
 
