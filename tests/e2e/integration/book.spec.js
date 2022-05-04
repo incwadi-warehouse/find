@@ -16,7 +16,7 @@ describe('Show Book', () => {
       title: 'Title',
     })
 
-    cy.visit('/book/id')
-    cy.url().should('include', '/book')
+    cy.visit('/article/id')
+    cy.url().should('include', '/article')
   })
 })
