@@ -6,6 +6,8 @@
       </b-alert>
     </b-container>
 
+    <b-container size="m" v-html="content" />
+
     <b-container size="m">
       <b-search
         focus
@@ -64,6 +66,8 @@ import useArticle from '@/composables/useArticle'
 import { computed, onMounted, toRefs, watch } from '@vue/composition-api'
 import { debounce } from 'lodash'
 import router from '@/router'
+import useBranch from './../composables/useBranch'
+import { marked } from 'marked'
 
 export default {
   name: 'search-view',
@@ -89,6 +93,8 @@ export default {
     const { recommendations, listRecommendations } = useRecommendation()
 
     const { articles, counter, isLoading, listArticles } = useArticle()
+
+    const { branch } = useBranch()
 
     onMounted(listRecommendations)
 
@@ -131,6 +137,12 @@ export default {
       request()
     }
 
+    const content = computed(() => {
+      if (!branch.value || !branch.value.content) return
+
+      return marked.parse(branch.value.content.replace(/(<([^>]+)>)/gi, ''))
+    })
+
     return {
       recommendations,
       articles,
@@ -139,6 +151,7 @@ export default {
       pages,
       search,
       searchOnInput,
+      content,
     }
   },
 }
