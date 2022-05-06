@@ -26,5 +26,6 @@
   "salutation": "Salutation",
   "mrs": "Mrs.",
   "mr": "Mr.",
-  "none_diverse": "No indication/ Diverse"
+  "none_diverse": "No indication/ Diverse",
+  "firstname": "Firstname"
 }

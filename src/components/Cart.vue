@@ -6,11 +6,7 @@
       </b-badge>
     </span>
 
-    <b-form
-      @submit.prevent="reservate"
-      v-if="showModal"
-      :style="{ margin: '0' }"
-    >
+    <b-form @submit.prevent="reserve" v-if="showModal" :style="{ margin: '0' }">
       <b-modal :style="{ textAlign: 'left' }" @close="toggleModal">
         <template #title>
           {{ $t('cart') }}
@@ -81,6 +77,15 @@
 
           <b-form-group>
             <b-form-item>
+              <b-form-label for="firstname">{{ $t('firstname') }}</b-form-label>
+            </b-form-item>
+            <b-form-item>
+              <b-form-input id="firstname" required v-model="firstname" />
+            </b-form-item>
+          </b-form-group>
+
+          <b-form-group>
+            <b-form-item>
               <b-form-label for="surname">{{ $t('surname') }}</b-form-label>
             </b-form-item>
             <b-form-item>
@@ -136,7 +141,6 @@
 import { computed, ref } from '@vue/composition-api'
 import useCart from '@/composables/useCart'
 import useReservation from '@/composables/useReservation'
-import i18n from '@/i18n'
 
 export default {
   name: 'cart',
@@ -158,6 +162,7 @@ export default {
     })
 
     const salutation = ref(null)
+    const firstname = ref(null)
     const surname = ref(null)
     const mail = ref(null)
     const phone = ref(null)
@@ -173,36 +178,15 @@ export default {
       return cart.value.length >= 1
     })
 
-    // @deprecated
-    const getSalutation = (val) => {
-      let salutation = null
-      if (val === 'f') {
-        salutation = i18n.t('mrs')
-      }
-      if (val === 'm') {
-        salutation = i18n.t('mr')
-      }
-      if (val === 'd') {
-        salutation = i18n.t('none_diverse')
-      }
-
-      return salutation
-    }
-
-    // @deprecated
-    const reservate = () => {
+    const reserve = () => {
       createReservation({
         books: articles.value,
-        notes:
-          getSalutation(salutation.value) +
-          '\n' +
-          surname.value +
-          '\n' +
-          mail.value +
-          '\n' +
-          phone.value +
-          '\n' +
-          notes.value,
+        notes: notes.value,
+        salutation: salutation.value,
+        firstname: firstname.value,
+        surname: surname.value,
+        mail: mail.value,
+        phone: phone.value,
       })
     }
 
@@ -222,7 +206,8 @@ export default {
       showModal,
       toggleModal,
       hasArticles,
-      reservate,
+      reserve,
+      firstname,
     }
   },
 }

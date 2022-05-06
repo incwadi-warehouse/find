@@ -26,5 +26,6 @@
   "salutation": "Anrede",
   "mrs": "Frau",
   "mr": "Herr",
-  "none_diverse": "Keine Angabe/ Divers"
+  "none_diverse": "Keine Angabe/ Divers",
+  "firstname": "Vorname"
 }
