@@ -1,35 +1,39 @@
-import { ref } from '@vue/composition-api'
+import { useCart } from './useCart.js'
+import useToast from '@baldeweg/components/src/composables/useToast'
 import { request } from '@/api'
-import useCart from './useCart'
+import { ref } from '@vue/composition-api'
+import i18n from '@/i18n.js'
 
-export default function useReservation() {
+export function useReservation() {
   const { cart } = useCart()
 
-  const isCreating = ref(false)
-  const hasSuccess = ref(false)
-  const hasError = ref(false)
+  const { add } = useToast()
 
-  const createReservation = (data) => {
+  const isCreating = ref(false)
+
+  const create = (data) => {
     isCreating.value = true
-    hasSuccess.value = false
-    hasError.value = false
 
     return request('post', '/api/public/reservation/new', data)
       .then(() => {
-        hasSuccess.value = true
+        add({
+          type: 'success',
+          body: i18n.t('request_successful'),
+        })
         isCreating.value = false
         cart.value = []
       })
       .catch(() => {
+        add({
+          type: 'error',
+          body: i18n.t('request_error'),
+        })
         isCreating.value = false
-        hasError.value = true
       })
   }
 
   return {
     isCreating,
-    hasSuccess,
-    hasError,
-    createReservation,
+    create,
   }
 }

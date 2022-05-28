@@ -3,13 +3,13 @@ import { request } from '@/api'
 
 const branch = ref(null)
 
-export default function useBranch() {
+export function useBranch() {
   const show = () => {
     return request(
       'get',
       '/api/public/branch/show/' + process.env.VUE_APP_BRANCH
-    ).then((response) => {
-      branch.value = response.data
+    ).then((res) => {
+      branch.value = res.data
     })
   }
 

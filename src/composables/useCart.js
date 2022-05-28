@@ -1,19 +1,19 @@
 import { ref, watch } from '@vue/composition-api'
-import { remove } from 'lodash'
+import { remove as _remove } from 'lodash'
 
 const cart = ref(JSON.parse(localStorage.getItem('cart')) || [])
 
-export default function useCart() {
-  const addToCart = (article) => {
+export function useCart() {
+  const add = ({ id, title, price }) => {
     cart.value.push({
-      id: article.id,
-      title: article.title,
-      price: article.price,
+      id,
+      title,
+      price,
     })
   }
 
-  const removeFromCart = (article) => {
-    cart.value = remove(cart.value, (item) => {
+  const remove = (article) => {
+    cart.value = _remove(cart.value, (item) => {
       return item !== article
     })
   }
@@ -29,5 +29,5 @@ export default function useCart() {
     }
   )
 
-  return { cart, addToCart, removeFromCart }
+  return { cart, add, remove }
 }

@@ -1,20 +1,18 @@
 import { ref } from '@vue/composition-api'
 import { request } from '@/api'
 
-export default function useRecommendation() {
+export function useRecommendation() {
   const branch = process.env.VUE_APP_BRANCH
 
   const recommendations = ref([])
-  const counter = ref(0)
 
-  const listRecommendations = () => {
+  const list = () => {
     return request('get', '/api/public/book/recommendation/' + branch).then(
-      (response) => {
-        recommendations.value = response.data.books
-        counter.value = response.data.counter
+      (res) => {
+        recommendations.value = res.data.books
       }
     )
   }
 
-  return { recommendations, counter, listRecommendations }
+  return { recommendations, list }
 }

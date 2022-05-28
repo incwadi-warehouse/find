@@ -1,13 +1,14 @@
 import { ref } from '@vue/composition-api'
 import { request } from '@/api'
 
-export default function useArticle() {
-  const articles = ref([])
+const articles = ref([])
+
+export function useArticle() {
   const article = ref(null)
   const counter = ref(0)
   const isLoading = ref(false)
 
-  const listArticles = (term, page) => {
+  const list = (term, page) => {
     isLoading.value = true
 
     const params = {
@@ -32,18 +33,16 @@ export default function useArticle() {
       },
     }
 
-    return request('get', '/api/public/book/find', null, params).then(
-      (response) => {
-        articles.value = response.data.books
-        counter.value = response.data.counter
-        isLoading.value = false
-      }
-    )
+    return request('get', '/api/public/book/find', null, params).then((res) => {
+      articles.value = res.data.books
+      counter.value = res.data.counter
+      isLoading.value = false
+    })
   }
 
-  const getArticle = (id) => {
-    return request('get', '/api/public/book/' + id).then((response) => {
-      article.value = response.data
+  const show = (id) => {
+    return request('get', '/api/public/book/' + id).then((res) => {
+      article.value = res.data
     })
   }
 
@@ -58,6 +57,7 @@ export default function useArticle() {
     if ('' === firstname) {
       return surname
     }
+
     return surname + ', ' + firstname
   }
 
@@ -66,8 +66,8 @@ export default function useArticle() {
     article,
     counter,
     isLoading,
-    listArticles,
-    getArticle,
+    list,
+    show,
     formatPrice,
     formatAuthor,
   }
