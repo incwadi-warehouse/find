@@ -1,6 +1,7 @@
 <script>
 import Logo from './components/Logo.vue'
 import Cart from '@/components/Cart.vue'
+import useToast from '@baldeweg/components/src/composables/useToast.js'
 
 export default {
   name: 'app',
@@ -15,7 +16,9 @@ export default {
     const about = process.env.VUE_APP_ABOUT
     const hasLogo = process.env.VUE_APP_LOGO === 'false' ? false : true
 
-    return { about, hasLogo }
+    const { current } = useToast()
+
+    return { about, hasLogo, current }
   },
 }
 </script>
@@ -51,6 +54,10 @@ export default {
     <b-container size="m">
       <div v-html="about" />
     </b-container>
+
+    <b-toast v-if="current" :type="current.type" :visible="true">
+      {{ current.body }}
+    </b-toast>
   </b-app>
 </template>
 

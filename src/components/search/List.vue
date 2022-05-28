@@ -1,9 +1,26 @@
+<script>
+import { useArticle } from '../../composables/useArticle.js'
+
+export default {
+  name: 'search-list',
+  setup() {
+    const { articles, formatPrice, formatAuthor, image } = useArticle()
+
+    return { articles, formatPrice, formatAuthor, image }
+  },
+}
+</script>
+
 <template>
   <div v-if="articles">
     <b-list v-for="article in articles" :key="article.id" divider>
       <template #image>
         <router-link :to="{ name: 'article', params: { id: article.id } }">
-          <img width="100" :src="image(article.id)" :alt="article.title" />
+          <img
+            width="100"
+            :src="image(article.id, '100x100')"
+            :alt="article.title"
+          />
         </router-link>
       </template>
 
@@ -34,28 +51,3 @@
     </b-list>
   </div>
 </template>
-
-<script>
-import useArticle from '../../composables/useArticle'
-
-export default {
-  name: 'search-articles-list',
-  props: {
-    articles: Array,
-  },
-  setup() {
-    const { formatPrice, formatAuthor } = useArticle()
-
-    const image = (id) => {
-      return (
-        process.env.VUE_APP_API +
-        '/api/public/book/cover/' +
-        id +
-        '_100x100.jpg'
-      )
-    }
-
-    return { formatPrice, formatAuthor, image }
-  },
-}
-</script>

@@ -1,38 +1,37 @@
 import { useCart } from './useCart.js'
-import useToast from '@baldeweg/components/src/composables/useToast'
 import { request } from '@/api'
 import { ref } from '@vue/composition-api'
-import i18n from '@/i18n.js'
 
 export function useReservation() {
   const { cart } = useCart()
 
-  const { add } = useToast()
+  const reservation = ref({})
 
   const isCreating = ref(false)
 
-  const create = (data) => {
+  const create = () => {
     isCreating.value = true
 
-    return request('post', '/api/public/reservation/new', data)
+    return request('post', '/api/public/reservation/new', {
+      books: reservation.value.books,
+      notes: reservation.value.notes,
+      salutation: reservation.value.salutation,
+      firstname: reservation.value.firstname,
+      surname: reservation.value.surname,
+      mail: reservation.value.mail,
+      phone: reservation.value.phone,
+    })
       .then(() => {
-        add({
-          type: 'success',
-          body: i18n.t('request_successful'),
-        })
-        isCreating.value = false
+        reservation.value = []
         cart.value = []
       })
-      .catch(() => {
-        add({
-          type: 'error',
-          body: i18n.t('request_error'),
-        })
+      .finally(() => {
         isCreating.value = false
       })
   }
 
   return {
+    reservation,
     isCreating,
     create,
   }

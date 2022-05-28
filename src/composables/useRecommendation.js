@@ -1,4 +1,4 @@
-import { ref } from '@vue/composition-api'
+import { onMounted, ref } from '@vue/composition-api'
 import { request } from '@/api'
 
 export function useRecommendation() {
@@ -14,5 +14,7 @@ export function useRecommendation() {
     )
   }
 
-  return { recommendations, list }
+  onMounted(list)
+
+  return { recommendations }
 }

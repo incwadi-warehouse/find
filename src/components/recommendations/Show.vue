@@ -1,12 +1,28 @@
+<script>
+import { useArticle } from '../../composables/useArticle.js'
+import { useRecommendation } from '@/composables/useRecommendation.js'
+
+export default {
+  name: 'recommendations-show',
+  setup() {
+    const { formatPrice, formatAuthor } = useArticle()
+
+    const { recommendations } = useRecommendation()
+
+    return { recommendations, formatPrice, formatAuthor }
+  },
+}
+</script>
+
 <template>
-  <b-horizontal-list v-if="articles">
+  <b-horizontal-list v-if="recommendations">
     <b-horizontal-list-item
       size="xs"
-      v-for="article in articles"
+      v-for="article in recommendations"
       :key="article.id"
     >
-      <div class="card">
-        <div class="card_image">
+      <div class="article">
+        <div class="image_wrapper">
           <router-link :to="{ name: 'article', params: { id: article.id } }">
             <img
               class="image"
@@ -17,13 +33,11 @@
           </router-link>
         </div>
 
-        <div class="card_row">
-          <p class="author">
-            {{ formatAuthor(article.authorFirstname, article.authorSurname) }}
-          </p>
-        </div>
+        <p class="author">
+          {{ formatAuthor(article.authorFirstname, article.authorSurname) }}
+        </p>
 
-        <div class="card_row" :style="{ flexGrow: '2' }">
+        <div :style="{ flexGrow: '1' }">
           <router-link
             :to="{ name: 'article', params: { id: article.id } }"
             class="title"
@@ -32,46 +46,26 @@
           </router-link>
         </div>
 
-        <div class="card_row">
-          <b-button
-            class="price"
-            design="text"
-            :style="{ alignSelf: 'flex-end' }"
-            @click="
-              $router.push({ name: 'article', params: { id: article.id } })
-            "
-          >
-            {{ formatPrice(article.price) }} {{ article.currency }}
-          </b-button>
-        </div>
+        <b-button
+          class="price"
+          design="text"
+          :style="{ alignSelf: 'flex-start' }"
+          @click="$router.push({ name: 'article', params: { id: article.id } })"
+        >
+          {{ formatPrice(article.price) }} {{ article.currency }}
+        </b-button>
       </div>
     </b-horizontal-list-item>
   </b-horizontal-list>
 </template>
 
-<script>
-import useArticle from './../../composables/useArticle'
-
-export default {
-  name: 'search-articles-card',
-  props: {
-    articles: Array,
-  },
-  setup() {
-    const { formatPrice, formatAuthor } = useArticle()
-
-    return { formatPrice, formatAuthor }
-  },
-}
-</script>
-
 <style scoped>
-.card {
+.article {
   display: flex;
   flex-direction: column;
   height: 420px;
 }
-.card_image {
+.image_wrapper {
   background: var(--color-neutral-02);
   height: 240px;
   text-align: center;

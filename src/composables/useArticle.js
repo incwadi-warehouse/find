@@ -61,6 +61,17 @@ export function useArticle() {
     return surname + ', ' + firstname
   }
 
+  const image = (id, size) => {
+    return (
+      process.env.VUE_APP_API +
+      '/api/public/book/cover/' +
+      id +
+      '_' +
+      size +
+      '.jpg'
+    )
+  }
+
   return {
     articles,
     article,
@@ -70,5 +81,6 @@ export function useArticle() {
     show,
     formatPrice,
     formatAuthor,
+    image,
   }
 }

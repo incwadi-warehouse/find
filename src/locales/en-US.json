@@ -12,7 +12,7 @@
   "foundNothing": "Sorry! We did not found something fitting the query.",
   "recommendations": "Recommendations",
   "format": "Type",
-  "reservate": "Reservate",
+  "reserve": "Reserve",
   "added_to_cart": "Added to Cart",
   "cart": "Cart",
   "request_error": "Sorry, the request failed. Reservation was not possible.",
