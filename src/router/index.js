@@ -15,7 +15,7 @@ const router = new VueRouter({
     {
       path: '/search',
       name: 'search',
-      component: () => import('../views/SearchView'),
+      component: () => import('../views/SearchView.vue'),
       props: (route) => ({
         term: route.query.term,
         page: parseInt(route.query.page) || undefined,
@@ -25,7 +25,7 @@ const router = new VueRouter({
     {
       path: '/article/:id',
       name: 'article',
-      component: () => import('../views/ArticleView'),
+      component: () => import('../views/ArticleView.vue'),
       props: true,
     },
     {
