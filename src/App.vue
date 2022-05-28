@@ -1,3 +1,25 @@
+<script>
+import Logo from './components/Logo.vue'
+import Cart from '@/components/Cart.vue'
+
+export default {
+  name: 'app',
+  components: {
+    Logo,
+    Cart,
+  },
+  head: {
+    title: 'Home',
+  },
+  setup() {
+    const about = process.env.VUE_APP_ABOUT
+    const hasLogo = process.env.VUE_APP_LOGO === 'false' ? false : true
+
+    return { about, hasLogo }
+  },
+}
+</script>
+
 <template>
   <b-app>
     <b-masthead>
@@ -31,36 +53,6 @@
     </b-container>
   </b-app>
 </template>
-
-<script>
-import Logo from './components/Logo'
-import Cart from '@/components/Cart'
-import { computed } from '@vue/composition-api'
-
-export default {
-  name: 'app',
-  components: {
-    Logo,
-    Cart,
-  },
-  head: {
-    title: 'Home',
-    titleTemplate: (title) => {
-      return title ? title + ' - Warehouse' : 'Warehouse'
-    },
-  },
-  setup() {
-    const about = computed(() => {
-      return process.env.VUE_APP_ABOUT
-    })
-    const hasLogo = computed(() => {
-      return process.env.VUE_APP_LOGO === 'false' ? false : true
-    })
-
-    return { about, hasLogo }
-  },
-}
-</script>
 
 <style scoped>
 .logo {
