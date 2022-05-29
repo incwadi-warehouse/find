@@ -5,6 +5,44 @@ describe('Search', () => {
   })
 })
 
+describe('Search', () => {
+  it('show recommendations', () => {
+    cy.server()
+    cy.route('get', '**/api/public/book/recommendation/**', {
+      books: [
+        {
+          id: '1',
+          currency: 'EUR',
+          title: 'book 1',
+          authorFirstname: 'Jane',
+          authorSurname: 'Doe',
+          price: 0,
+          cover_s: null,
+          cover_m: null,
+          cover_l: null,
+        },
+        {
+          id: '2',
+          currency: 'EUR',
+          title: 'book 2',
+          authorFirstname: 'John',
+          authorSurname: 'Doe',
+          price: 0,
+          cover_s: null,
+          cover_m: null,
+          cover_l: null,
+        },
+      ],
+      counter: 2,
+    })
+
+    cy.visit('/search')
+
+    cy.get('.horizontal-list > div').should('have.length', 2)
+    cy.get(':nth-child(3) > .container').contains('book 1')
+  })
+})
+
 describe('Find no book', () => {
   it('Shows list of books', () => {
     cy.server()
