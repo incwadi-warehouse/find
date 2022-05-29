@@ -1,12 +1,51 @@
+<script>
+import { useArticle } from '@/composables/useArticle.js'
+import { useCart } from '@/composables/useCart.js'
+import { find } from 'lodash'
+import { computed } from '@vue/composition-api'
+
+export default {
+  name: 'article-view',
+  head: {
+    title: 'article',
+  },
+  props: {
+    id: String,
+  },
+  setup(props) {
+    const { article, show, formatPrice, formatAuthor, image } = useArticle()
+
+    show(props.id)
+
+    const { cart, add: add } = useCart()
+
+    const isInCart = computed(() => {
+      return find(cart.value, (item) => {
+        return item.id === props.id
+      })
+    })
+
+    return {
+      article,
+      formatPrice,
+      formatAuthor,
+      add,
+      isInCart,
+      image,
+    }
+  },
+}
+</script>
+
 <template>
   <div v-if="article">
     <b-container size="m">
       <b-button
         design="primary"
         class="cta"
-        @click="addToCart(article)"
+        @click="add(article)"
         v-if="!isInCart && article.branchCart"
-        >{{ $t('reservate') }}</b-button
+        >{{ $t('reserve') }}</b-button
       >
       <b-button
         design="outline"
@@ -25,12 +64,18 @@
     </b-container>
 
     <b-container size="m">
-      <div class="product">
-        <div class="product_image">
-          <article-image :article="article" />
+      <div class="article">
+        <div class="image">
+          <b-container size="m" v-if="article">
+            <img
+              :src="image(article.id, '400x400')"
+              width="400"
+              :alt="article.title"
+            />
+          </b-container>
         </div>
 
-        <div class="product_details">
+        <div class="details">
           <b-container size="m" v-if="article.shortDescription">
             <p class="wrap">{{ article.shortDescription }}</p>
           </b-container>
@@ -50,7 +95,6 @@
           </b-container>
 
           <b-container size="m">
-            <p>{{ $t('branch') }}: {{ article.branchName }}</p>
             <p class="wrap">{{ article.branchOrdering }}</p>
           </b-container>
         </div>
@@ -59,55 +103,12 @@
   </div>
 </template>
 
-<script>
-import useArticle from '@/composables/useArticle'
-import ArticleImage from '@/components/article/Image'
-import useCart from '@/composables/useCart'
-import { find } from 'lodash'
-import { computed } from '@vue/composition-api'
-
-export default {
-  name: 'article-view',
-  head: {
-    title: 'article',
-  },
-  components: {
-    ArticleImage,
-  },
-  props: {
-    id: String,
-  },
-  setup(props) {
-    const { article, getArticle, formatPrice, formatAuthor } = useArticle()
-
-    const { cart, addToCart } = useCart()
-
-    getArticle(props.id)
-
-    const isInCart = computed(() => {
-      return find(cart.value, (item) => {
-        return item.id === props.id
-      })
-    })
-
-    return {
-      article,
-      formatPrice,
-      formatAuthor,
-      cart,
-      addToCart,
-      isInCart,
-    }
-  },
-}
-</script>
-
 <style scoped>
 .cta {
   float: right;
   margin-top: 10px;
 }
-.product_image {
+.image {
   width: 200px;
 }
 .wrap {
@@ -115,14 +116,14 @@ export default {
 }
 
 @media all and (min-width: 600px) {
-  .product {
+  .article {
     display: flex;
   }
-  .product_image {
+  .image {
     width: 33%;
     box-sizing: border-box;
   }
-  .product_details {
+  .details {
     flex-grow: 1;
   }
 }
