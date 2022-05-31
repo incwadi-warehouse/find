@@ -23,7 +23,7 @@ const router = new VueRouter({
       }),
     },
     {
-      path: '/article/:id',
+      path: '/product/:id',
       name: 'article',
       component: () => import('../views/ArticleView.vue'),
       props: true,
