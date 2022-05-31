@@ -20,7 +20,7 @@ describe('Show Book', () => {
       msg: 'SUCCESS',
     })
 
-    cy.visit('/article/id')
+    cy.visit('/product/id')
 
     cy.get('.btn_primary').click()
     cy.get('.badge .icon').click() // cart button
