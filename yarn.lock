@@ -942,10 +942,10 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
-"@baldeweg/components@7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@baldeweg/components/-/components-7.4.0.tgz#7e457dc5ee48b699301455c25c1994fc07af19e5"
-  integrity sha512-fiqv1hsgK4J0XIN9FBkN48fVGr1RTj07Yu0GgAuGbOK81GdLYDYJPmkC11wdav7jrayNpYhiXCQ3vrffjSpAAA==
+"@baldeweg/components@7.4.1":
+  version "7.4.1"
+  resolved "https://registry.yarnpkg.com/@baldeweg/components/-/components-7.4.1.tgz#c12edccf7a462bea559659b6ce354f939ce98a51"
+  integrity sha512-BXkpffL5CS+m7CNgpGMsfXQ7MGt/wGuchygsXvA2dCOVI068GIfoH69zvfR9h21XMy1Acuh5Y+0LU/LfLKz6Sg==
   dependencies:
     core-js "3.22.4"
     vue "2.6.14"
@@ -1813,10 +1813,10 @@
   optionalDependencies:
     prettier "^1.18.2 || ^2.0.0"
 
-"@vue/composition-api@1.6.0":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@vue/composition-api/-/composition-api-1.6.0.tgz#41c45672245fff2181f8be1f757c95cb6c9b0316"
-  integrity sha512-m/FbsCXn0Ov2QCYUEIt4yupWJLCL6nfZg/Xx2L5VlFUqgJb2iOrbLnkYSV0TO2VUxkBLSFtTZMyG8IIHZFdKNA==
+"@vue/composition-api@1.6.2":
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/@vue/composition-api/-/composition-api-1.6.2.tgz#8e65cf60cd919f23649951ed14a67d43cd32131d"
+  integrity sha512-g6pCOaAB5Z987EwCBIDanRlramrgnWfrrYS8F/0axn2AL8EvyfAebDcLTSr48hac0G0rqC9ODp5LWaiupzl6Tw==
 
 "@vue/eslint-config-prettier@7.0.0":
   version "7.0.0"
@@ -3540,6 +3540,11 @@ core-js@3.22.4, core-js@^3.6.5:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.22.4.tgz#f4b3f108d45736935aa028444a69397e40d8c531"
   integrity sha512-1uLykR+iOfYja+6Jn/57743gc9n73EWiOnSJJ4ba3B4fOEYDBv25MagmEZBxTp5cWq4b/KPx/l77zgsp28ju4w==
 
+core-js@3.22.8:
+  version "3.22.8"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.22.8.tgz#23f860b1fe60797cc4f704d76c93fea8a2f60631"
+  integrity sha512-UoGQ/cfzGYIuiq6Z7vWL1HfkE9U9IZ4Ub+0XSiJTCzvbZzgPA69oDF2f+lgJ6dFFLEdjW5O6svvoKzXX23xFkA==
+
 core-js@^2.4.0:
   version "2.6.12"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
@@ -4653,9 +4658,9 @@ events@^3.0.0:
   integrity sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==
 
 eventsource@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/eventsource/-/eventsource-1.1.0.tgz#00e8ca7c92109e94b0ddf32dac677d841028cfaf"
-  integrity sha512-VSJjT5oCNrFvCS6igjzPAt5hBzQ2qPBFIbJ03zLI9SE0mxwZpMw6BfJrbFHm1a141AavMEB8JHmBhWAd66PfCg==
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/eventsource/-/eventsource-1.1.1.tgz#4544a35a57d7120fba4fa4c86cb4023b2c09df2f"
+  integrity sha512-qV5ZC0h7jYIAOhArFJgSfdyz6rALJyb270714o7ZtNnw2WSJ+eexhKtE0O8LYPRsHZHf2osHKZBxGPvm3kPkCA==
   dependencies:
     original "^1.0.0"
 
@@ -10887,6 +10892,11 @@ vue-router@3.5.3:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.5.3.tgz#041048053e336829d05dafacf6a8fb669a2e7999"
   integrity sha512-FUlILrW3DGitS2h+Xaw8aRNvGTwtuaxrRkNSHWTizOfLUie7wuYwezeZ50iflRn8YPV5kxmU2LQuu3nM/b3Zsg==
+
+vue-router@3.5.4:
+  version "3.5.4"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.5.4.tgz#c453c0b36bc75554de066fefc3f2a9c3212aca70"
+  integrity sha512-x+/DLAJZv2mcQ7glH2oV9ze8uPwcI+H+GgTgTmb5I55bCgY3+vXWIsqbYUzbBSZnwFHEJku4eoaH/x98veyymQ==
 
 vue-style-loader@^4.1.0, vue-style-loader@^4.1.2:
   version "4.1.3"
