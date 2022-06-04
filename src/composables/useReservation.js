@@ -1,6 +1,6 @@
 import { useCart } from './useCart.js'
 import { request } from '@/api'
-import { ref } from '@vue/composition-api'
+import { ref } from 'vue'
 
 export function useReservation() {
   const { cart } = useCart()

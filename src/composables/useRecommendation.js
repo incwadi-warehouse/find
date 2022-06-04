@@ -1,8 +1,8 @@
-import { onMounted, ref } from '@vue/composition-api'
+import { onMounted, ref } from 'vue'
 import { request } from '@/api'
 
 export function useRecommendation() {
-  const branch = process.env.VUE_APP_BRANCH
+  const branch = import.meta.env.VUE_APP_BRANCH
 
   const recommendations = ref([])
 

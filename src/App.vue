@@ -1,26 +1,16 @@
-<script>
-import Logo from './components/Logo.vue'
-import Cart from '@/components/Cart.vue'
-import useToast from '@baldeweg/components/src/composables/useToast.js'
+<script setup>
+import { useLocale, useTheme } from '@baldeweg/ui'
+import { useToast } from '@baldeweg/ui'
+import Logo from '@/components/AppLogo.vue'
+import Cart from '@/components/AppCart.vue'
 
-export default {
-  name: 'app',
-  components: {
-    Logo,
-    Cart,
-  },
-  head: {
-    title: 'Home',
-  },
-  setup() {
-    const about = process.env.VUE_APP_ABOUT
-    const hasLogo = process.env.VUE_APP_LOGO === 'false' ? false : true
+useLocale()
+useTheme()
 
-    const { current } = useToast()
+const about = import.meta.env.VUE_APP_ABOUT
+const hasLogo = import.meta.env.VUE_APP_LOGO === 'false' ? false : true
 
-    return { about, hasLogo, current }
-  },
-}
+const { current } = useToast()
 </script>
 
 <template>
@@ -28,7 +18,7 @@ export default {
     <b-masthead>
       <b-masthead-item type="center">
         <router-link :to="{ name: 'index' }">
-          <logo v-if="hasLogo" />
+          <Logo v-if="hasLogo" />
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="50"
@@ -45,7 +35,7 @@ export default {
       </b-masthead-item>
 
       <b-masthead-item type="end">
-        <cart />
+        <Cart />
       </b-masthead-item>
     </b-masthead>
 

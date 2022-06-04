@@ -51,13 +51,13 @@ describe('Find no book', () => {
     })
     cy.get('input[type=search]').type('test')
     cy.url().should('include', 'term=test')
-    cy.get('div.alert_warning')
+    cy.get('div.alert.type_warning')
   })
 })
 
 describe('Find books', () => {
   it('Shows list of books', () => {
-    cy.get('button[type=reset].search_btn').click()
+    cy.get('button[type=reset].button').click()
     cy.server()
     cy.route('GET', '**/api/public/book/find?options=**', {
       books: [

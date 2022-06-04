@@ -1,14 +1,7 @@
-<script>
+<script setup>
 import { useArticle } from '../../composables/useArticle.js'
 
-export default {
-  name: 'search-list',
-  setup() {
-    const { articles, formatPrice, formatAuthor, image } = useArticle()
-
-    return { articles, formatPrice, formatAuthor, image }
-  },
-}
+const { articles, formatPrice, formatAuthor, image } = useArticle()
 </script>
 
 <template>

@@ -1,4 +1,4 @@
-import { ref } from '@vue/composition-api'
+import { ref } from 'vue'
 import { request } from '@/api'
 
 const articles = ref([])
@@ -18,7 +18,7 @@ export function useArticle() {
           {
             field: 'branch',
             operator: 'eq',
-            value: process.env.VUE_APP_BRANCH,
+            value: import.meta.env.VUE_APP_BRANCH,
           },
         ],
         orderBy: {
@@ -63,7 +63,7 @@ export function useArticle() {
 
   const image = (id, size) => {
     return (
-      process.env.VUE_APP_API +
+      import.meta.env.VUE_APP_API +
       '/api/public/book/cover/' +
       id +
       '_' +

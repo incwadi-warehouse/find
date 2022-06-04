@@ -1,31 +1,25 @@
-<script>
+<script setup>
 import router from '@/router'
-import { toRefs } from '@vue/composition-api'
+import { toRefs } from 'vue'
 
-export default {
-  name: 'search-pagination',
-  props: {
-    pages: Number,
-    page: {
-      type: Number,
-      default: 1,
-    },
+const props = defineProps({
+  pages: Number,
+  page: {
+    type: Number,
+    default: 1,
   },
-  setup(props) {
-    const { page, pages } = toRefs(props)
+})
 
-    const route = (p) => {
-      if (p < 1 || p > pages.value || p === page.value) return
+const { page, pages } = toRefs(props)
 
-      router.push({
-        name: 'search',
-        query: Object.assign({}, router.currentRoute.query, { page: p }),
-      })
-      window.scrollTo(0, 0)
-    }
+const route = (p) => {
+  if (p < 1 || p > pages.value || p === page.value) return
 
-    return { route }
-  },
+  router.push({
+    name: 'search',
+    query: Object.assign({}, router.currentRoute.query, { page: p }),
+  })
+  window.scrollTo(0, 0)
 }
 </script>
 

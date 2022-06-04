@@ -1,40 +1,27 @@
-<script>
+<script setup>
+import { useTitle } from '@baldeweg/ui'
 import { useArticle } from '@/composables/useArticle.js'
 import { useCart } from '@/composables/useCart.js'
 import { find } from 'lodash'
-import { computed } from '@vue/composition-api'
+import { computed } from 'vue'
 
-export default {
-  name: 'article-view',
-  head: {
-    title: 'article',
-  },
-  props: {
-    id: String,
-  },
-  setup(props) {
-    const { article, show, formatPrice, formatAuthor, image } = useArticle()
+useTitle({ title: 'Article' })
 
-    show(props.id)
+const props = defineProps({
+  id: String,
+})
 
-    const { cart, add: add } = useCart()
+const { article, show, formatPrice, formatAuthor, image } = useArticle()
 
-    const isInCart = computed(() => {
-      return find(cart.value, (item) => {
-        return item.id === props.id
-      })
-    })
+show(props.id)
 
-    return {
-      article,
-      formatPrice,
-      formatAuthor,
-      add,
-      isInCart,
-      image,
-    }
-  },
-}
+const { cart, add: add } = useCart()
+
+const isInCart = computed(() => {
+  return find(cart.value, (item) => {
+    return item.id === props.id
+  })
+})
 </script>
 
 <template>

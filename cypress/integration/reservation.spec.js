@@ -30,9 +30,9 @@ describe('Show Book', () => {
     cy.get('#notes').type('note')
     cy.get('.form').submit()
 
-    cy.get('.dialog_body').should('exist')
+    cy.get('.body').should('exist')
 
-    cy.get('.dialog_footer > .btn').click()
-    cy.get('.dialog_body').should('not.exist')
+    cy.get('.footer > .btn').click()
+    cy.get('.body').should('not.exist')
   })
 })

@@ -1,4 +1,4 @@
-import { ref, watch } from '@vue/composition-api'
+import { ref, watch } from 'vue'
 import { remove as _remove } from 'lodash'
 
 const cart = ref(JSON.parse(localStorage.getItem('cart')) || [])

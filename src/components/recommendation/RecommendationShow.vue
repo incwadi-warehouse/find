@@ -1,17 +1,10 @@
-<script>
+<script setup>
 import { useArticle } from '../../composables/useArticle.js'
 import { useRecommendation } from '@/composables/useRecommendation.js'
 
-export default {
-  name: 'recommendations-show',
-  setup() {
-    const { formatPrice, formatAuthor } = useArticle()
+const { formatPrice, formatAuthor } = useArticle()
 
-    const { recommendations } = useRecommendation()
-
-    return { recommendations, formatPrice, formatAuthor }
-  },
-}
+const { recommendations } = useRecommendation()
 </script>
 
 <template>

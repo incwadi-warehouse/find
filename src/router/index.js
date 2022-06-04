@@ -1,11 +1,9 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
-Vue.use(VueRouter)
-
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.VUE_APP_BASE_URL,
+const router = createRouter({
+  history: createWebHistory(import.meta.env.VUE_APP_BASE_URL),
+  linkActiveClass: 'isActive',
+  linkExactActiveClass: 'isActiveExact',
   routes: [
     {
       path: '/',
@@ -19,7 +17,6 @@ const router = new VueRouter({
       props: (route) => ({
         term: route.query.term,
         page: parseInt(route.query.page) || undefined,
-        is404: route.params.is404,
       }),
     },
     {
@@ -29,12 +26,12 @@ const router = new VueRouter({
       props: true,
     },
     {
-      path: '*',
-      redirect: { name: 'search', params: { is404: true } },
+      path: '/:pathMatch(.*)',
+      redirect: { name: 'search' },
     },
   ],
   scrollBehavior() {
-    return { x: 0, y: 0 }
+    return { top: 0 }
   },
 })
 

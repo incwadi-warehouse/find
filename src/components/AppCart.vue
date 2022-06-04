@@ -1,65 +1,50 @@
-<script>
+<script setup>
 import { useCart } from '@/composables/useCart.js'
 import { useReservation } from '@/composables/useReservation.js'
-import useToast from '@baldeweg/components/src/composables/useToast'
-import { computed, ref } from '@vue/composition-api'
+import { useToast } from '@baldeweg/ui'
+import { computed, ref } from 'vue'
 import i18n from '@/i18n.js'
 
-export default {
-  name: 'cart',
-  setup() {
-    const showCart = ref(false)
-    const showThanks = ref(false)
+const showCart = ref(false)
+const showThanks = ref(false)
 
-    const { add } = useToast()
+const { add } = useToast()
 
-    const { cart, remove } = useCart()
+const { cart, remove } = useCart()
 
-    const { reservation, isCreating, create } = useReservation()
+const { reservation, isCreating, create } = useReservation()
 
-    reservation.value = {
-      books: computed(() => {
-        if (cart.value === null) return ''
+reservation.value = {
+  books: computed(() => {
+    if (cart.value === null) return ''
 
-        let list = []
-        cart.value.forEach((element) => {
-          list.push(element.id)
-        })
+    let list = []
+    cart.value.forEach((element) => {
+      list.push(element.id)
+    })
 
-        return list.join(',')
-      }),
-      notes: null,
-      salutation: null,
-      firstname: null,
-      surname: null,
-      mail: null,
-      phone: null,
-    }
+    return list.join(',')
+  }),
+  notes: null,
+  salutation: null,
+  firstname: null,
+  surname: null,
+  mail: null,
+  phone: null,
+}
 
-    const reserve = () => {
-      create()
-        .then(() => {
-          showCart.value = false
-          showThanks.value = true
-        })
-        .catch(() => {
-          add({
-            type: 'error',
-            body: i18n.t('request_error'),
-          })
-        })
-    }
-
-    return {
-      showCart,
-      showThanks,
-      cart,
-      remove,
-      reservation,
-      isCreating,
-      reserve,
-    }
-  },
+const reserve = () => {
+  create()
+    .then(() => {
+      showCart.value = false
+      showThanks.value = true
+    })
+    .catch(() => {
+      add({
+        type: 'error',
+        body: i18n.t('request_error'),
+      })
+    })
 }
 </script>
 
