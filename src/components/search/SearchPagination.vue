@@ -26,15 +26,19 @@ const route = (p) => {
 <template>
   <div class="wrapper">
     <ul class="pagination">
-      <li class="item" @click="route(page - 1)">&lt; {{ $t('back') }}</li>
-      <li class="item" @click="route(1)" v-if="1 != page">1</li>
-      <li class="item isSelected" @click="route(page)">
-        {{ page }}
+      <li class="item back" @click="route(page - 1)">&lt; {{ $t('back') }}</li>
+      <li class="item forward" @click="route(page + 1)">
+        {{ $t('forward') }} &gt;
       </li>
-      <li class="item" @click="route(pages)" v-if="pages != page">
-        {{ pages }}
-      </li>
-      <li class="item" @click="route(page + 1)">{{ $t('forward') }} &gt;</li>
+      <ul class="page">
+        <li class="item" @click="route(1)" v-if="1 != page">1</li>
+        <li class="item isSelected" @click="route(page)">
+          {{ page }}
+        </li>
+        <li class="item" @click="route(pages)" v-if="pages != page">
+          {{ pages }}
+        </li>
+      </ul>
     </ul>
   </div>
 </template>
@@ -63,5 +67,24 @@ const route = (p) => {
 }
 .item:hover {
   border: 1px solid var(--color-primary-10);
+}
+ul ul {
+  padding: 0;
+}
+
+@media all and (min-width: 500px) {
+  .pagination {
+    display: flex;
+    justify-content: center;
+  }
+  .back {
+    order: 1;
+  }
+  .forward {
+    order: 3;
+  }
+  .page {
+    order: 2;
+  }
 }
 </style>
