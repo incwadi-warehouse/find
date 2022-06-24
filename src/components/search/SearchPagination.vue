@@ -1,5 +1,5 @@
 <script setup>
-import router from '@/router'
+import { useRouter } from 'vue-router'
 import { toRefs } from 'vue'
 
 const props = defineProps({
@@ -12,12 +12,14 @@ const props = defineProps({
 
 const { page, pages } = toRefs(props)
 
+const router = useRouter()
+
 const route = (p) => {
   if (p < 1 || p > pages.value || p === page.value) return
 
   router.push({
     name: 'search',
-    query: Object.assign({}, router.currentRoute.query, { page: p }),
+    query: Object.assign({}, router.currentRoute.value.query, { page: p }),
   })
   window.scrollTo(0, 0)
 }
