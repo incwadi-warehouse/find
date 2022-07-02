@@ -42,7 +42,9 @@ const isInCart = computed(() => {
         >{{ $t('added_to_cart') }}</b-button
       >
 
-      <h2 :style="{ wordBreak: 'break-word' }">{{ article.title }}</h2>
+      <h2 :style="{ wordBreak: 'initial', hyphens: 'auto' }">
+        {{ article.title }}
+      </h2>
 
       <p v-if="article.authorSurname || article.authorFirstname">
         {{ $t('by') }}

@@ -18,7 +18,10 @@ const { articles, formatPrice, formatAuthor, image } = useArticle()
       </template>
 
       <template #title>
-        <router-link :to="{ name: 'article', params: { id: article.id } }">
+        <router-link
+          :to="{ name: 'article', params: { id: article.id } }"
+          :style="{ wordBreak: 'initial', hyphens: 'auto' }"
+        >
           {{ article.title }}
         </router-link>
       </template>
