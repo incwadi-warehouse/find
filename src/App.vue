@@ -4,7 +4,8 @@ import { useToast } from '@baldeweg/ui'
 import Logo from '@/components/AppLogo.vue'
 import Cart from '@/components/AppCart.vue'
 
-useLocale()
+const { locale } = useLocale()
+locale.value = import.meta.env.VUE_APP_I18N_LOCALE
 useTheme()
 
 const about = import.meta.env.VUE_APP_ABOUT
