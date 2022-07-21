@@ -78,6 +78,7 @@ const { recommendations } = useRecommendation()
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   color: var(--color-neutral-10);
+  hyphens: auto;
 }
 .title:hover {
   color: var(--color-neutral-06);
