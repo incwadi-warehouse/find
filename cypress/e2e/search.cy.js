@@ -38,7 +38,7 @@ describe('Search', () => {
 
     cy.visit('/search')
 
-    cy.get('.horizontal-list > div').should('have.length', 2)
+    cy.get('.slider > div').should('have.length', 2)
     cy.get(':nth-child(3) > .container').contains('book 1')
   })
 })
