@@ -1,13 +1,15 @@
 <script setup>
 import { useTitle } from '@baldeweg/ui'
 import { useArticle } from '@/composables/useArticle.js'
+import { useGenre } from '@/composables/useGenre.js'
 import SearchList from '@/components/search/SearchList.vue'
 import RecommendationShow from '@/components/recommendation/RecommendationShow.vue'
 import SearchPagination from '@/components/search/SearchPagination.vue'
 import SearchContent from '@/components/search/SearchContent.vue'
-import { computed, onMounted, toRefs, watch } from 'vue'
+import { computed, onMounted, ref, toRefs, watch } from 'vue'
 import { debounce } from 'lodash'
 import { useRouter } from 'vue-router'
+import SearchCheckboxFilter from '@/components/search/SearchCheckboxFilter.vue'
 
 useTitle({ title: 'Search' })
 
@@ -54,12 +56,23 @@ const searchOnInput = (t) => {
 
     router.push({
       name: 'search',
-      query: { term: t, page: page.value },
+      query: { term: t, page: page.value, genres: filterGenres.value },
     })
   }, 500)
 
   request()
 }
+
+const filter = () => {
+  router.push({
+    name: 'search',
+    query: { term: term.value, page: page.value, genres: filterGenres.value },
+  })
+}
+
+const { genres } = useGenre()
+
+const filterGenres = ref(router.currentRoute.value.query.genres || null)
 </script>
 
 <template>
@@ -79,6 +92,17 @@ const searchOnInput = (t) => {
             name: 'search',
           })
         "
+      />
+    </b-container>
+
+    <b-container size="m">
+      <SearchCheckboxFilter
+        :items="genres"
+        fieldKey="id"
+        fieldValue="name"
+        :title="$t('genre')"
+        v-model="filterGenres"
+        @update:modelValue="filter"
       />
     </b-container>
 
