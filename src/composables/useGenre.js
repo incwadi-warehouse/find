@@ -1,7 +1,9 @@
 import { onMounted, ref } from 'vue'
-import { request } from '@/api'
+import { useRequest } from '@baldeweg/ui'
 
 export function useGenre() {
+  const { request } = useRequest()
+
   const genres = ref(null)
 
   const list = () => {
