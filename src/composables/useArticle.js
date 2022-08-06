@@ -1,9 +1,15 @@
 import { ref } from 'vue'
-import { request } from '@/api'
+import { useRequest } from '@baldeweg/ui'
+import Cookies from 'js-cookie'
 
 const articles = ref([])
 
 export function useArticle() {
+  const { config, setAuthHeader, request } = useRequest()
+
+  config.value.baseURL = import.meta.env.VUE_APP_API
+  setAuthHeader(Cookies.get('token'))
+
   const article = ref(null)
   const counter = ref(0)
   const isLoading = ref(false)

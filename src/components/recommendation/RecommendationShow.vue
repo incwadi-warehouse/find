@@ -8,8 +8,8 @@ const { recommendations } = useRecommendation()
 </script>
 
 <template>
-  <b-horizontal-list v-if="recommendations">
-    <b-horizontal-list-item
+  <b-slider v-if="recommendations">
+    <b-slider-item
       size="xs"
       v-for="article in recommendations"
       :key="article.id"
@@ -48,8 +48,8 @@ const { recommendations } = useRecommendation()
           {{ formatPrice(article.price) }} {{ article.currency }}
         </b-button>
       </div>
-    </b-horizontal-list-item>
-  </b-horizontal-list>
+    </b-slider-item>
+  </b-slider>
 </template>
 
 <style scoped>
