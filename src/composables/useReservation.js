@@ -1,13 +1,11 @@
 import { ref } from 'vue'
 import { useRequest } from '@baldeweg/ui'
-import Cookies from 'js-cookie'
 import { useCart } from './useCart.js'
 
 export function useReservation() {
-  const { config, setAuthHeader, request } = useRequest()
+  const { config, request } = useRequest()
 
   config.value.baseURL = import.meta.env.VUE_APP_API
-  setAuthHeader(Cookies.get('token'))
 
   const { cart } = useCart()
 
