@@ -70,6 +70,7 @@ const filter = () => {
     name: 'search',
     query: { term: term.value, page: page.value, genres: filterGenres.value },
   })
+  search()
 }
 
 const { genres } = useGenre()
