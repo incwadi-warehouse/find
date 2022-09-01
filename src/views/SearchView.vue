@@ -1,14 +1,14 @@
 <script setup>
 import { useTitle } from '@baldeweg/ui'
+import { computed, onMounted, ref, toRefs, watch } from 'vue'
+import { debounce } from 'lodash'
+import { useRouter } from 'vue-router'
 import { useArticle } from '@/composables/useArticle.js'
 import { useGenre } from '@/composables/useGenre.js'
 import SearchList from '@/components/search/SearchList.vue'
 import RecommendationShow from '@/components/recommendation/RecommendationShow.vue'
 import SearchPagination from '@/components/search/SearchPagination.vue'
 import SearchContent from '@/components/search/SearchContent.vue'
-import { computed, onMounted, ref, toRefs, watch } from 'vue'
-import { debounce } from 'lodash'
-import { useRouter } from 'vue-router'
 import SearchCheckboxFilter from '@/components/search/SearchCheckboxFilter.vue'
 
 useTitle({ title: 'Search' })
@@ -28,10 +28,12 @@ const pages = computed(() => {
   return Math.ceil(counter.value / 20)
 })
 
+const filterGenres = ref(router.currentRoute.value.query.genres || null)
+
 const search = () => {
   if (!term.value) return
 
-  list(term.value, page.value)
+  list(term.value, page.value, filterGenres.value)
 }
 
 onMounted(search)
@@ -71,8 +73,6 @@ const filter = () => {
 }
 
 const { genres } = useGenre()
-
-const filterGenres = ref(router.currentRoute.value.query.genres || null)
 </script>
 
 <template>

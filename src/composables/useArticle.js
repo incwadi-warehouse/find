@@ -12,7 +12,7 @@ export function useArticle() {
   const counter = ref(0)
   const isLoading = ref(false)
 
-  const list = (term, page) => {
+  const list = (term, page, genre) => {
     isLoading.value = true
 
     const params = {
@@ -23,6 +23,11 @@ export function useArticle() {
             field: 'branch',
             operator: 'eq',
             value: import.meta.env.VUE_APP_BRANCH,
+          },
+          {
+            field: 'genre',
+            operator: 'eq',
+            value: genre,
           },
         ],
         orderBy: {
