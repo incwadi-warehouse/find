@@ -27,5 +27,6 @@
   "mrs": "Frau",
   "mr": "Herr",
   "none_diverse": "Keine Angabe/ Divers",
-  "firstname": "Vorname"
+  "firstname": "Vorname",
+  "genres": "Rubriken"
 }

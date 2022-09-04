@@ -26,7 +26,11 @@ const selectedItemName = computed(() => {
 </script>
 
 <template>
-  <b-dropdown position="bottom" v-if="items">
+  <b-dropdown
+    position="bottom"
+    v-if="items"
+    :style="{ color: 'var(--color-primary-10)' }"
+  >
     <template #selector>
       {{ title }}
       <span v-if="modelValue">({{ selectedItemName }})</span>

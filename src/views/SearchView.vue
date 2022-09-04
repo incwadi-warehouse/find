@@ -101,7 +101,7 @@ const { genres } = useGenre()
         :items="genres"
         fieldKey="id"
         fieldValue="name"
-        :title="$t('genre')"
+        :title="$t('genres')"
         v-model="filterGenres"
         @update:modelValue="filter"
       />
