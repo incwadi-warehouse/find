@@ -10,7 +10,7 @@ const content = computed(() => {
   if (!branch.value || !branch.value.content) return
 
   return DOMPurify.sanitize(marked.parse(branch.value.content), {
-    ALLOWED_TAGS: ['p', 'a', 'img', 'b', 'strong', 'i', 'em', 'ul', 'li'],
+    ALLOWED_TAGS: ['p', 'a', 'img', 'b', 'strong', 'i', 'em', 'ul', 'li', 'h1', 'h2', 'h3'],
   })
 })
 </script>
