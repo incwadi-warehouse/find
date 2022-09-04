@@ -1,9 +1,9 @@
 <script setup>
 import { useTitle } from '@baldeweg/ui'
-import { useArticle } from '@/composables/useArticle.js'
-import { useCart } from '@/composables/useCart.js'
 import { find } from 'lodash'
 import { computed } from 'vue'
+import { useArticle } from '@/composables/useArticle.js'
+import { useCart } from '@/composables/useCart.js'
 
 useTitle({ title: 'Article' })
 
@@ -45,6 +45,7 @@ const isInCart = computed(() => {
       <h2 :style="{ wordBreak: 'initial', hyphens: 'auto' }">
         {{ article.title }}
       </h2>
+      <p v-if="article.subtitle">{{ article.subtitle }}</p>
 
       <p v-if="article.authorSurname || article.authorFirstname">
         {{ $t('by') }}
