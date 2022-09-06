@@ -97,6 +97,7 @@ const { genres } = useGenre()
     </b-container>
 
     <b-container size="m">
+      <p>Filter:</p>
       <SearchCheckboxFilter
         :items="genres"
         fieldKey="id"

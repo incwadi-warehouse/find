@@ -29,7 +29,11 @@ const selectedItemName = computed(() => {
   <b-dropdown
     position="bottom"
     v-if="items"
-    :style="{ color: 'var(--color-primary-10)' }"
+    :style="{
+      color: 'var(--color-primary-10)',
+      fontSize: '35px',
+      cursor: 'pointer',
+    }"
   >
     <template #selector>
       {{ title }}
