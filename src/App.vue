@@ -1,12 +1,11 @@
 <script setup>
-import { useLocale, useTheme } from '@baldeweg/ui'
+import { useLocale, useColorScheme } from '@baldeweg/ui'
 import { useToast } from '@baldeweg/ui'
 import Logo from '@/components/AppLogo.vue'
 import Cart from '@/components/AppCart.vue'
 
-const { locale } = useLocale()
-locale.value = import.meta.env.VUE_APP_I18N_LOCALE
-useTheme()
+useLocale()
+useColorScheme()
 
 const about = import.meta.env.VUE_APP_ABOUT
 const hasLogo = import.meta.env.VUE_APP_LOGO === 'false' ? false : true
