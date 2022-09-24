@@ -1,9 +1,9 @@
 <script setup>
-import { useCart } from '@/composables/useCart.js'
-import { useReservation } from '@/composables/useReservation.js'
 import { useToast } from '@baldeweg/ui'
 import { computed, ref } from 'vue'
-import i18n from '@/i18n.js'
+import { useI18n } from 'vue-i18n'
+import { useReservation } from '@/composables/useReservation.js'
+import { useCart } from '@/composables/useCart.js'
 
 const showCart = ref(false)
 const showThanks = ref(false)
@@ -13,6 +13,8 @@ const { add } = useToast()
 const { cart, remove } = useCart()
 
 const { reservation, isCreating, create } = useReservation()
+
+const { t } = useI18n()
 
 reservation.value = {
   books: computed(() => {
@@ -42,7 +44,7 @@ const reserve = () => {
     .catch(() => {
       add({
         type: 'error',
-        body: i18n.t('request_error'),
+        body: t('request_error'),
       })
     })
 }
