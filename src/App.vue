@@ -16,7 +16,7 @@ const { current } = useToast()
 <template>
   <b-app>
     <b-masthead>
-      <b-masthead-item type="center">
+      <b-masthead-item position="center">
         <router-link :to="{ name: 'index' }">
           <Logo v-if="hasLogo" />
           <svg
@@ -34,7 +34,7 @@ const { current } = useToast()
         </router-link>
       </b-masthead-item>
 
-      <b-masthead-item type="end">
+      <b-masthead-item position="end">
         <Cart />
       </b-masthead-item>
     </b-masthead>
