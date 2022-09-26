@@ -1,11 +1,9 @@
 {
-  "notFoundDesc": "The requested page could not be found.",
   "searchInTitleAuthorGenre": "Search in Title, Author or Genre",
   "genre": "Genre",
   "releaseYear": "Release Year",
   "price": "Price",
   "by": "by",
-  "branch": "Branch",
   "condition": "Condition",
   "back": "Back",
   "forward": "Forward",

@@ -1,11 +1,9 @@
 {
-  "notFoundDesc": "Die gesuchte Seite konnte leider nicht gefunden werden.",
   "searchInTitleAuthorGenre": "Suche in Titel, Autor oder Rubrik",
   "genre": "Rubrik",
   "releaseYear": "Veröffentlichungsjahr",
   "price": "Preis",
   "by": "von",
-  "branch": "Filiale",
   "condition": "Zustand",
   "back": "Zurück",
   "forward": "Weiter",
