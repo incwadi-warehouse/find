@@ -31,7 +31,7 @@ const selectedItemName = computed(() => {
     v-if="items"
     :style="{
       color: 'var(--color-primary-10)',
-      fontSize: '35px',
+      fontSize: '30px',
       cursor: 'pointer',
     }"
   >
